@@ -1,5 +1,7 @@
 
+using Core.Interfaces;
 using Infrastructure.Dbcontext;
+using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace WorkWhere
@@ -20,6 +22,10 @@ namespace WorkWhere
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("con1"));
             });
+            builder.Services.AddScoped(typeof(IGenericRepo<>), typeof(GenericRepo<>));
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

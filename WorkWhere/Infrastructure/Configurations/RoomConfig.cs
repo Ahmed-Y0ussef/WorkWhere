@@ -19,6 +19,11 @@ namespace Core.Configurations
                            .HasForeignKey(r => r.AdminId)
                            .OnDelete(DeleteBehavior.Restrict);
 
+            builder.HasOne(r => r.Place)
+                .WithMany(p=>p.Rooms)
+                .HasForeignKey(r => r.PlaceId)
+                .OnDelete(DeleteBehavior.Restrict);
+
             builder.Property(c => c.Status)
                .HasConversion<string>();
         }

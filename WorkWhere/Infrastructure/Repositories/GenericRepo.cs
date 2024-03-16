@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories
 {
-    internal class GenericRepo<T> : IGenericRepo<T> where T : BaseEntity
+    public class GenericRepo<T> : IGenericRepo<T> where T : BaseEntity
     {
         ApplicationDbContext AppContext;
         public GenericRepo(ApplicationDbContext _AppContext)
@@ -18,8 +18,21 @@ namespace Infrastructure.Repositories
             AppContext = _AppContext;
         }
         public async Task<IEnumerable<T>> GetAllAsync()
-            => await AppContext.Set<T>().ToListAsync();
-       
-       
+        {
+            //if(typeof(T)==typeof(Place))
+                //return await AppContext
+            return   await AppContext.Set<T>().ToListAsync();
+        }
+        public async Task Add(T entity)
+       =>await AppContext.Set<T>().AddAsync(entity);
+
+        public void Delete(T entity)
+        => AppContext.Remove(entity);
+
+        public async Task GetById(int id)
+        =>await AppContext.Set<T>().FindAsync(id);
+
+        public void Update(T entity)
+        => AppContext.Update(entity);
     }
 }

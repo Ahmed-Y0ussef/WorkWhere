@@ -4,6 +4,7 @@ using Infrastructure.Dbcontext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240316005225_t1")]
+    partial class t1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -324,9 +327,6 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PlaceId")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("PricePerHour")
                         .HasColumnType("decimal(18,2)");
 
@@ -336,8 +336,6 @@ namespace Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AdminId");
-
-                    b.HasIndex("PlaceId");
 
                     b.ToTable("Room");
                 });
@@ -649,15 +647,7 @@ namespace Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Core.Entities.Place", "Place")
-                        .WithMany("Rooms")
-                        .HasForeignKey("PlaceId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.Navigation("Admin");
-
-                    b.Navigation("Place");
                 });
 
             modelBuilder.Entity("Core.Entities.RoomPhotos", b =>
@@ -772,8 +762,6 @@ namespace Infrastructure.Migrations
                     b.Navigation("PlaceReviews");
 
                     b.Navigation("PlaceUtilities");
-
-                    b.Navigation("Rooms");
                 });
 
             modelBuilder.Entity("Core.Entities.Room", b =>

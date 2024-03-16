@@ -12,7 +12,9 @@
 
   <ItemGroup>
     <Folder Include="DTO\" />
-    <Folder Include="Services\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="Services\RoomServices\" />
+    <Folder Include="Services\PlaceServices\" />
   </ItemGroup>
 
 </Project>

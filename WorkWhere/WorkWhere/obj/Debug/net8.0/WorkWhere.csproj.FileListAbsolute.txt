@@ -140,3 +140,4 @@ D:\ITI_GP\WorkWhere\WorkWhere\bin\Debug\net8.0\Infrastructure.dll
 D:\ITI_GP\WorkWhere\WorkWhere\bin\Debug\net8.0\Application.pdb
 D:\ITI_GP\WorkWhere\WorkWhere\bin\Debug\net8.0\Core.pdb
 D:\ITI_GP\WorkWhere\WorkWhere\bin\Debug\net8.0\Infrastructure.pdb
+D:\ITI_GP\WorkWhere\WorkWhere\obj\Debug\net8.0\WorkWhere.sourcelink.json
