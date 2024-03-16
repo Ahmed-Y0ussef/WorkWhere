@@ -19,7 +19,7 @@ namespace Core.Configurations
             builder.HasOne(c => c.Teacher)
                .WithMany(u => u.TaughtedCourses)
                .HasForeignKey(c => c.TeacherId)
-              .OnDelete(DeleteBehavior.Restrict);
+              .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasOne(c => c.Admin)
             .WithMany(u => u.AcceptedCourses)

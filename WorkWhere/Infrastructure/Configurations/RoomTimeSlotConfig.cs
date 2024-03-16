@@ -17,7 +17,7 @@ namespace Core.Configurations
             builder.HasOne(rt => rt.Room)
                             .WithMany(r=>r.RoomTimeSlots)
                             .HasForeignKey(rt => rt.RoomId)
-                            .OnDelete(DeleteBehavior.Restrict);
+                            .OnDelete(DeleteBehavior.Cascade);
 
             builder.Property(rt => rt.TimeStrart)
             .HasColumnType("bigint");

@@ -17,7 +17,7 @@ namespace Infrastructure.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.2")
+                .HasAnnotation("ProductVersion", "8.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -56,7 +56,7 @@ namespace Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AdminId")
+                    b.Property<int?>("AdminId")
                         .HasColumnType("int");
 
                     b.Property<int>("Capacity")
@@ -76,7 +76,7 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Num_Of_Students_Joined")
+                    b.Property<int?>("Num_Of_Students_Joined")
                         .HasColumnType("int");
 
                     b.Property<byte[]>("Photo")
@@ -115,7 +115,7 @@ namespace Infrastructure.Migrations
                     b.Property<string>("Review")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("CourseId", "Id");
@@ -246,7 +246,7 @@ namespace Infrastructure.Migrations
                     b.Property<string>("Review")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -308,7 +308,7 @@ namespace Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AdminId")
+                    b.Property<int?>("AdminId")
                         .HasColumnType("int");
 
                     b.Property<int>("Capacity")
@@ -317,12 +317,15 @@ namespace Infrastructure.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("GuestId")
+                    b.Property<int?>("GuestId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PlaceId")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("PricePerHour")
                         .HasColumnType("decimal(18,2)");
@@ -333,6 +336,8 @@ namespace Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AdminId");
+
+                    b.HasIndex("PlaceId");
 
                     b.ToTable("Room");
                 });
@@ -366,7 +371,7 @@ namespace Infrastructure.Migrations
                     b.Property<string>("Review")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("RoomId", "Id");
@@ -470,9 +475,6 @@ namespace Infrastructure.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PlaceId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Status")
                         .HasColumnType("nvarchar(max)");
 
@@ -482,8 +484,6 @@ namespace Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AdminID");
-
-                    b.HasIndex("PlaceId");
 
                     b.ToTable("Users");
                 });
@@ -519,13 +519,12 @@ namespace Infrastructure.Migrations
                     b.HasOne("Core.Entities.User", "Admin")
                         .WithMany("AcceptedCourses")
                         .HasForeignKey("AdminId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Core.Entities.User", "Teacher")
                         .WithMany("TaughtedCourses")
                         .HasForeignKey("TeacherId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Admin");
@@ -538,14 +537,13 @@ namespace Infrastructure.Migrations
                     b.HasOne("Core.Entities.Course", "Course")
                         .WithMany("CoursesReviews")
                         .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Core.Entities.User", "User")
                         .WithMany("courseReviews")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Course");
 
@@ -557,7 +555,7 @@ namespace Infrastructure.Migrations
                     b.HasOne("Core.Entities.Course", "Course")
                         .WithMany("CoursesTableSlots")
                         .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Course");
@@ -568,13 +566,13 @@ namespace Infrastructure.Migrations
                     b.HasOne("Core.Entities.User", "Guest")
                         .WithMany("GuestRooms")
                         .HasForeignKey("GuestId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Core.Entities.Room", "Room")
                         .WithMany("GuestRooms")
                         .HasForeignKey("RoomId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Guest");
@@ -592,7 +590,7 @@ namespace Infrastructure.Migrations
                     b.HasOne("Core.Entities.User", "Host")
                         .WithMany("PlacesOwned")
                         .HasForeignKey("HostID")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Admin");
@@ -605,7 +603,7 @@ namespace Infrastructure.Migrations
                     b.HasOne("Core.Entities.Place", "Place")
                         .WithMany("PlacePhotos")
                         .HasForeignKey("PlaceId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Place");
@@ -616,14 +614,13 @@ namespace Infrastructure.Migrations
                     b.HasOne("Core.Entities.Place", "Place")
                         .WithMany("PlaceReviews")
                         .HasForeignKey("PlaceId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Core.Entities.User", "User")
                         .WithMany("placeReviews")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Place");
 
@@ -635,7 +632,7 @@ namespace Infrastructure.Migrations
                     b.HasOne("Core.Entities.Place", "Place")
                         .WithMany("PlaceUtilities")
                         .HasForeignKey("PlaceId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Place");
@@ -646,10 +643,17 @@ namespace Infrastructure.Migrations
                     b.HasOne("Core.Entities.User", "Admin")
                         .WithMany()
                         .HasForeignKey("AdminId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("Core.Entities.Place", "Place")
+                        .WithMany("Rooms")
+                        .HasForeignKey("PlaceId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Admin");
+
+                    b.Navigation("Place");
                 });
 
             modelBuilder.Entity("Core.Entities.RoomPhotos", b =>
@@ -657,7 +661,7 @@ namespace Infrastructure.Migrations
                     b.HasOne("Core.Entities.Room", "Room")
                         .WithMany("RoomPhotos")
                         .HasForeignKey("RoomId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Room");
@@ -668,14 +672,13 @@ namespace Infrastructure.Migrations
                     b.HasOne("Core.Entities.Room", "Room")
                         .WithMany("RoomReviews")
                         .HasForeignKey("RoomId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Core.Entities.User", "User")
                         .WithMany("roomReviews")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Room");
 
@@ -687,7 +690,7 @@ namespace Infrastructure.Migrations
                     b.HasOne("Core.Entities.Room", "Room")
                         .WithMany("RoomTimeSlots")
                         .HasForeignKey("RoomId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Room");
@@ -715,7 +718,7 @@ namespace Infrastructure.Migrations
                     b.HasOne("Core.Entities.User", "User")
                         .WithMany("StudentCourses")
                         .HasForeignKey("StdId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Course");
@@ -727,12 +730,7 @@ namespace Infrastructure.Migrations
                 {
                     b.HasOne("Core.Entities.User", "Admin")
                         .WithMany()
-                        .HasForeignKey("AdminID")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("Core.Entities.Place", null)
-                        .WithMany("Users")
-                        .HasForeignKey("PlaceId");
+                        .HasForeignKey("AdminID");
 
                     b.Navigation("Admin");
                 });
@@ -769,7 +767,7 @@ namespace Infrastructure.Migrations
 
                     b.Navigation("PlaceUtilities");
 
-                    b.Navigation("Users");
+                    b.Navigation("Rooms");
                 });
 
             modelBuilder.Entity("Core.Entities.Room", b =>

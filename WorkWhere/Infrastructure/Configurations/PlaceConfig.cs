@@ -22,7 +22,7 @@ namespace Core.Configurations
             builder.HasOne(p => p.Host)
                 .WithMany(h => h.PlacesOwned)
                 .HasForeignKey(p => p.HostID)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.Property(c => c.Status)
                .HasConversion<string>();

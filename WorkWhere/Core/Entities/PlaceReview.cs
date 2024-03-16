@@ -9,7 +9,7 @@ namespace Core.Entities
     public class PlaceReview
     {
         public int Id { get; set; }
-        public int UserId { get; set; }
+        public int? UserId { get; set; }
 
         public int PlaceId { get; set; }
         public int? Rating { get; set; }

@@ -51,3 +51,4 @@ D:\ITI_GP\WorkWhere\Infrastructure\obj\Debug\net8.0\refint\Infrastructure.dll
 D:\ITI_GP\WorkWhere\Infrastructure\obj\Debug\net8.0\Infrastructure.pdb
 D:\ITI_GP\WorkWhere\Infrastructure\obj\Debug\net8.0\Infrastructure.genruntimeconfig.cache
 D:\ITI_GP\WorkWhere\Infrastructure\obj\Debug\net8.0\ref\Infrastructure.dll
+D:\ITI_GP\WorkWhere\Infrastructure\obj\Debug\net8.0\Infrastructure.sourcelink.json

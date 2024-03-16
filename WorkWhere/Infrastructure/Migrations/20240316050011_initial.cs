@@ -26,6 +26,34 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PersonalImg = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    NId = table.Column<long>(type: "bigint", nullable: true),
+                    NImg = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AdminID = table.Column<int>(type: "int", nullable: true),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Users_Users_AdminID",
+                        column: x => x.AdminID,
+                        principalTable: "Users",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Contact",
                 columns: table => new
                 {
@@ -38,6 +66,12 @@ namespace Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Contact", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Contact_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -51,9 +85,9 @@ namespace Infrastructure.Migrations
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Photo = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
                     IsInPlace = table.Column<bool>(type: "bit", nullable: false),
-                    Num_Of_Students_Joined = table.Column<int>(type: "int", nullable: false),
+                    Num_Of_Students_Joined = table.Column<int>(type: "int", nullable: true),
                     Location = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AdminId = table.Column<int>(type: "int", nullable: false),
+                    AdminId = table.Column<int>(type: "int", nullable: true),
                     TeacherId = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -61,59 +95,18 @@ namespace Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Course", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "CourseTableSlot",
-                columns: table => new
-                {
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CourseId = table.Column<int>(type: "int", nullable: false),
-                    StratHour = table.Column<long>(type: "bigint", nullable: false),
-                    EndHour = table.Column<long>(type: "bigint", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CourseTableSlot", x => new { x.CourseId, x.Date });
                     table.ForeignKey(
-                        name: "FK_CourseTableSlot_Course_CourseId",
-                        column: x => x.CourseId,
-                        principalTable: "Course",
+                        name: "FK_Course_Users_AdminId",
+                        column: x => x.AdminId,
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "CourseReview",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false),
-                    CourseId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    Rating = table.Column<int>(type: "int", nullable: true),
-                    Review = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CourseReview", x => new { x.CourseId, x.Id });
                     table.ForeignKey(
-                        name: "FK_CourseReview_Course_CourseId",
-                        column: x => x.CourseId,
-                        principalTable: "Course",
+                        name: "FK_Course_Users_TeacherId",
+                        column: x => x.TeacherId,
+                        principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "GuestRoom",
-                columns: table => new
-                {
-                    GuestId = table.Column<int>(type: "int", nullable: false),
-                    RoomId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_GuestRoom", x => new { x.GuestId, x.RoomId });
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -138,107 +131,18 @@ namespace Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Place", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PlacePhotos",
-                columns: table => new
-                {
-                    photo = table.Column<byte[]>(type: "varbinary(900)", nullable: false),
-                    PlaceId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PlacePhotos", x => new { x.PlaceId, x.photo });
                     table.ForeignKey(
-                        name: "FK_PlacePhotos_Place_PlaceId",
-                        column: x => x.PlaceId,
-                        principalTable: "Place",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PlaceUtilities",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UtilityName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PlaceId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PlaceUtilities", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_PlaceUtilities_Place_PlaceId",
-                        column: x => x.PlaceId,
-                        principalTable: "Place",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Users",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PersonalImg = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
-                    NId = table.Column<long>(type: "bigint", nullable: true),
-                    NImg = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AdminID = table.Column<int>(type: "int", nullable: true),
-                    Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PlaceId = table.Column<int>(type: "int", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Users", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Users_Place_PlaceId",
-                        column: x => x.PlaceId,
-                        principalTable: "Place",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Users_Users_AdminID",
-                        column: x => x.AdminID,
+                        name: "FK_Place_Users_AdminId",
+                        column: x => x.AdminId,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PlaceReview",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    PlaceId = table.Column<int>(type: "int", nullable: false),
-                    Rating = table.Column<int>(type: "int", nullable: true),
-                    Review = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PlaceReview", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_PlaceReview_Place_PlaceId",
-                        column: x => x.PlaceId,
-                        principalTable: "Place",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_PlaceReview_Users_UserId",
-                        column: x => x.UserId,
+                        name: "FK_Place_Users_HostID",
+                        column: x => x.HostID,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -266,28 +170,50 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Room",
+                name: "CourseReview",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Capacity = table.Column<int>(type: "int", nullable: false),
-                    PricePerHour = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    AdminId = table.Column<int>(type: "int", nullable: false),
-                    GuestId = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Id = table.Column<int>(type: "int", nullable: false),
+                    CourseId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: true),
+                    Rating = table.Column<int>(type: "int", nullable: true),
+                    Review = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Room", x => x.Id);
+                    table.PrimaryKey("PK_CourseReview", x => new { x.CourseId, x.Id });
                     table.ForeignKey(
-                        name: "FK_Room_Users_AdminId",
-                        column: x => x.AdminId,
+                        name: "FK_CourseReview_Course_CourseId",
+                        column: x => x.CourseId,
+                        principalTable: "Course",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CourseReview_Users_UserId",
+                        column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CourseTableSlot",
+                columns: table => new
+                {
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CourseId = table.Column<int>(type: "int", nullable: false),
+                    StratHour = table.Column<long>(type: "bigint", nullable: false),
+                    EndHour = table.Column<long>(type: "bigint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CourseTableSlot", x => new { x.CourseId, x.Date });
+                    table.ForeignKey(
+                        name: "FK_CourseTableSlot_Course_CourseId",
+                        column: x => x.CourseId,
+                        principalTable: "Course",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -311,7 +237,129 @@ namespace Infrastructure.Migrations
                         column: x => x.StdId,
                         principalTable: "Users",
                         principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PlacePhotos",
+                columns: table => new
+                {
+                    photo = table.Column<byte[]>(type: "varbinary(900)", nullable: false),
+                    PlaceId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PlacePhotos", x => new { x.PlaceId, x.photo });
+                    table.ForeignKey(
+                        name: "FK_PlacePhotos_Place_PlaceId",
+                        column: x => x.PlaceId,
+                        principalTable: "Place",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PlaceReview",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<int>(type: "int", nullable: true),
+                    PlaceId = table.Column<int>(type: "int", nullable: false),
+                    Rating = table.Column<int>(type: "int", nullable: true),
+                    Review = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PlaceReview", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_PlaceReview_Place_PlaceId",
+                        column: x => x.PlaceId,
+                        principalTable: "Place",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PlaceReview_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PlaceUtilities",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UtilityName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PlaceId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PlaceUtilities", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_PlaceUtilities_Place_PlaceId",
+                        column: x => x.PlaceId,
+                        principalTable: "Place",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Room",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Capacity = table.Column<int>(type: "int", nullable: false),
+                    PricePerHour = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    AdminId = table.Column<int>(type: "int", nullable: true),
+                    GuestId = table.Column<int>(type: "int", nullable: true),
+                    PlaceId = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Room", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Room_Place_PlaceId",
+                        column: x => x.PlaceId,
+                        principalTable: "Place",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Room_Users_AdminId",
+                        column: x => x.AdminId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "GuestRoom",
+                columns: table => new
+                {
+                    GuestId = table.Column<int>(type: "int", nullable: false),
+                    RoomId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_GuestRoom", x => new { x.GuestId, x.RoomId });
+                    table.ForeignKey(
+                        name: "FK_GuestRoom_Room_RoomId",
+                        column: x => x.RoomId,
+                        principalTable: "Room",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_GuestRoom_Users_GuestId",
+                        column: x => x.GuestId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -329,7 +377,7 @@ namespace Infrastructure.Migrations
                         column: x => x.RoomId,
                         principalTable: "Room",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -338,7 +386,7 @@ namespace Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false),
                     RoomId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: true),
                     Rating = table.Column<int>(type: "int", nullable: true),
                     Review = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -350,7 +398,7 @@ namespace Infrastructure.Migrations
                         column: x => x.RoomId,
                         principalTable: "Room",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_RoomReview_Users_UserId",
                         column: x => x.UserId,
@@ -376,7 +424,7 @@ namespace Infrastructure.Migrations
                         column: x => x.RoomId,
                         principalTable: "Room",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -460,6 +508,11 @@ namespace Infrastructure.Migrations
                 column: "AdminId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Room_PlaceId",
+                table: "Room",
+                column: "PlaceId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_RoomPhotos_RoomId",
                 table: "RoomPhotos",
                 column: "RoomId");
@@ -483,88 +536,11 @@ namespace Infrastructure.Migrations
                 name: "IX_Users_AdminID",
                 table: "Users",
                 column: "AdminID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Users_PlaceId",
-                table: "Users",
-                column: "PlaceId");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Contact_Users_UserId",
-                table: "Contact",
-                column: "UserId",
-                principalTable: "Users",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Course_Users_AdminId",
-                table: "Course",
-                column: "AdminId",
-                principalTable: "Users",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Course_Users_TeacherId",
-                table: "Course",
-                column: "TeacherId",
-                principalTable: "Users",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_CourseReview_Users_UserId",
-                table: "CourseReview",
-                column: "UserId",
-                principalTable: "Users",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_GuestRoom_Room_RoomId",
-                table: "GuestRoom",
-                column: "RoomId",
-                principalTable: "Room",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_GuestRoom_Users_GuestId",
-                table: "GuestRoom",
-                column: "GuestId",
-                principalTable: "Users",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Place_Users_AdminId",
-                table: "Place",
-                column: "AdminId",
-                principalTable: "Users",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Place_Users_HostID",
-                table: "Place",
-                column: "HostID",
-                principalTable: "Users",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Place_Users_AdminId",
-                table: "Place");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Place_Users_HostID",
-                table: "Place");
-
             migrationBuilder.DropTable(
                 name: "Contact");
 
@@ -614,10 +590,10 @@ namespace Infrastructure.Migrations
                 name: "Course");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "Place");
 
             migrationBuilder.DropTable(
-                name: "Place");
+                name: "Users");
         }
     }
 }

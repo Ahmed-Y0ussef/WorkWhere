@@ -23,8 +23,7 @@ namespace Core.Entities
         public ICollection<PlaceUtilities> PlaceUtilities { get; set; }
         public User Admin { get; set; }
         public User Host { get; set; }
-        public ICollection<User> Users { get; set; }
-
+        public ICollection<Room> Rooms { get; set; }
         public ICollection<PlaceReview> PlaceReviews { get; set; }
 
         public ICollection<PlacePhotos> PlacePhotos { get; set; }

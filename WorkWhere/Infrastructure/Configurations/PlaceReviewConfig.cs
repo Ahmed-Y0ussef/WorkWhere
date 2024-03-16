@@ -17,7 +17,7 @@ namespace Core.Configurations
             builder.HasOne(p => p.Place)
                 .WithMany(p => p.PlaceReviews)
                 .HasForeignKey(p => p.PlaceId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasOne(p => p.User)
                 .WithMany(u=>u.placeReviews)
