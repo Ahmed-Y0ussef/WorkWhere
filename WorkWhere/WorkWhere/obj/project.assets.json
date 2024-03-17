@@ -4563,11 +4563,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\ITI_GP\\WorkWhere\\WorkWhere\\WorkWhere.csproj",
+      "projectUniqueName": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\WorkWhere\\WorkWhere.csproj",
       "projectName": "WorkWhere",
-      "projectPath": "D:\\ITI_GP\\WorkWhere\\WorkWhere\\WorkWhere.csproj",
+      "projectPath": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\WorkWhere\\WorkWhere.csproj",
       "packagesPath": "C:\\Users\\ahmed\\.nuget\\packages\\",
-      "outputPath": "D:\\ITI_GP\\WorkWhere\\WorkWhere\\obj\\",
+      "outputPath": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\WorkWhere\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ahmed\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -4584,8 +4584,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\ITI_GP\\WorkWhere\\Application\\Application.csproj": {
-              "projectPath": "D:\\ITI_GP\\WorkWhere\\Application\\Application.csproj"
+            "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Application\\Application.csproj": {
+              "projectPath": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Application\\Application.csproj"
             }
           }
         }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\ITI_GP\\WorkWhere\\WorkWhere\\WorkWhere.csproj": {}
+    "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\WorkWhere\\WorkWhere.csproj": {}
   },
   "projects": {
-    "D:\\ITI_GP\\WorkWhere\\Application\\Application.csproj": {
+    "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Application\\Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ITI_GP\\WorkWhere\\Application\\Application.csproj",
+        "projectUniqueName": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Application\\Application.csproj",
         "projectName": "Application",
-        "projectPath": "D:\\ITI_GP\\WorkWhere\\Application\\Application.csproj",
+        "projectPath": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Application\\Application.csproj",
         "packagesPath": "C:\\Users\\ahmed\\.nuget\\packages\\",
-        "outputPath": "D:\\ITI_GP\\WorkWhere\\Application\\obj\\",
+        "outputPath": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ahmed\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\ITI_GP\\WorkWhere\\Infrastructure\\Infrastructure.csproj": {
-                "projectPath": "D:\\ITI_GP\\WorkWhere\\Infrastructure\\Infrastructure.csproj"
+              "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Infrastructure\\Infrastructure.csproj"
               }
             }
           }
@@ -68,14 +68,14 @@
         }
       }
     },
-    "D:\\ITI_GP\\WorkWhere\\Core\\Core.csproj": {
+    "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Core\\Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ITI_GP\\WorkWhere\\Core\\Core.csproj",
+        "projectUniqueName": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Core\\Core.csproj",
         "projectName": "Core",
-        "projectPath": "D:\\ITI_GP\\WorkWhere\\Core\\Core.csproj",
+        "projectPath": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Core\\Core.csproj",
         "packagesPath": "C:\\Users\\ahmed\\.nuget\\packages\\",
-        "outputPath": "D:\\ITI_GP\\WorkWhere\\Core\\obj\\",
+        "outputPath": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ahmed\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -128,14 +128,14 @@
         }
       }
     },
-    "D:\\ITI_GP\\WorkWhere\\Infrastructure\\Infrastructure.csproj": {
+    "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Infrastructure\\Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ITI_GP\\WorkWhere\\Infrastructure\\Infrastructure.csproj",
+        "projectUniqueName": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Infrastructure\\Infrastructure.csproj",
         "projectName": "Infrastructure",
-        "projectPath": "D:\\ITI_GP\\WorkWhere\\Infrastructure\\Infrastructure.csproj",
+        "projectPath": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Infrastructure\\Infrastructure.csproj",
         "packagesPath": "C:\\Users\\ahmed\\.nuget\\packages\\",
-        "outputPath": "D:\\ITI_GP\\WorkWhere\\Infrastructure\\obj\\",
+        "outputPath": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ahmed\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -152,8 +152,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\ITI_GP\\WorkWhere\\Core\\Core.csproj": {
-                "projectPath": "D:\\ITI_GP\\WorkWhere\\Core\\Core.csproj"
+              "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Core\\Core.csproj": {
+                "projectPath": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Core\\Core.csproj"
               }
             }
           }
@@ -204,14 +204,14 @@
         }
       }
     },
-    "D:\\ITI_GP\\WorkWhere\\WorkWhere\\WorkWhere.csproj": {
+    "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\WorkWhere\\WorkWhere.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ITI_GP\\WorkWhere\\WorkWhere\\WorkWhere.csproj",
+        "projectUniqueName": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\WorkWhere\\WorkWhere.csproj",
         "projectName": "WorkWhere",
-        "projectPath": "D:\\ITI_GP\\WorkWhere\\WorkWhere\\WorkWhere.csproj",
+        "projectPath": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\WorkWhere\\WorkWhere.csproj",
         "packagesPath": "C:\\Users\\ahmed\\.nuget\\packages\\",
-        "outputPath": "D:\\ITI_GP\\WorkWhere\\WorkWhere\\obj\\",
+        "outputPath": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\WorkWhere\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ahmed\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -228,8 +228,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\ITI_GP\\WorkWhere\\Application\\Application.csproj": {
-                "projectPath": "D:\\ITI_GP\\WorkWhere\\Application\\Application.csproj"
+              "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Application\\Application.csproj": {
+                "projectPath": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Application\\Application.csproj"
               }
             }
           }

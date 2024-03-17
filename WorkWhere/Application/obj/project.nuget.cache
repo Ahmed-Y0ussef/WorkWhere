@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Yk64qA/P/U9zJpBUXG6VYeDDn7wV45Cpl2d9sEtT+IgYt63k+OAxEpHGHm/vtYzKDJSxPDQqy6Bmqsy0waCyUQ==",
+  "dgSpecHash": "p99mPsJifUr7DUzuMhEZFcLwVrmpxg6fSFfcBQwI6gIHw9aqWforvqxdkWmpey3xa9amedeS8AU46iSHmE3mBw==",
   "success": true,
-  "projectFilePath": "D:\\ITI_GP\\WorkWhere\\Application\\Application.csproj",
+  "projectFilePath": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Application\\Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ahmed\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\ahmed\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

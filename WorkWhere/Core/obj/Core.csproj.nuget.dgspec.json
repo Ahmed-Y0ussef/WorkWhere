@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\ITI_GP\\WorkWhere\\Core\\Core.csproj": {}
+    "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Core\\Core.csproj": {}
   },
   "projects": {
-    "D:\\ITI_GP\\WorkWhere\\Core\\Core.csproj": {
+    "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Core\\Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ITI_GP\\WorkWhere\\Core\\Core.csproj",
+        "projectUniqueName": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Core\\Core.csproj",
         "projectName": "Core",
-        "projectPath": "D:\\ITI_GP\\WorkWhere\\Core\\Core.csproj",
+        "projectPath": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Core\\Core.csproj",
         "packagesPath": "C:\\Users\\ahmed\\.nuget\\packages\\",
-        "outputPath": "D:\\ITI_GP\\WorkWhere\\Core\\obj\\",
+        "outputPath": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ahmed\\AppData\\Roaming\\NuGet\\NuGet.Config",

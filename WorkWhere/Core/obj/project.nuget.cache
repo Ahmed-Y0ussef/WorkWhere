@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "MnaLj7hO33Ci9Rrk+tDTzYHqAC6vAwWt1D3vG4Grd+Dk7WuMDQxi/hoOhYXerK51AcIeosHdDfOaeTLpkzly6Q==",
+  "dgSpecHash": "DWABhnmCQJ+moAs2LB5KArH3OKM8f3/NnSY8weafQuT4n9kV7pOe6K8rny9YygYVnLL6Fn9w9L935X9Gz1G7uA==",
   "success": true,
-  "projectFilePath": "D:\\ITI_GP\\WorkWhere\\Core\\Core.csproj",
+  "projectFilePath": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Core\\Core.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
