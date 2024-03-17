@@ -17,7 +17,7 @@ namespace Core.Configurations
             builder.HasOne(c => c.Course)
                 .WithMany(r => r.CoursesReviews)
                 .HasForeignKey(c => c.CourseId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
 
            builder.HasOne(r => r.User)
                 .WithMany(u=>u.courseReviews)

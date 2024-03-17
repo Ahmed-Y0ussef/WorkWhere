@@ -1,1 +1,22 @@
-[]
+[
+  {
+    "ContainingType": "WorkWhere.Controllers.PlaceModule.PlaceController",
+    "Method": "GetAllPlaces",
+    "RelativePath": "api/Place",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "Core.Entities.Place",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  }
+]

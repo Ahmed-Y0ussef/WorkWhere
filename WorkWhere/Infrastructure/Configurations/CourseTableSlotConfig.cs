@@ -17,7 +17,7 @@ namespace Core.Configurations
             builder.HasOne(ct => ct.Course)
                             .WithMany(c=>c.CoursesTableSlots)
                             .HasForeignKey(sc => sc.CourseId)
-                            .OnDelete(DeleteBehavior.Restrict);
+                            .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasKey(ct => new { ct.CourseId, ct.Date });
 

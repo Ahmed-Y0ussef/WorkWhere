@@ -16,11 +16,11 @@ namespace Core.Configurations
         {
             builder.HasOne(gr => gr.Guest)
                            .WithMany(u => u.GuestRooms)
-                           .OnDelete(DeleteBehavior.Restrict);
+                           .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasOne(gr => gr.Room)
                 .WithMany(r => r.GuestRooms)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasKey(gr => new { gr.GuestId, gr.RoomId });
         }

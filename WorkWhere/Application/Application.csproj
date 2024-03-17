@@ -12,9 +12,8 @@
 
   <ItemGroup>
     <Folder Include="DTO\" />
-    <Folder Include="Interfaces\" />
+    <Folder Include="Interfaces\Room\" />
     <Folder Include="Services\RoomServices\" />
-    <Folder Include="Services\PlaceServices\" />
   </ItemGroup>
 
 </Project>

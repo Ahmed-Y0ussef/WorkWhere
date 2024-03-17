@@ -17,7 +17,7 @@ namespace Core.Configurations
             builder.HasOne(u => u.Place)
                .WithMany(p => p.PlaceUtilities)
                .HasForeignKey(u => u.PlaceId)
-               .OnDelete(DeleteBehavior.Restrict);
+               .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

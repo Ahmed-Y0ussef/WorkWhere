@@ -17,7 +17,7 @@ namespace Core.Configurations
            builder.HasOne(c => c.Admin)
                            .WithMany()
                            .HasForeignKey(u => u.AdminID)
-                           .OnDelete(DeleteBehavior.Restrict);
+                           .OnDelete(DeleteBehavior.ClientSetNull);
 
             builder.Property(c => c.Status)
                .HasConversion<string>();

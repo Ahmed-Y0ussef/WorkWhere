@@ -16,7 +16,8 @@ namespace Core.Configurations
         {
             builder.HasOne(u => u.Room)
                             .WithMany(p => p.RoomUtilities)
-                            .HasForeignKey(r => r.RoomId);
+                            .HasForeignKey(r => r.RoomId)
+                            .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

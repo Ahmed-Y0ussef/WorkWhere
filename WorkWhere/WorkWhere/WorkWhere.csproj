@@ -19,7 +19,6 @@
     <Folder Include="Controllers\AuthModule\" />
     <Folder Include="Controllers\SearchFilterModule\" />
     <Folder Include="Controllers\RoomModule\" />
-    <Folder Include="Controllers\PlaceModule\" />
   </ItemGroup>
 
   <ItemGroup>

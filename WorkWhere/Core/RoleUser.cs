@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace Core
 {
-    public enum Status
+    public enum RoleUser
     {
-        Accepted=1 ,
-        Refused,
-        Pending
+        Admin=1,
+        Student,
+        Teacher,
+        Host,
+        Renter
     }
 }

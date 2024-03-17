@@ -17,7 +17,7 @@ namespace Core.Configurations
             builder.HasOne(r => r.Room)
                             .WithMany(r => r.RoomPhotos)
                             .HasForeignKey(r => r.RoomId)
-                            .OnDelete(DeleteBehavior.Restrict);
+                            .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasKey(r => new { r.photo, r.RoomId });
         }

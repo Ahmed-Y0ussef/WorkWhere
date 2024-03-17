@@ -1,4 +1,6 @@
 
+using Application.Interfaces.PlaceInterfaces;
+using Application.Services.PlaceServices;
 using Core.Interfaces;
 using Infrastructure.Dbcontext;
 using Infrastructure.Repositories;
@@ -22,6 +24,8 @@ namespace WorkWhere
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("con1"));
             });
+
+            builder.Services.AddScoped<IPlaceServices, PlaceService>();
             builder.Services.AddScoped(typeof(IGenericRepo<>), typeof(GenericRepo<>));
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 

@@ -11,8 +11,8 @@ namespace Core.Entities
         public Status? Status { get; set; }
         public int Capacity {  get; set; }
         public decimal PricePerHour { get; set; }
-        public int AdminId { get; set; }
-        public int GuestId { get; set; }
+        public int? AdminId { get; set; }
+        public int? GuestId { get; set; }
         public int PlaceId { get; set; }
 
         //Nav Prop

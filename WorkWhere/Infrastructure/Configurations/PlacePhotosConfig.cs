@@ -17,7 +17,7 @@ namespace Core.Configurations
             builder.HasOne(p => p.Place)
                            .WithMany(p => p.PlacePhotos)
                            .HasForeignKey(r => r.PlaceId)
-                           .OnDelete(DeleteBehavior.Restrict);
+                           .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasKey(p => new { p.PlaceId, p.photo });
         }
