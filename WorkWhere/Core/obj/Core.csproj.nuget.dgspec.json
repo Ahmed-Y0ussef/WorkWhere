@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\ITI_GP\\WorkWhere\\Core\\Core.csproj": {}
+    "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\Core\\Core.csproj": {}
   },
   "projects": {
-    "D:\\ITI_GP\\WorkWhere\\Core\\Core.csproj": {
+    "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\Core\\Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ITI_GP\\WorkWhere\\Core\\Core.csproj",
+        "projectUniqueName": "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\Core\\Core.csproj",
         "projectName": "Core",
-        "projectPath": "D:\\ITI_GP\\WorkWhere\\Core\\Core.csproj",
-        "packagesPath": "C:\\Users\\ahmed\\.nuget\\packages\\",
-        "outputPath": "D:\\ITI_GP\\WorkWhere\\Core\\obj\\",
+        "projectPath": "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\Core\\Core.csproj",
+        "packagesPath": "C:\\Users\\nmalk\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\Core\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\ahmed\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\nmalk\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -60,7 +64,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

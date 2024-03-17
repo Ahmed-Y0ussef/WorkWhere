@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\ITI_GP\\WorkWhere\\WorkWhere\\WorkWhere.csproj": {}
+    "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\WorkWhere\\WorkWhere.csproj": {}
   },
   "projects": {
-    "D:\\ITI_GP\\WorkWhere\\Application\\Application.csproj": {
+    "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\Application\\Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ITI_GP\\WorkWhere\\Application\\Application.csproj",
+        "projectUniqueName": "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\Application\\Application.csproj",
         "projectName": "Application",
-        "projectPath": "D:\\ITI_GP\\WorkWhere\\Application\\Application.csproj",
-        "packagesPath": "C:\\Users\\ahmed\\.nuget\\packages\\",
-        "outputPath": "D:\\ITI_GP\\WorkWhere\\Application\\obj\\",
+        "projectPath": "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\Application\\Application.csproj",
+        "packagesPath": "C:\\Users\\nmalk\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\Application\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\ahmed\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\nmalk\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,8 +32,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\ITI_GP\\WorkWhere\\Infrastructure\\Infrastructure.csproj": {
-                "projectPath": "D:\\ITI_GP\\WorkWhere\\Infrastructure\\Infrastructure.csproj"
+              "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\Infrastructure\\Infrastructure.csproj"
               }
             }
           }
@@ -64,21 +68,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\ITI_GP\\WorkWhere\\Core\\Core.csproj": {
+    "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\Core\\Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ITI_GP\\WorkWhere\\Core\\Core.csproj",
+        "projectUniqueName": "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\Core\\Core.csproj",
         "projectName": "Core",
-        "projectPath": "D:\\ITI_GP\\WorkWhere\\Core\\Core.csproj",
-        "packagesPath": "C:\\Users\\ahmed\\.nuget\\packages\\",
-        "outputPath": "D:\\ITI_GP\\WorkWhere\\Core\\obj\\",
+        "projectPath": "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\Core\\Core.csproj",
+        "packagesPath": "C:\\Users\\nmalk\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\Core\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\ahmed\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\nmalk\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -124,21 +132,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\ITI_GP\\WorkWhere\\Infrastructure\\Infrastructure.csproj": {
+    "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\Infrastructure\\Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ITI_GP\\WorkWhere\\Infrastructure\\Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\Infrastructure\\Infrastructure.csproj",
         "projectName": "Infrastructure",
-        "projectPath": "D:\\ITI_GP\\WorkWhere\\Infrastructure\\Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\ahmed\\.nuget\\packages\\",
-        "outputPath": "D:\\ITI_GP\\WorkWhere\\Infrastructure\\obj\\",
+        "projectPath": "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\Infrastructure\\Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\nmalk\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\ahmed\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\nmalk\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -152,8 +164,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\ITI_GP\\WorkWhere\\Core\\Core.csproj": {
-                "projectPath": "D:\\ITI_GP\\WorkWhere\\Core\\Core.csproj"
+              "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\Core\\Core.csproj": {
+                "projectPath": "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\Core\\Core.csproj"
               }
             }
           }
@@ -200,21 +212,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\ITI_GP\\WorkWhere\\WorkWhere\\WorkWhere.csproj": {
+    "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\WorkWhere\\WorkWhere.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ITI_GP\\WorkWhere\\WorkWhere\\WorkWhere.csproj",
+        "projectUniqueName": "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\WorkWhere\\WorkWhere.csproj",
         "projectName": "WorkWhere",
-        "projectPath": "D:\\ITI_GP\\WorkWhere\\WorkWhere\\WorkWhere.csproj",
-        "packagesPath": "C:\\Users\\ahmed\\.nuget\\packages\\",
-        "outputPath": "D:\\ITI_GP\\WorkWhere\\WorkWhere\\obj\\",
+        "projectPath": "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\WorkWhere\\WorkWhere.csproj",
+        "packagesPath": "C:\\Users\\nmalk\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\WorkWhere\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\ahmed\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\nmalk\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -228,8 +244,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\ITI_GP\\WorkWhere\\Application\\Application.csproj": {
-                "projectPath": "D:\\ITI_GP\\WorkWhere\\Application\\Application.csproj"
+              "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\Application\\Application.csproj": {
+                "projectPath": "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\Application\\Application.csproj"
               }
             }
           }
@@ -279,7 +295,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
