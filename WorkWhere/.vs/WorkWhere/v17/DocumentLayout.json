@@ -3,20 +3,32 @@
   "WorkspaceRootPath": "D:\\ITI_GP\\WorkWhere\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BF0AE570-BE4B-4539-B964-3989D409A71E}|Infrastructure\\Infrastructure.csproj|d:\\iti_gp\\workwhere\\infrastructure\\repositories\\genericrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF0AE570-BE4B-4539-B964-3989D409A71E}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\repositories\\genericrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{96ACD32B-EED8-4E41-8057-157219F4A5EA}|WorkWhere\\WorkWhere.csproj|D:\\ITI_GP\\WorkWhere\\workwhere\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{96ACD32B-EED8-4E41-8057-157219F4A5EA}|WorkWhere\\WorkWhere.csproj|solutionrelative:workwhere\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63E66210-2BA5-4A20-91F7-D69C5AA486D4}|Application\\Application.csproj|d:\\iti_gp\\workwhere\\application\\services\\placeservices\\placeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63E66210-2BA5-4A20-91F7-D69C5AA486D4}|Application\\Application.csproj|solutionrelative:application\\services\\placeservices\\placeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{96ACD32B-EED8-4E41-8057-157219F4A5EA}|WorkWhere\\WorkWhere.csproj|D:\\ITI_GP\\WorkWhere\\workwhere\\controllers\\placemodule\\placecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{96ACD32B-EED8-4E41-8057-157219F4A5EA}|WorkWhere\\WorkWhere.csproj|solutionrelative:workwhere\\controllers\\placemodule\\placecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{BF0AE570-BE4B-4539-B964-3989D409A71E}|Infrastructure\\Infrastructure.csproj|D:\\ITI_GP\\WorkWhere\\infrastructure\\repositories\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BF0AE570-BE4B-4539-B964-3989D409A71E}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\repositories\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{BF0AE570-BE4B-4539-B964-3989D409A71E}|Infrastructure\\Infrastructure.csproj|D:\\ITI_GP\\WorkWhere\\infrastructure\\repositories\\genericrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF0AE570-BE4B-4539-B964-3989D409A71E}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\repositories\\genericrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{91253123-0DF6-43D2-9F19-150F98463761}|Core\\Core.csproj|D:\\ITI_GP\\WorkWhere\\core\\interfaces\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{91253123-0DF6-43D2-9F19-150F98463761}|Core\\Core.csproj|solutionrelative:core\\interfaces\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63E66210-2BA5-4A20-91F7-D69C5AA486D4}|Application\\Application.csproj|D:\\ITI_GP\\WorkWhere\\application\\interfaces\\placeinterfaces\\iplaceservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63E66210-2BA5-4A20-91F7-D69C5AA486D4}|Application\\Application.csproj|solutionrelative:application\\interfaces\\placeinterfaces\\iplaceservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{91253123-0DF6-43D2-9F19-150F98463761}|Core\\Core.csproj|D:\\ITI_GP\\WorkWhere\\core\\interfaces\\igenericrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -30,7 +42,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -41,67 +53,105 @@
               "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PlaceService.cs",
+              "DocumentMoniker": "D:\\ITI_GP\\WorkWhere\\Application\\Services\\PlaceServices\\PlaceService.cs",
+              "RelativeDocumentMoniker": "Application\\Services\\PlaceServices\\PlaceService.cs",
+              "ToolTip": "D:\\ITI_GP\\WorkWhere\\Application\\Services\\PlaceServices\\PlaceService.cs",
+              "RelativeToolTip": "Application\\Services\\PlaceServices\\PlaceService.cs",
+              "ViewState": "AQIAAAQAAAAAAAAAAAAAABEAAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-16T22:06:06.65Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
+              "Title": "IPlaceServices.cs",
+              "DocumentMoniker": "D:\\ITI_GP\\WorkWhere\\Application\\Interfaces\\PlaceInterfaces\\IPlaceServices.cs",
+              "RelativeDocumentMoniker": "Application\\Interfaces\\PlaceInterfaces\\IPlaceServices.cs",
+              "ToolTip": "D:\\ITI_GP\\WorkWhere\\Application\\Interfaces\\PlaceInterfaces\\IPlaceServices.cs",
+              "RelativeToolTip": "Application\\Interfaces\\PlaceInterfaces\\IPlaceServices.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-16T21:57:35.719Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PlaceController.cs",
+              "DocumentMoniker": "D:\\ITI_GP\\WorkWhere\\WorkWhere\\Controllers\\PlaceModule\\PlaceController.cs",
+              "RelativeDocumentMoniker": "WorkWhere\\Controllers\\PlaceModule\\PlaceController.cs",
+              "ToolTip": "D:\\ITI_GP\\WorkWhere\\WorkWhere\\Controllers\\PlaceModule\\PlaceController.cs",
+              "RelativeToolTip": "WorkWhere\\Controllers\\PlaceModule\\PlaceController.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAYwAwAAAA3AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-16T05:56:54.631Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\ITI_GP\\WorkWhere\\WorkWhere\\Program.cs",
               "RelativeDocumentMoniker": "WorkWhere\\Program.cs",
               "ToolTip": "D:\\ITI_GP\\WorkWhere\\WorkWhere\\Program.cs",
               "RelativeToolTip": "WorkWhere\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABoAAAAAAAAA",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAACIAAAAzAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-16T03:30:58.608Z"
+              "WhenOpened": "2024-03-16T03:30:58.608Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "UnitOfWork.cs",
               "DocumentMoniker": "D:\\ITI_GP\\WorkWhere\\Infrastructure\\Repositories\\UnitOfWork.cs",
               "RelativeDocumentMoniker": "Infrastructure\\Repositories\\UnitOfWork.cs",
               "ToolTip": "D:\\ITI_GP\\WorkWhere\\Infrastructure\\Repositories\\UnitOfWork.cs",
               "RelativeToolTip": "Infrastructure\\Repositories\\UnitOfWork.cs",
-              "ViewState": "AQIAAAgAAAAAAAAAAAAAwCEAAABkAAAA",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAAwBoAAAAoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-15T22:29:18.598Z"
+              "WhenOpened": "2024-03-15T22:29:18.598Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "IUnitOfWork.cs",
               "DocumentMoniker": "D:\\ITI_GP\\WorkWhere\\Core\\Interfaces\\IUnitOfWork.cs",
               "RelativeDocumentMoniker": "Core\\Interfaces\\IUnitOfWork.cs",
               "ToolTip": "D:\\ITI_GP\\WorkWhere\\Core\\Interfaces\\IUnitOfWork.cs",
               "RelativeToolTip": "Core\\Interfaces\\IUnitOfWork.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAKAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAsAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-15T22:25:36.74Z"
+              "WhenOpened": "2024-03-15T22:25:36.74Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "GenericRepo.cs",
               "DocumentMoniker": "D:\\ITI_GP\\WorkWhere\\Infrastructure\\Repositories\\GenericRepo.cs",
               "RelativeDocumentMoniker": "Infrastructure\\Repositories\\GenericRepo.cs",
               "ToolTip": "D:\\ITI_GP\\WorkWhere\\Infrastructure\\Repositories\\GenericRepo.cs",
               "RelativeToolTip": "Infrastructure\\Repositories\\GenericRepo.cs",
-              "ViewState": "AQIAABoAAAAAAAAAAAAgwBUAAAAOAAAA",
+              "ViewState": "AQIAABEAAAAAAAAAAAAqwCoAAAAwAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-14T23:41:58.325Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "IGenericRepo.cs",
               "DocumentMoniker": "D:\\ITI_GP\\WorkWhere\\Core\\Interfaces\\IGenericRepo.cs",
               "RelativeDocumentMoniker": "Core\\Interfaces\\IGenericRepo.cs",
               "ToolTip": "D:\\ITI_GP\\WorkWhere\\Core\\Interfaces\\IGenericRepo.cs",
               "RelativeToolTip": "Core\\Interfaces\\IGenericRepo.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAuwBAAAAAHAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAABWAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-14T23:37:57.284Z"
             }
