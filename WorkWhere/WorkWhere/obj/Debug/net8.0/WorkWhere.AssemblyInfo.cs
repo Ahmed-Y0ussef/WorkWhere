@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WorkWhere")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a781f2cd8ee9012a8a345c7c3746394c6e0e1f19")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5f31e3c19e153e54217a9beb69b90d2dc17877f3")]
 [assembly: System.Reflection.AssemblyProductAttribute("WorkWhere")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WorkWhere")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

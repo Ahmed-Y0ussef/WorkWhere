@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Core.Entities
 {
-    public class PlaceUtilities
+    public class PlaceUtilities:BaseEntity
     {
-        public int Id { get; set; }
-        public string UtilityName {  get; set; }
+       // public int Id { get; set; }
+      //  public string UtilityName {  get; set; }
         public int PlaceId { get; set; }
         public Place Place { get; set; }
 

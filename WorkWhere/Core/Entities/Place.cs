@@ -8,6 +8,7 @@ namespace Core.Entities
 {
     public class Place:BaseEntity
     {
+        public string Name { get; set; }
         public Status? Status {  get; set; }
         public int NumOfRooms { get; set; }
         public double OpenTime {  get; set; }
