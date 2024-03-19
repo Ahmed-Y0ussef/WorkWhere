@@ -3,11 +3,15 @@
   "WorkspaceRootPath": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Infrastructure\\Migrations\\20240318043826_t2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Infrastructure\\Migrations\\20240318043826_t2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{91253123-0DF6-43D2-9F19-150F98463761}|Core\\Core.csproj|d:\\iti_gp_master\\workwhere\\workwhere\\core\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91253123-0DF6-43D2-9F19-150F98463761}|Core\\Core.csproj|solutionrelative:core\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{91253123-0DF6-43D2-9F19-150F98463761}|Core\\Core.csproj|d:\\iti_gp_master\\workwhere\\workwhere\\core\\entities\\roomutilities.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BF0AE570-BE4B-4539-B964-3989D409A71E}|Infrastructure\\Infrastructure.csproj|D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\infrastructure\\migrations\\20240318043826_t2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF0AE570-BE4B-4539-B964-3989D409A71E}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\migrations\\20240318043826_t2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91253123-0DF6-43D2-9F19-150F98463761}|Core\\Core.csproj|D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\core\\entities\\roomutilities.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{91253123-0DF6-43D2-9F19-150F98463761}|Core\\Core.csproj|solutionrelative:core\\entities\\roomutilities.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -19,7 +23,7 @@
       "RelativeMoniker": "D:0:0:{91253123-0DF6-43D2-9F19-150F98463761}|Core\\Core.csproj|solutionrelative:core\\entities\\room.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{91253123-0DF6-43D2-9F19-150F98463761}|Core\\Core.csproj|d:\\iti_gp_master\\workwhere\\workwhere\\core\\entities\\placeutilities.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{91253123-0DF6-43D2-9F19-150F98463761}|Core\\Core.csproj|D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\core\\entities\\placeutilities.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{91253123-0DF6-43D2-9F19-150F98463761}|Core\\Core.csproj|solutionrelative:core\\entities\\placeutilities.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -31,7 +35,7 @@
       "RelativeMoniker": "D:0:0:{91253123-0DF6-43D2-9F19-150F98463761}|Core\\Core.csproj|solutionrelative:core\\entities\\place.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{91253123-0DF6-43D2-9F19-150F98463761}|Core\\Core.csproj|d:\\iti_gp_master\\workwhere\\workwhere\\core\\entities\\baseentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{91253123-0DF6-43D2-9F19-150F98463761}|Core\\Core.csproj|D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\core\\entities\\baseentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{91253123-0DF6-43D2-9F19-150F98463761}|Core\\Core.csproj|solutionrelative:core\\entities\\baseentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -43,11 +47,11 @@
       "RelativeMoniker": "D:0:0:{91253123-0DF6-43D2-9F19-150F98463761}|Core\\Core.csproj|solutionrelative:core\\entities\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{91253123-0DF6-43D2-9F19-150F98463761}|Core\\Core.csproj|d:\\iti_gp_master\\workwhere\\workwhere\\core\\entities\\contact.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{91253123-0DF6-43D2-9F19-150F98463761}|Core\\Core.csproj|D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\core\\entities\\contact.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{91253123-0DF6-43D2-9F19-150F98463761}|Core\\Core.csproj|solutionrelative:core\\entities\\contact.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{96ACD32B-EED8-4E41-8057-157219F4A5EA}|WorkWhere\\WorkWhere.csproj|d:\\iti_gp_master\\workwhere\\workwhere\\workwhere\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{96ACD32B-EED8-4E41-8057-157219F4A5EA}|WorkWhere\\WorkWhere.csproj|D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\workwhere\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{96ACD32B-EED8-4E41-8057-157219F4A5EA}|WorkWhere\\WorkWhere.csproj|solutionrelative:workwhere\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -178,73 +182,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "20240318043826_t2.cs",
-              "DocumentMoniker": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Infrastructure\\Migrations\\20240318043826_t2.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Migrations\\20240318043826_t2.cs",
-              "ToolTip": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Infrastructure\\Migrations\\20240318043826_t2.cs",
-              "RelativeToolTip": "Infrastructure\\Migrations\\20240318043826_t2.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-18T04:38:26.572Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "RoomUtilities.cs",
-              "DocumentMoniker": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Core\\Entities\\RoomUtilities.cs",
-              "RelativeDocumentMoniker": "Core\\Entities\\RoomUtilities.cs",
-              "ToolTip": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Core\\Entities\\RoomUtilities.cs",
-              "RelativeToolTip": "Core\\Entities\\RoomUtilities.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAApAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-18T04:36:37.903Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "PlaceUtilities.cs",
-              "DocumentMoniker": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Core\\Entities\\PlaceUtilities.cs",
-              "RelativeDocumentMoniker": "Core\\Entities\\PlaceUtilities.cs",
-              "ToolTip": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Core\\Entities\\PlaceUtilities.cs",
-              "RelativeToolTip": "Core\\Entities\\PlaceUtilities.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAqAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-18T04:35:33.792Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Contact.cs",
-              "DocumentMoniker": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Core\\Entities\\Contact.cs",
-              "RelativeDocumentMoniker": "Core\\Entities\\Contact.cs",
-              "ToolTip": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Core\\Entities\\Contact.cs",
-              "RelativeToolTip": "Core\\Entities\\Contact.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAlAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-18T04:33:33.542Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "BaseEntity.cs",
-              "DocumentMoniker": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Core\\Entities\\BaseEntity.cs",
-              "RelativeDocumentMoniker": "Core\\Entities\\BaseEntity.cs",
-              "ToolTip": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Core\\Entities\\BaseEntity.cs",
-              "RelativeToolTip": "Core\\Entities\\BaseEntity.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-18T04:33:22.412Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
@@ -254,8 +193,85 @@
               "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 0,
+              "Title": "User.cs",
+              "DocumentMoniker": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Core\\Entities\\User.cs",
+              "RelativeDocumentMoniker": "Core\\Entities\\User.cs",
+              "ToolTip": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Core\\Entities\\User.cs",
+              "RelativeToolTip": "Core\\Entities\\User.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-18T05:51:06.038Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "20240318043826_t2.cs",
+              "DocumentMoniker": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Infrastructure\\Migrations\\20240318043826_t2.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Migrations\\20240318043826_t2.cs",
+              "ToolTip": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Infrastructure\\Migrations\\20240318043826_t2.cs",
+              "RelativeToolTip": "Infrastructure\\Migrations\\20240318043826_t2.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-18T04:38:26.572Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "RoomUtilities.cs",
+              "DocumentMoniker": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Core\\Entities\\RoomUtilities.cs",
+              "RelativeDocumentMoniker": "Core\\Entities\\RoomUtilities.cs",
+              "ToolTip": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Core\\Entities\\RoomUtilities.cs",
+              "RelativeToolTip": "Core\\Entities\\RoomUtilities.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAApAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-18T04:36:37.903Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PlaceUtilities.cs",
+              "DocumentMoniker": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Core\\Entities\\PlaceUtilities.cs",
+              "RelativeDocumentMoniker": "Core\\Entities\\PlaceUtilities.cs",
+              "ToolTip": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Core\\Entities\\PlaceUtilities.cs",
+              "RelativeToolTip": "Core\\Entities\\PlaceUtilities.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAqAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-18T04:35:33.792Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Contact.cs",
+              "DocumentMoniker": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Core\\Entities\\Contact.cs",
+              "RelativeDocumentMoniker": "Core\\Entities\\Contact.cs",
+              "ToolTip": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Core\\Entities\\Contact.cs",
+              "RelativeToolTip": "Core\\Entities\\Contact.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-18T04:33:33.542Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "BaseEntity.cs",
+              "DocumentMoniker": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Core\\Entities\\BaseEntity.cs",
+              "RelativeDocumentMoniker": "Core\\Entities\\BaseEntity.cs",
+              "ToolTip": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Core\\Entities\\BaseEntity.cs",
+              "RelativeToolTip": "Core\\Entities\\BaseEntity.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-18T04:33:22.412Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "Course.cs",
               "DocumentMoniker": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Core\\Entities\\Course.cs",
               "RelativeDocumentMoniker": "Core\\Entities\\Course.cs",
@@ -263,12 +279,11 @@
               "RelativeToolTip": "Core\\Entities\\Course.cs",
               "ViewState": "AQIAAAMAAAAAAAAAAAAAAAwAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-16T04:22:09.771Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-16T04:22:09.771Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Place.cs",
               "DocumentMoniker": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Core\\Entities\\Place.cs",
               "RelativeDocumentMoniker": "Core\\Entities\\Place.cs",
@@ -276,12 +291,11 @@
               "RelativeToolTip": "Core\\Entities\\Place.cs",
               "ViewState": "AQIAAAMAAAAAAAAAAAAAAAoAAAAoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-16T03:56:49.086Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-16T03:56:49.086Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "PlaceReview.cs",
               "DocumentMoniker": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Core\\Entities\\PlaceReview.cs",
               "RelativeDocumentMoniker": "Core\\Entities\\PlaceReview.cs",
@@ -289,12 +303,11 @@
               "RelativeToolTip": "Core\\Entities\\PlaceReview.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAnAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-16T04:27:48.27Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-16T04:27:48.27Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Room.cs",
               "DocumentMoniker": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Core\\Entities\\Room.cs",
               "RelativeDocumentMoniker": "Core\\Entities\\Room.cs",
@@ -302,12 +315,11 @@
               "RelativeToolTip": "Core\\Entities\\Room.cs",
               "ViewState": "AQIAAAMAAAAAAAAAAAAAAAoAAAAoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-16T03:55:34.535Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-16T03:55:34.535Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "RoomReview.cs",
               "DocumentMoniker": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Core\\Entities\\RoomReview.cs",
               "RelativeDocumentMoniker": "Core\\Entities\\RoomReview.cs",
@@ -315,12 +327,11 @@
               "RelativeToolTip": "Core\\Entities\\RoomReview.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAmAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-16T04:29:28.184Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-16T04:29:28.184Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\WorkWhere\\Program.cs",
               "RelativeDocumentMoniker": "WorkWhere\\Program.cs",
@@ -328,12 +339,11 @@
               "RelativeToolTip": "WorkWhere\\Program.cs",
               "ViewState": "AQIAAA0AAAAAAAAAAAAQwAEAAAAWAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-17T05:18:17.511Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-17T05:18:17.511Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "20240316044917_c3.cs",
               "DocumentMoniker": "D:\\ITI_GP\\WorkWhere\\Infrastructure\\Migrations\\20240316044917_c3.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\ITI_GP\\WorkWhere\\Infrastructure\\Migrations\\20240316044917_c3.cs",
@@ -345,7 +355,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "20240316045445_c3.cs",
               "DocumentMoniker": "D:\\ITI_GP\\WorkWhere\\Infrastructure\\Migrations\\20240316045445_c3.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\ITI_GP\\WorkWhere\\Infrastructure\\Migrations\\20240316045445_c3.cs",
@@ -357,7 +367,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "Status.cs",
               "DocumentMoniker": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Core\\Status.cs",
               "RelativeDocumentMoniker": "Core\\Status.cs",
@@ -369,7 +379,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "CourseReview.cs",
               "DocumentMoniker": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Core\\Entities\\CourseReview.cs",
               "RelativeDocumentMoniker": "Core\\Entities\\CourseReview.cs",
@@ -377,12 +387,11 @@
               "RelativeToolTip": "Core\\Entities\\CourseReview.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-16T04:20:36.869Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-16T04:20:36.869Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "RoleUser.cs",
               "DocumentMoniker": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Core\\RoleUser.cs",
               "RelativeDocumentMoniker": "Core\\RoleUser.cs",
@@ -394,7 +403,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "20240316050011_initial.cs",
               "DocumentMoniker": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Infrastructure\\Migrations\\20240316050011_initial.cs",
               "RelativeDocumentMoniker": "Infrastructure\\Migrations\\20240316050011_initial.cs",
@@ -406,7 +415,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "StudentCourseConfig.cs",
               "DocumentMoniker": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Infrastructure\\Configurations\\StudentCourseConfig.cs",
               "RelativeDocumentMoniker": "Infrastructure\\Configurations\\StudentCourseConfig.cs",
@@ -418,7 +427,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "RoomUtilitiesConfig.cs",
               "DocumentMoniker": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Infrastructure\\Configurations\\RoomUtilitiesConfig.cs",
               "RelativeDocumentMoniker": "Infrastructure\\Configurations\\RoomUtilitiesConfig.cs",
@@ -430,7 +439,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "RoomTimeSlotConfig.cs",
               "DocumentMoniker": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Infrastructure\\Configurations\\RoomTimeSlotConfig.cs",
               "RelativeDocumentMoniker": "Infrastructure\\Configurations\\RoomTimeSlotConfig.cs",
@@ -442,7 +451,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 22,
               "Title": "20240316044813_c2.cs",
               "DocumentMoniker": "D:\\ITI_GP\\WorkWhere\\Infrastructure\\Migrations\\20240316044813_c2.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\ITI_GP\\WorkWhere\\Infrastructure\\Migrations\\20240316044813_c2.cs",
@@ -454,7 +463,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 23,
               "Title": "RoomReviewConfig.cs",
               "DocumentMoniker": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Infrastructure\\Configurations\\RoomReviewConfig.cs",
               "RelativeDocumentMoniker": "Infrastructure\\Configurations\\RoomReviewConfig.cs",
@@ -466,7 +475,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 24,
               "Title": "20240316044736_c1.cs",
               "DocumentMoniker": "D:\\ITI_GP\\WorkWhere\\Infrastructure\\Migrations\\20240316044736_c1.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\ITI_GP\\WorkWhere\\Infrastructure\\Migrations\\20240316044736_c1.cs",
@@ -478,7 +487,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 25,
               "Title": "20240316044649_c1.cs",
               "DocumentMoniker": "D:\\ITI_GP\\WorkWhere\\Infrastructure\\Migrations\\20240316044649_c1.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\ITI_GP\\WorkWhere\\Infrastructure\\Migrations\\20240316044649_c1.cs",
@@ -490,7 +499,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "UserConfig.cs",
               "DocumentMoniker": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Infrastructure\\Configurations\\UserConfig.cs",
               "RelativeDocumentMoniker": "Infrastructure\\Configurations\\UserConfig.cs",
@@ -502,7 +511,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 30,
               "Title": "20240316044511_c.cs",
               "DocumentMoniker": "D:\\ITI_GP\\WorkWhere\\Infrastructure\\Migrations\\20240316044511_c.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\ITI_GP\\WorkWhere\\Infrastructure\\Migrations\\20240316044511_c.cs",
@@ -514,7 +523,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 27,
               "Title": "RoomPhotosConfig.cs",
               "DocumentMoniker": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Infrastructure\\Configurations\\RoomPhotosConfig.cs",
               "RelativeDocumentMoniker": "Infrastructure\\Configurations\\RoomPhotosConfig.cs",
@@ -526,7 +535,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 29,
               "Title": "PlaceUtilitiesConfig.cs",
               "DocumentMoniker": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Infrastructure\\Configurations\\PlaceUtilitiesConfig.cs",
               "RelativeDocumentMoniker": "Infrastructure\\Configurations\\PlaceUtilitiesConfig.cs",
@@ -538,7 +547,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 31,
               "Title": "20240316044421_t8.cs",
               "DocumentMoniker": "D:\\ITI_GP\\WorkWhere\\Infrastructure\\Migrations\\20240316044421_t8.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\ITI_GP\\WorkWhere\\Infrastructure\\Migrations\\20240316044421_t8.cs",
@@ -550,7 +559,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 32,
               "Title": "PlaceReviewConfig.cs",
               "DocumentMoniker": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Infrastructure\\Configurations\\PlaceReviewConfig.cs",
               "RelativeDocumentMoniker": "Infrastructure\\Configurations\\PlaceReviewConfig.cs",
@@ -562,7 +571,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 33,
               "Title": "20240316044343_t6.cs",
               "DocumentMoniker": "D:\\ITI_GP\\WorkWhere\\Infrastructure\\Migrations\\20240316044343_t6.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\ITI_GP\\WorkWhere\\Infrastructure\\Migrations\\20240316044343_t6.cs",
@@ -574,7 +583,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 26,
               "Title": "RoomConfig.cs",
               "DocumentMoniker": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Infrastructure\\Configurations\\RoomConfig.cs",
               "RelativeDocumentMoniker": "Infrastructure\\Configurations\\RoomConfig.cs",
@@ -586,7 +595,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 28,
               "Title": "CourseConfig.cs",
               "DocumentMoniker": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Infrastructure\\Configurations\\CourseConfig.cs",
               "RelativeDocumentMoniker": "Infrastructure\\Configurations\\CourseConfig.cs",
@@ -598,7 +607,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 34,
               "Title": "PlacePhotosConfig.cs",
               "DocumentMoniker": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Infrastructure\\Configurations\\PlacePhotosConfig.cs",
               "RelativeDocumentMoniker": "Infrastructure\\Configurations\\PlacePhotosConfig.cs",
@@ -610,7 +619,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 35,
               "Title": "20240316044315_t5.cs",
               "DocumentMoniker": "D:\\ITI_GP\\WorkWhere\\Infrastructure\\Migrations\\20240316044315_t5.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\ITI_GP\\WorkWhere\\Infrastructure\\Migrations\\20240316044315_t5.cs",
@@ -622,7 +631,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 36,
               "Title": "PlaceConfig.cs",
               "DocumentMoniker": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Infrastructure\\Configurations\\PlaceConfig.cs",
               "RelativeDocumentMoniker": "Infrastructure\\Configurations\\PlaceConfig.cs",
@@ -634,7 +643,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 37,
               "Title": "20240316044225_t2.cs",
               "DocumentMoniker": "D:\\ITI_GP\\WorkWhere\\Infrastructure\\Migrations\\20240316044225_t2.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\ITI_GP\\WorkWhere\\Infrastructure\\Migrations\\20240316044225_t2.cs",
@@ -646,7 +655,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 38,
               "Title": "GuestRoomConfig.cs",
               "DocumentMoniker": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Infrastructure\\Configurations\\GuestRoomConfig.cs",
               "RelativeDocumentMoniker": "Infrastructure\\Configurations\\GuestRoomConfig.cs",
@@ -658,7 +667,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 39,
               "Title": "CourseTableSlotConfig.cs",
               "DocumentMoniker": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Infrastructure\\Configurations\\CourseTableSlotConfig.cs",
               "RelativeDocumentMoniker": "Infrastructure\\Configurations\\CourseTableSlotConfig.cs",
@@ -670,7 +679,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 41,
               "Title": "20240316044024_t3.cs",
               "DocumentMoniker": "D:\\ITI_GP\\WorkWhere\\Infrastructure\\Migrations\\20240316044024_t3.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\ITI_GP\\WorkWhere\\Infrastructure\\Migrations\\20240316044024_t3.cs",
@@ -682,7 +691,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 42,
               "Title": "20240316042057_t3.cs",
               "DocumentMoniker": "D:\\ITI_GP\\WorkWhere\\Infrastructure\\Migrations\\20240316042057_t3.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\ITI_GP\\WorkWhere\\Infrastructure\\Migrations\\20240316042057_t3.cs",
@@ -694,7 +703,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 40,
               "Title": "CourseReviewConfig.cs",
               "DocumentMoniker": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Infrastructure\\Configurations\\CourseReviewConfig.cs",
               "RelativeDocumentMoniker": "Infrastructure\\Configurations\\CourseReviewConfig.cs",
@@ -706,7 +715,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 43,
               "Title": "20240316041954_t2.cs",
               "DocumentMoniker": "D:\\ITI_GP\\WorkWhere\\Infrastructure\\Migrations\\20240316041954_t2.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\ITI_GP\\WorkWhere\\Infrastructure\\Migrations\\20240316041954_t2.cs",
@@ -718,7 +727,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 44,
               "Title": "20240316041919_t2.cs",
               "DocumentMoniker": "D:\\ITI_GP\\WorkWhere\\Infrastructure\\Migrations\\20240316041919_t2.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\ITI_GP\\WorkWhere\\Infrastructure\\Migrations\\20240316041919_t2.cs",
@@ -730,7 +739,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 45,
               "Title": "20240316040443_t1.cs",
               "DocumentMoniker": "D:\\ITI_GP\\WorkWhere\\Infrastructure\\Migrations\\20240316040443_t1.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\ITI_GP\\WorkWhere\\Infrastructure\\Migrations\\20240316040443_t1.cs",
@@ -742,7 +751,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 46,
               "Title": "20240316040101_init2.cs",
               "DocumentMoniker": "D:\\ITI_GP\\WorkWhere\\Infrastructure\\Migrations\\20240316040101_init2.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\ITI_GP\\WorkWhere\\Infrastructure\\Migrations\\20240316040101_init2.cs",
