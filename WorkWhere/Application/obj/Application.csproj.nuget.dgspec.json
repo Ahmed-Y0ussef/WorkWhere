@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Application\\Application.csproj": {}
+    "E:\\ITI-Final-Project\\WorkWhere\\WorkWhere\\Application\\Application.csproj": {}
   },
   "projects": {
-    "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Application\\Application.csproj": {
+    "E:\\ITI-Final-Project\\WorkWhere\\WorkWhere\\Application\\Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Application\\Application.csproj",
+        "projectUniqueName": "E:\\ITI-Final-Project\\WorkWhere\\WorkWhere\\Application\\Application.csproj",
         "projectName": "Application",
-        "projectPath": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Application\\Application.csproj",
-        "packagesPath": "C:\\Users\\ahmed\\.nuget\\packages\\",
-        "outputPath": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Application\\obj\\",
+        "projectPath": "E:\\ITI-Final-Project\\WorkWhere\\WorkWhere\\Application\\Application.csproj",
+        "packagesPath": "C:\\Users\\Lenov\\.nuget\\packages\\",
+        "outputPath": "E:\\ITI-Final-Project\\WorkWhere\\WorkWhere\\Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ahmed\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Lenov\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,8 +28,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Infrastructure\\Infrastructure.csproj": {
-                "projectPath": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Infrastructure\\Infrastructure.csproj"
+              "E:\\ITI-Final-Project\\WorkWhere\\WorkWhere\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "E:\\ITI-Final-Project\\WorkWhere\\WorkWhere\\Infrastructure\\Infrastructure.csproj"
               }
             }
           }
@@ -38,11 +38,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -70,21 +65,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Core\\Core.csproj": {
+    "E:\\ITI-Final-Project\\WorkWhere\\WorkWhere\\Core\\Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Core\\Core.csproj",
+        "projectUniqueName": "E:\\ITI-Final-Project\\WorkWhere\\WorkWhere\\Core\\Core.csproj",
         "projectName": "Core",
-        "projectPath": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Core\\Core.csproj",
-        "packagesPath": "C:\\Users\\ahmed\\.nuget\\packages\\",
-        "outputPath": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Core\\obj\\",
+        "projectPath": "E:\\ITI-Final-Project\\WorkWhere\\WorkWhere\\Core\\Core.csproj",
+        "packagesPath": "C:\\Users\\Lenov\\.nuget\\packages\\",
+        "outputPath": "E:\\ITI-Final-Project\\WorkWhere\\WorkWhere\\Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ahmed\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Lenov\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -104,11 +99,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -130,21 +120,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Infrastructure\\Infrastructure.csproj": {
+    "E:\\ITI-Final-Project\\WorkWhere\\WorkWhere\\Infrastructure\\Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Infrastructure\\Infrastructure.csproj",
+        "projectUniqueName": "E:\\ITI-Final-Project\\WorkWhere\\WorkWhere\\Infrastructure\\Infrastructure.csproj",
         "projectName": "Infrastructure",
-        "projectPath": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Infrastructure\\Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\ahmed\\.nuget\\packages\\",
-        "outputPath": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Infrastructure\\obj\\",
+        "projectPath": "E:\\ITI-Final-Project\\WorkWhere\\WorkWhere\\Infrastructure\\Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\Lenov\\.nuget\\packages\\",
+        "outputPath": "E:\\ITI-Final-Project\\WorkWhere\\WorkWhere\\Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ahmed\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Lenov\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -158,8 +148,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Core\\Core.csproj": {
-                "projectPath": "D:\\ITI_GP_MASTER\\WorkWhere\\WorkWhere\\Core\\Core.csproj"
+              "E:\\ITI-Final-Project\\WorkWhere\\WorkWhere\\Core\\Core.csproj": {
+                "projectPath": "E:\\ITI-Final-Project\\WorkWhere\\WorkWhere\\Core\\Core.csproj"
               }
             }
           }
@@ -168,11 +158,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -206,7 +191,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
