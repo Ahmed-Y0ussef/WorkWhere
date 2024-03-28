@@ -18,9 +18,8 @@ namespace Infrastructure.Repositories
         {
             AppContext = _AppContext;
         }
-        public async Task<IEnumerable<T>> GetAllAsync(params Expression<Func<T, object>>[] includes)
+        public async Task<IEnumerable<T>> GetAllAsync(params Expression<Func<T, object>>[] includes)//
         =>   await GetIncludes(includes).ToListAsync();
-        
         public async Task Add(T entity)
             =>await AppContext.Set<T>().AddAsync(entity);
 
@@ -28,15 +27,18 @@ namespace Infrastructure.Repositories
         => AppContext.Remove(entity);
 
         public async Task<T> GetById(int id, params Expression<Func<T, object>>[] includes)
-        {
-            
-            return await GetIncludes(includes).FirstOrDefaultAsync(u=>u.Id==id);
-        }
+        =>  await GetIncludes(includes).FirstOrDefaultAsync(u => u.Id == id);
+
+        public async Task<IEnumerable<T>> GetAllAsyncWithQueryBuilder(IQueryBuilder<T> queryBuilder)
+        =>   await BuildQuery(queryBuilder).ToListAsync();
+        public async Task<T> GetByIdWithQueryBuilder(int id, IQueryBuilder<T> queryBuilder)
+        => await BuildQuery(queryBuilder).FirstOrDefaultAsync(u => u.Id == id);
 
         public void Update(T entity)
         => AppContext.Update(entity);
-        private IQueryable<T> GetIncludes(params Expression<Func<T, object>>[] includes)
+        private IQueryable<T> GetIncludes(params Expression<Func<T, object>>[] includes) 
         {
+
             IQueryable<T> query = AppContext.Set<T>();
             if (includes != null)
                 foreach (var item in includes)
@@ -44,5 +46,25 @@ namespace Infrastructure.Repositories
 
             return  query;
         }
+        private IQueryable<T> BuildQuery(IQueryBuilder<T> queryBuilder) //build query
+        {
+            IQueryable<T> query = AppContext.Set<T>();
+
+            if (queryBuilder.Criteria != null)
+               query = query.Where(queryBuilder.Criteria);
+
+            if (queryBuilder.Includes != null)
+                foreach (var item in queryBuilder.Includes)
+                    query = query.Include(item);
+
+            if (queryBuilder.Skip != 0)
+                query = query.Skip(queryBuilder.Skip);
+
+            if (queryBuilder.Take != 0)
+                query = query.Take(queryBuilder.Take);
+
+            return query;
+        }
+
     }
 }

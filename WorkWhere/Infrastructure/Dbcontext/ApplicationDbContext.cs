@@ -1,9 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Core.Entities;
 using System.Reflection;
 namespace Infrastructure.Dbcontext
@@ -23,5 +18,6 @@ namespace Infrastructure.Dbcontext
             base.OnModelCreating(modelBuilder);
 
         }
+       // public DbSet<Place> Place { get; set; }
     }
 }

@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Core.Entities
 {
-    public class PlaceReview
+    public class PlaceReview:BaseEntity
     {
-        public int Id { get; set; }
+        //public int Id { get; set; }
         public int? UserId { get; set; }
 
         public int PlaceId { get; set; }
         public int? Rating { get; set; }
-        public string? Review { get; set; }
+       // public string? Review { get; set; }
         public Place Place { get; set; }
         public User User { get; set; }
     }
