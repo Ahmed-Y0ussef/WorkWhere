@@ -8,6 +8,7 @@ namespace Core.Entities
 {
     public class PlacePhotos
     {
+        public int Id { get; set; }
         public byte[] photo {  get; set; }
         public int PlaceId {  get; set; }
         public Place Place { get; set; }

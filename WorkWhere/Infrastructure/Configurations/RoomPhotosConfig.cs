@@ -19,7 +19,7 @@ namespace Core.Configurations
                             .HasForeignKey(r => r.RoomId)
                             .OnDelete(DeleteBehavior.Cascade);
 
-            builder.HasKey(r => new { r.photo, r.RoomId });
+           // builder.HasKey(r => new { r.photo, r.RoomId });
         }
     }
 }

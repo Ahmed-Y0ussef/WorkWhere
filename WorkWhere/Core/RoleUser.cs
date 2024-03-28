@@ -8,7 +8,7 @@ namespace Core
 {
     public enum RoleUser
     {
-        Admin=1,
+        Admin = 1,
         Student,
         Teacher,
         Host,
