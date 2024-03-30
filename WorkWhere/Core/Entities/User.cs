@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -16,15 +17,15 @@ namespace Core.Entities
         [NotMapped]
         public string ConfirmPassword { get; set; }
         public string? Title {  get; set; }
-        public byte[]? PersonalImg { get; set; }
+       // public byte[]? PersonalImg { get; set; }
+       public string PersonalImageUrl { get; set; }
+        [Required]
         public long? NId { get; set; }
-        public byte[]? NImg { get; set; }
+        //public byte[]? NImg { get; set; }
+        public string NIDUrl { get; set; }
         public string? PhoneNumber { get; set; }
         public int? AdminID { get; set; }
         public Status? Status { get; set; }
-
-
-
         //NAV PROP
         //with place
 

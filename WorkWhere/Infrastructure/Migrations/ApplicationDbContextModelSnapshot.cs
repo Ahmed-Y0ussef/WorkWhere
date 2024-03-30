@@ -63,10 +63,8 @@ namespace Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsInPlace")
-                        .HasColumnType("bit");
 
                     b.Property<string>("Location")
                         .IsRequired()
@@ -76,7 +74,7 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Num_Of_Students_Joined")
+                    b.Property<int>("Num_Of_Students_Joined")
                         .HasColumnType("int");
 
                     b.Property<byte[]>("Photo")
@@ -87,7 +85,10 @@ namespace Infrastructure.Migrations
                         .HasColumnType("decimal(8,2)");
 
                     b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)")
+                        .HasDefaultValue("Pending");
 
                     b.Property<int>("TeacherId")
                         .HasColumnType("int");
@@ -98,50 +99,65 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("TeacherId");
 
-                    b.ToTable("Course");
+                    b.ToTable("Courses");
                 });
 
             modelBuilder.Entity("Core.Entities.CourseReview", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
                     b.Property<int>("CourseId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Rating")
+                    b.Property<int>("Rating")
                         .HasColumnType("int");
 
                     b.Property<string>("Review")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("CourseId", "Id");
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("CourseReview");
+                    b.ToTable("courseReviews");
                 });
 
             modelBuilder.Entity("Core.Entities.CourseTableSlot", b =>
                 {
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
                     b.Property<int>("CourseId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("Dates")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("EndHour")
-                        .HasColumnType("bigint");
+                    b.Property<string>("EndHour")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("StratHour")
-                        .HasColumnType("bigint");
+                    b.Property<string>("StartHour")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("CourseId", "Date");
+                    b.HasKey("Id", "CourseId");
 
-                    b.ToTable("CourseTableSlot");
+                    b.HasIndex("CourseId")
+                        .IsUnique();
+
+                    b.ToTable("courseTableSlots");
                 });
 
             modelBuilder.Entity("Core.Entities.GuestRoom", b =>
@@ -213,7 +229,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("HostID");
 
-                    b.ToTable("Place");
+                    b.ToTable("Places");
                 });
 
             modelBuilder.Entity("Core.Entities.PlacePhotos", b =>
@@ -221,10 +237,10 @@ namespace Infrastructure.Migrations
                     b.Property<int>("PlaceId")
                         .HasColumnType("int");
 
-                    b.Property<byte[]>("photo")
-                        .HasColumnType("varbinary(900)");
+                    b.Property<string>("PictureUrl")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("PlaceId", "photo");
+                    b.HasKey("PlaceId", "PictureUrl");
 
                     b.ToTable("PlacePhotos");
                 });
@@ -246,7 +262,7 @@ namespace Infrastructure.Migrations
                     b.Property<string>("Review")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -339,18 +355,18 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("PlaceId");
 
-                    b.ToTable("Room");
+                    b.ToTable("Rooms");
                 });
 
             modelBuilder.Entity("Core.Entities.RoomPhotos", b =>
                 {
-                    b.Property<byte[]>("photo")
-                        .HasColumnType("varbinary(900)");
+                    b.Property<string>("PictureUrl")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("RoomId")
                         .HasColumnType("int");
 
-                    b.HasKey("photo", "RoomId");
+                    b.HasKey("PictureUrl", "RoomId");
 
                     b.HasIndex("RoomId");
 
@@ -371,7 +387,7 @@ namespace Infrastructure.Migrations
                     b.Property<string>("Review")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("RoomId", "Id");
@@ -391,6 +407,9 @@ namespace Infrastructure.Migrations
 
                     b.Property<long>("TimeStrart")
                         .HasColumnType("bigint");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
 
                     b.Property<long>("TimeEnd")
                         .HasColumnType("bigint");
@@ -424,58 +443,60 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Core.Entities.StudentCourse", b =>
                 {
-                    b.Property<int>("StdId")
+                    b.Property<int>("StudentId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CrsId")
+                    b.Property<int>("CourseId")
                         .HasColumnType("int");
 
-                    b.HasKey("StdId", "CrsId");
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
 
-                    b.HasIndex("CrsId");
+                    b.HasKey("StudentId", "CourseId");
 
-                    b.ToTable("StudentCourse");
+                    b.HasIndex("CourseId");
+
+                    b.ToTable("studentCourses");
                 });
 
             modelBuilder.Entity("Core.Entities.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnOrder(0);
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("AdminID")
                         .HasColumnType("int");
 
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("NId")
-                        .HasColumnType("bigint");
+                    b.Property<string>("NIDUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte[]>("NImg")
-                        .HasColumnType("varbinary(max)");
+                    b.Property<long?>("NId")
+                        .IsRequired()
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnOrder(1);
 
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte[]>("PersonalImg")
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<string>("PhoneNumber")
+                    b.Property<string>("PersonalImageUrl")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Status")
+                    b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
@@ -543,7 +564,8 @@ namespace Infrastructure.Migrations
                     b.HasOne("Core.Entities.User", "User")
                         .WithMany("courseReviews")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("Course");
 
@@ -552,13 +574,11 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Core.Entities.CourseTableSlot", b =>
                 {
-                    b.HasOne("Core.Entities.Course", "Course")
-                        .WithMany("CoursesTableSlots")
-                        .HasForeignKey("CourseId")
+                    b.HasOne("Core.Entities.Course", null)
+                        .WithOne("CoursesTableSlot")
+                        .HasForeignKey("Core.Entities.CourseTableSlot", "CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Course");
                 });
 
             modelBuilder.Entity("Core.Entities.GuestRoom", b =>
@@ -620,7 +640,8 @@ namespace Infrastructure.Migrations
                     b.HasOne("Core.Entities.User", "User")
                         .WithMany("placeReviews")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("Place");
 
@@ -678,7 +699,8 @@ namespace Infrastructure.Migrations
                     b.HasOne("Core.Entities.User", "User")
                         .WithMany("roomReviews")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("Room");
 
@@ -711,19 +733,19 @@ namespace Infrastructure.Migrations
                 {
                     b.HasOne("Core.Entities.Course", "Course")
                         .WithMany("StudentsCourses")
-                        .HasForeignKey("CrsId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Core.Entities.User", "User")
+                    b.HasOne("Core.Entities.User", "Student")
                         .WithMany("StudentCourses")
-                        .HasForeignKey("StdId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Course");
 
-                    b.Navigation("User");
+                    b.Navigation("Student");
                 });
 
             modelBuilder.Entity("Core.Entities.User", b =>
@@ -754,7 +776,8 @@ namespace Infrastructure.Migrations
                 {
                     b.Navigation("CoursesReviews");
 
-                    b.Navigation("CoursesTableSlots");
+                    b.Navigation("CoursesTableSlot")
+                        .IsRequired();
 
                     b.Navigation("StudentsCourses");
                 });

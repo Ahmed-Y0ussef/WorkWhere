@@ -16,7 +16,9 @@ namespace Core.Entities
         public decimal Price { get; set; }
         public int Capacity { get; set; }
         public Status? Status { get; set; }
-        public byte[] Photo { get; set; }
+        //public byte[] Photo { get; set; }
+        public string PictureUrl { get; set; }
+
         public bool IsInPlace {  get; set; }
         public int? Num_Of_Students_Joined { get; set; }
         public string Location {  get; set; }

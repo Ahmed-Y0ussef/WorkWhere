@@ -21,6 +21,12 @@ namespace Core.Configurations
 
             builder.Property(c => c.Status)
                .HasConversion<string>();
+
+            builder.Property(u => u.Id)
+            .HasColumnOrder(0);
+
+            builder.Property(u => u.Name)
+            .HasColumnOrder(1);
         }
     }
 }

@@ -8,7 +8,9 @@ namespace Core.Entities
 {
     public class RoomPhotos
     {
-        public byte[] photo { get; set; }
+        // public byte[] photo { get; set; }
+        public string PictureUrl { get; set; }
+
         public int RoomId { get; set; }
         public Room Room { get; set; }
     }
