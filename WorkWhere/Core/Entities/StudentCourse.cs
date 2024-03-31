@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Core.Entities
 {
-    public class StudentCourse
+    public class StudentCourse : BaseEntity
     {
-        public int StdId { get; set; }
-        public int CrsId { get; set; }
-        public User  User { get; set; }
+        public int StudentId { get; set; }
+        public int CourseId { get; set; }
+        public User  Student { get; set; }
         public Course Course { get; set; }
         
     }

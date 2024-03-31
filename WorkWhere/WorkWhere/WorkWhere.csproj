@@ -13,12 +13,13 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Controllers\AuthModule\" />
-    <Folder Include="Controllers\SearchFilterModule\" />
     <Folder Include="Controllers\RoomModule\" />
+    <Folder Include="Controllers\SearchFilterModule\" />
     <Folder Include="Controllers\PlaceModule\" />
   </ItemGroup>
 

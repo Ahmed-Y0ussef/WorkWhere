@@ -19,8 +19,8 @@ namespace Core.Configurations
                            .HasForeignKey(u => u.AdminID)
                            .OnDelete(DeleteBehavior.ClientSetNull);
 
-            builder.Property(c => c.Status)
-               .HasConversion<string>();
+            //builder.Property(c => c.Status)
+            //   .HasConversion<string>();
 
             builder.Property(u => u.Id)
             .HasColumnOrder(0);

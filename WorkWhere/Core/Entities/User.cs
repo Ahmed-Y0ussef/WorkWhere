@@ -10,22 +10,21 @@ namespace Core.Entities
 {
     public class User:BaseEntity
     {
-        //public int Id { get; set; }
-        //public string Name { get; set; }
+       
+        public string Name { get; set; }
+        
         public string Email { get; set; }
         public string Password { get; set; }
         [NotMapped]
         public string ConfirmPassword { get; set; }
         public string? Title {  get; set; }
-       // public byte[]? PersonalImg { get; set; }
        public string PersonalImageUrl { get; set; }
         [Required]
         public long? NId { get; set; }
-        //public byte[]? NImg { get; set; }
         public string NIDUrl { get; set; }
         public string? PhoneNumber { get; set; }
         public int? AdminID { get; set; }
-        public Status? Status { get; set; }
+
         //NAV PROP
         //with place
 

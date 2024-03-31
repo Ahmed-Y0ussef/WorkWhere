@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 
 namespace Core.Entities
 {
-    public class RoomTimeSlot
+    public class RoomTimeSlot : BaseEntity
     {
+
+
         public DateTime Date {  get; set; }
         public TimeSpan TimeStrart { get; set; }
         public TimeSpan TimeEnd { get; set; }
         public int RoomId { get; set; }
         public Room Room { get; set; }
-        
+
     }
 }

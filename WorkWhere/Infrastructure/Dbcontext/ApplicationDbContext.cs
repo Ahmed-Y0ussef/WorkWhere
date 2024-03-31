@@ -19,6 +19,8 @@ namespace Infrastructure.Dbcontext
         public DbSet<CourseTableSlot> courseTableSlots { get; set; }
         public DbSet<StudentCourse> studentCourses { get; set; }
 
+       
+
         // Other DbSets for Room, Place, Course, Review, etc.
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

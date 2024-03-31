@@ -8,6 +8,8 @@ namespace Core.Entities
 {
     public class Room:BaseEntity
     {
+        public string Name { get; set; }
+        public string? Description { get; set; } = null;
         public Status? Status { get; set; }
         public int Capacity {  get; set; }
         public decimal PricePerHour { get; set; }
@@ -24,5 +26,9 @@ namespace Core.Entities
         public ICollection<RoomReview> RoomReviews { get; set;} = new HashSet<RoomReview>();
         public ICollection<RoomPhotos> RoomPhotos { get; set; } = new HashSet<RoomPhotos>();
         public ICollection<RoomTimeSlot> RoomTimeSlots { get; set;} = new HashSet<RoomTimeSlot>();
+
+        //****************************************************************************************
+        //public ICollection <RoomSchedule> RoomSchedules { get; set;} = new HashSet<RoomSchedule>();
+
     }
 }

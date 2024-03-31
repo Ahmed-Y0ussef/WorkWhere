@@ -14,19 +14,28 @@ namespace Core.Configurations
     {
         public void Configure(EntityTypeBuilder<CourseTableSlot> builder)
         {
-            builder.HasOne(ct => ct.Course)
-                            .WithMany(c=>c.CoursesTableSlots)
-                            .HasForeignKey(sc => sc.CourseId)
-                            .OnDelete(DeleteBehavior.Cascade);
-
-            builder.HasKey(ct => new { ct.CourseId, ct.Date });
-
-            builder.Property(rt => rt.StratHour)
-           .HasColumnType("bigint");
+            //builder.HasOne(ct => ct.Course)
+            //                .WithMany()
+            //                .HasForeignKey(sc => sc.CourseId)
+            //                .OnDelete(DeleteBehavior.Cascade);
 
 
-            builder.Property(rt => rt.EndHour)
-           .HasColumnType("bigint");
+            //builder.HasOne(ct => ct.Course)
+            //               .WithMany()
+            //               .HasForeignKey(sc => sc.CourseId)
+            //               .OnDelete(DeleteBehavior.Cascade);
+
+            // builder.HasKey(ct => new { ct.CourseId, ct.Dates , ct.StartHour});
+
+            builder.HasKey(sc => new { sc.Id, sc.CourseId });
+
+
+            // builder.Property(rt => rt.StartHour)
+            //.HasColumnType("bigint");
+
+
+            // builder.Property(rt => rt.EndHour)
+            //.HasColumnType("bigint");
         }
     }
 }

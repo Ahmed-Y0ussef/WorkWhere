@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Core.Entities
 {
-    public class Contact
+    public class Contact : BaseEntity
     {
-        public int Id { get; set; }
+     
         public string Description { get; set; }
         public string Email { get; set; }
         public int UserId { get; set; }

@@ -1,193 +1,567 @@
 ﻿using Application.DTO.Course;
+using Application.DTO.CourseReviews;
+using Application.Helpers.ResponseResults;
+using Application.Services;
+using Azure.Core;
+using Core;
+using Core.Application.Contract;
 using Core.Entities;
 using Core.Infrastructure.Contract;
 using Infrastructure.Dbcontext;
 using Infrastructure.Repositories;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
+using System.Net;
+using System.Text;
 
 namespace WorkWhere.Controllers.CourseModule
 {
+
     [Route("api/[controller]")]
     [ApiController]
     public class CourseController : ControllerBase
     {
-        //private readonly GenericRepository<Course> _repository;
+        private readonly ICourseService _courseService;
 
-        //public CourseController(GenericRepository<Course> repository)
-        //{
-        //    _repository = repository;
-        //}
-
-        private readonly IUnitofwork _unitOfWork;
-        private readonly ApplicationDbContext _context;
-
-        public CourseController(IUnitofwork unitOfWork, ApplicationDbContext context)
+        public CourseController(ICourseService courseService)
         {
-            _unitOfWork = unitOfWork;
-            _context = context;
+
+            _courseService = courseService;
+           
         }
-
-        // GET: api/course
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Course>>> GetCourses()
-        {
-            var courses = await _unitOfWork.GetRepository<Course>().GetAllAsync();
-            return Ok(courses);
-        }
-
-        // GET: api/course/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Course>> GetCourse(int id)
-        {
-            var course = await _unitOfWork.GetRepository<Course>().GetAsync(id);
-
-            if (course == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(course);
-        }
-
-        //[HttpPost]
-        //public async Task<ActionResult<Course>> CreateCourse([FromBody] Course course)
-        //{
-        //    // Validation for required fields and data integrity
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    await _unitOfWork.GetRepository<Course>().CreateAsync(course);
-        //    await _unitOfWork.CommitAsync();
-
-        //    return CreatedAtAction("GetCourse", new { id = course.Id }, course);
-        //}
-
-        //[HttpPost] ✅
-        //public async Task<ActionResult> CreateCourse([FromBody] courseToCreateDto courseDto)
-        //{
-        //    // Validate the DTO
-        //    if (!ModelState.IsValid)
-        //    {
-        //        // If validation fails, return a bad request response with error details
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    // Map CourseCreateDto to Course entity
-        //    var course = new Course
-        //    {
-        //        Name = courseDto.Name,
-        //        PictureUrl = courseDto.PictureUrl,
-        //        //Num_Of_Students_Joined = courseDto.Num_Of_Students_Joined,
-        //        Price = courseDto.Price,
-        //        Capacity = courseDto.Capacity,
-        //        //IsInPlace = courseDto.IsInPlace,
-        //        Location = courseDto.Location,
-        //        //AdminId = courseDto.AdminId,
-        //        TeacherId = courseDto.TeacherId
-        //    };
-
-        //    // Save course to the database asynchronously
-        //    await _unitOfWork.GetRepository<Course>().CreateAsync(course);
-        //    await _unitOfWork.CommitAsync();
-
-        //    // Return a success response
-        //    return Ok();
-        //}
 
         [HttpPost]
         public async Task<IActionResult> CreateCourse(courseToCreateDto courseDto)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState); // Return 400 Bad Request with validation errors
+                return BadRequest(ModelState);
             }
-
-
-            //var teacher = await _unitOfWork.GetRepositoryTwo<UserRepository>()
-            //                        .GetUserByIdWithRoleAsync(courseDto.TeacherId, "Teacher");
-
-
-            //اوعى المكرونة
-            var teacher = await _context.Users
-                       .Where(u => u.Id == courseDto.TeacherId
-                                 && u.Roles.Any(r => r.Name == "Teacher"))
-                       .FirstOrDefaultAsync();
-
-
-            if (teacher == null)
-            {
-                return BadRequest("Teacher not found or doesn't have the 'Teacher' role.");
-            }
-
-
-            var course = new Course
-            {
-                Name = courseDto.Name,
-                PictureUrl = courseDto.PictureUrl,
-                Capacity = courseDto.Capacity,
-                Location = courseDto.Location,
-                TeacherId = courseDto.TeacherId,
-                IsInPlace = false // Set default value
-                , AdminId = 1 
-                , Num_Of_Students_Joined = 0
-            };
-
-            // Assign teacher
-           // course.Teacher = teacher;
-
-            // Save the course
-            await _unitOfWork.GetRepository<Course>().CreateAsync(course);
-            await _unitOfWork.CommitAsync();
-            return CreatedAtAction(nameof(GetCourse), new { id = course.Id }, course); 
-            // Return 201 Created with the new course
+            await _courseService.CreateCourseAsync(courseDto);
+            return Ok(new JsonResult(new { title = "Course Added", message = "Course created successfully!" }));
         }
 
 
-            [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateCourse(int id, courseToUpdateDto courseUpdateDto)
+        //REFACTOOORRRRR
+
+        [HttpPut/*("{id}")*/]
+        public async Task<IActionResult> UpdateCourse(courseToUpdateDto courseDto)
         {
+            var course = await _courseService.GetCourseAsync(courseDto.courseId);
+
+            if (course == null)
+            {
+                return BadRequest(new JsonResult(new { title = "Course Not Found", message = "There is no course with this id" }));
+
+            }
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var courseFromDb = await _unitOfWork.GetRepository<Course>().GetAsync(id);
+            await _courseService.UpdateCourseAsync(/*id, */courseDto);
 
-            if (courseFromDb == null)
-            {
-                return NotFound();
-            }
-            courseFromDb.Price = courseUpdateDto.Price;
-            courseFromDb.Capacity = courseUpdateDto.Capacity;
-            courseFromDb.PictureUrl = courseUpdateDto.PictureUrl;
-            courseFromDb.IsInPlace = courseUpdateDto.IsInPlace;
-            courseFromDb.Location = courseUpdateDto.Location;
-            courseFromDb.Name = courseUpdateDto.Name;
+            return Ok(new JsonResult(new { title = "Course Updated", message = "Course updated successfully!" }));
 
-            await _unitOfWork.GetRepository<Course>().UpdateAsync(courseFromDb);
-            await _unitOfWork.CommitAsync();
-
-            return NoContent(); 
         }
 
-        // DELETE: api/course/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCourse(int id)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetCourse(int id)
         {
-            var course = await _unitOfWork.GetRepository<Course>().GetAsync(id);
+            var course = await _courseService.GetCourseAsync(id);
 
             if (course == null)
             {
-                return NotFound();
+                return NotFound(new JsonResult(new { title = "Course Not Found", message = "Course Not found" }));
+
             }
 
-            await _unitOfWork.GetRepository<Course>().DeleteAsync(course);
-
-            return NoContent();
+            return Ok(course);
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteCourse(int id)
+        {
+            await _courseService.DeleteCourseAsync(id);
+
+            // return Ok(new JsonResult(new { title = "Course Deleted", message = "Course deleted successfully!" }));
+            var updatedCourses = await _courseService.GetCoursesAsync(); // Get updated list
+
+            return Ok(updatedCourses);
+        }
+
+        [HttpGet]
+        [Route("/accepted-courses")]
+        public async Task<IActionResult> GetAcceptedCourses()
+        {
+            var AcceptedCourses = await _courseService.GetAcceptedCoursesAsync();
+
+            if (AcceptedCourses == null || !AcceptedCourses.Any())
+            {
+                return Ok(new JsonResult(new { title = "Accepted Courses", message = "There are no Accepted courses." }));
+            }
+            return Ok(AcceptedCourses);
+        }
+
+
+        //***********************************  Reviews  ************************************
+
+        [HttpPost]
+        [Route("/review")]
+        public async Task<IActionResult> AddReview( ReviewsToCreateDto reviewDto)
+        {
+            #region MyRegion
+            //if (!ModelState.IsValid)
+            //{
+            //    return BadRequest(ModelState);
+            //}
+            //int courseId = courseid;
+            // var course = await _context.Courses.FindAsync(courseId);
+
+            //if (course == null)
+            //{
+            //    return NotFound("Course not found.");
+            //}
+
+            //var newReview = new CourseReview
+            //{
+            //    UserId = reviewDto.UserId, // token
+            //    CourseId = courseId,
+            //    Rating = reviewDto.Rating,
+            //    Review = reviewDto.Review
+            //};
+
+            //course.CoursesReviews.Add(newReview);
+            //await _context.SaveChangesAsync(); 
+            #endregion
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var course = await _courseService.GetCourseAsync(reviewDto.CourseId);
+
+            if (course == null)
+            {
+                return BadRequest(new JsonResult(new { title = "Course Not Found", message = "This course not found to add review" }));
+
+            }
+
+
+            await _courseService.AddReviewAsync(reviewDto);
+
+            return Ok(new JsonResult(new { title = "Review Added", message = "Review added successfully!" }));
+        }
+
+        [HttpDelete]
+        [Route("/review")]
+        public async Task<IActionResult> DeleteReview(ReviewToDeleteDto reviewToDeleteDto)
+        {
+            #region MyRegion
+
+            //int courseId = courseid;
+            //var course = await _context.Courses.FindAsync(courseId);
+
+            //int reviewId = reviewid;
+            //var review = await _context.courseReviews
+            // .FirstOrDefaultAsync(r => r.CourseId == courseId && r.Id == reviewId);
+
+
+            //if (review == null)
+            //{
+            //    return NotFound("Review not found.");
+            //}
+
+            //_context.courseReviews.Remove(review);
+            //await _context.SaveChangesAsync(); 
+            #endregion
+
+            await _courseService.DeleteReviewAsync(reviewToDeleteDto);
+            return Ok(new JsonResult(new { title = "Review Deleted", message = "Review deleted successfully!" }));
+        }
+
+        [HttpGet]
+        [Route("/course-reviews")]
+        public async Task<IActionResult> GetCourseReviews(int courseid)
+        {
+            #region MyRegion
+            //if (!ModelState.IsValid)
+            //{
+            //    return BadRequest(ModelState);
+            //}
+            //int courseId = courseid;
+
+
+            //var course = await _context.Courses
+            // .Include(c => c.CoursesReviews) 
+            // .ThenInclude(r => r.User)     
+            // .FirstOrDefaultAsync(c => c.Id == courseId);
+
+            //if (course == null)
+            //{
+            //    return NotFound("Course not found.");
+            //}
+
+            //var courseReviews = await _context.courseReviews
+            //    .Where(cr => cr.CourseId == courseId)
+            //     .ToListAsync();
+
+            //var reviews = courseReviews.Select(cr => new ReviewsToReturnDto
+            //{
+            //    Rating = cr.Rating,
+            //    Review = cr.Review,
+            //    userName = cr.User.Name,
+            //    courseName = cr.Course.Name
+            //}).ToList(); 
+            #endregion
+
+            var reviews = await _courseService.GetCourseReviewsAsync(courseid);
+
+            if (reviews == null || !reviews.Any())
+            {
+                return NotFound(new JsonResult(new { title = "No Reviews", message = "There is no reviews for this course" }));
+
+            }
+            return Ok(reviews);
+        }
+
+      
+
+        //******************************** JOINING  & CANCELLING ************************
+        [HttpPost]
+        [Route("/join-course")]
+        public async Task<IActionResult> JoinCourse(coursesToJoinDto coursesToJoinDto)
+        {
+            #region MyRegion
+            //if (!ModelState.IsValid)
+            //{
+            //    return BadRequest(ModelState);
+            //}
+
+            //var course = await _context.Courses.Include(c => c.StudentsCourses).FirstOrDefaultAsync(c => c.Id == courseId);
+
+            //if (course == null)
+            //{
+            //    return NotFound();
+            //}
+            //var isEnrolled = _context.studentCourses.Any(sc => sc.CrsId == courseId && sc.StdId == userId); //token
+            //if (isEnrolled)
+            //{
+            //    return BadRequest("Student already enrolled in this course.");
+            //}
+
+            //if (course.Num_Of_Students_Joined >= course.Capacity)
+            //{
+            //    return BadRequest("There is no empty seats, Course is full.");
+            //}
+
+            //var studentCourse = new StudentCourse
+            //{
+            //    CrsId = courseId,
+            //    StdId = userId,//token 
+            //};
+
+            //course.Num_Of_Students_Joined++;
+
+            //_context.studentCourses.Add(studentCourse);
+            //await _context.SaveChangesAsync();
+
+            //return Ok("You Are Enrolled in the course NOW!");
+            #endregion
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            #region MyRegion
+            var result = await _courseService.JoinCourseAsync(coursesToJoinDto);
+
+            switch (result)
+            {
+                case JoinCourseResult.Success:
+                    return Ok(new JsonResult(new { title = "Student Joined", message = "You are enrolled in the course NOW!" }));
+                case JoinCourseResult.InvalidModelState:
+                    return BadRequest(ModelState);
+                case JoinCourseResult.CourseNotFound:
+                    return NotFound(new JsonResult(new { title = "Course Not Found", message = "Course Not found" } ));
+                case JoinCourseResult.AlreadyEnrolled:
+                   return BadRequest(new JsonResult(new { title = "Cannot Join", message = "Student already enrolled in this course." }));
+                case JoinCourseResult.CourseFull:
+                    return BadRequest(new JsonResult(new { title = "Cannot Join", message = "There are no empty seats. The course is full." }));
+                default:
+                    return StatusCode(500, "An unexpected error occurred.");
+
+            }
+            #endregion
+        }
+
+        [HttpDelete]
+        [Route("/cancel-course")]
+        public async Task<IActionResult> CancelCourse(coursesToJoinDto coursesToJoinDto)
+        {
+            #region MyRegion
+            //if (courseId <= 0 || userId <= 0)
+            //{
+            //    return BadRequest("Invalid course or student ID.");
+            //}
+
+            //var joinedStudent = await _context.studentCourses
+            //  .FirstOrDefaultAsync(sc => sc.CrsId == courseId && sc.StdId == userId);
+
+            //if (joinedStudent == null)
+            //{
+            //    return NotFound("Student is not enrolled in this course.");
+            //}
+            //_context.studentCourses.Remove(joinedStudent);
+            //var course = await _context.Courses.FindAsync(courseId);
+            //if (course != null && course.Num_Of_Students_Joined > 0)
+            //{
+            //    course.Num_Of_Students_Joined--;
+            //}
+
+            //await _context.SaveChangesAsync();
+
+            //return Ok("Your enrollment is cancelled successfully."); 
+            #endregion
+
+            var result = await _courseService.CancelCourse(coursesToJoinDto);
+
+            switch (result)
+            {
+                case CancelCourseResults.Success:
+                    //  return Ok("Your enrollment is cancelled successfully.");
+                    return Ok(new JsonResult(new { title = "Enrolled Cancelled", message = "Your enrollment is cancelled successfully." }));
+                case CancelCourseResults.InvalidModelState:
+                    return BadRequest(ModelState);
+                case CancelCourseResults.NotEnrolled:
+                    // return BadRequest("Student is not enrolled in this course");
+                    return BadRequest(new JsonResult(new { title = "Cannot Cancel", message = "Student is not enrolled in this course" }));
+                case CancelCourseResults.CourseOrStudentId:
+                    // return BadRequest("Invalid course or student ID.");
+                    return BadRequest(new JsonResult(new { title = "Cannot Cancel", message = "Invalid course or student ID." }));
+                default:
+                    return StatusCode(500, "An unexpected error occurred.");
+
+            }
+        }
+
+        //************************************** Admin *********************************
+
+     
+        [HttpPut("/approve")]
+        public async Task<IActionResult> ApproveCourse(coursesToManageDto coursesToManageDto)
+        {
+
+            #region MyRegion
+            //var course = await _context.Courses.FindAsync(coursesToManageDto.CourseId);
+            //if (course == null)
+            //{
+            //    return NotFound();
+            //}
+
+            //if (course.Status != Status.Pending)
+            //{
+            //    return BadRequest(new JsonResult(new { title = "Cannot Accept", message = "Course is already approved or rejected." }));
+
+            //}
+
+            //course.Status = Status.Accepted;
+            //course.AdminId = coursesToManageDto.AdminId;
+
+            //await _context.SaveChangesAsync(); 
+
+
+            //return Ok(new JsonResult(new { title = "Course Approved", message = "Course Approved successfully!" }));
+
+            #endregion
+
+            var approvalResult = await _courseService.ApproveCourse(coursesToManageDto);
+
+            switch (approvalResult)
+            {
+                case ManageCoursesResults.CourseNotFound:
+                    return NotFound("Course not found.");
+                case ManageCoursesResults.AllreadyApproved:
+                    return BadRequest("Course is already approved.");
+                case ManageCoursesResults.Success:
+                    return Ok("Course approved successfully.");
+                default:
+                    return StatusCode(500, "Unexpected error occurred.");
+            }
+        }
+       
+        [HttpPut("/reject")]
+        public async Task<IActionResult> RejectCourse(coursesToManageDto coursesToManageDto)
+        {
+            #region MyRegion
+            //var course = await _context.Courses.FindAsync(coursesToManageDto.CourseId);
+            //if (course == null)
+            //{
+            //    return NotFound();
+            //}
+
+            //if (course.Status != Status.Pending)
+            //{
+            //    return BadRequest(new JsonResult(new { title = "Cannot Reject", message = "Course is already approved." }));
+
+            //}
+
+            //course.Status = Status.Refused; 
+
+            //_context.Courses.Remove(course);
+
+            //await _context.SaveChangesAsync();
+
+            //return Ok(new JsonResult(new { title = "Course Rejected", message = "Course Rejected & Deleted successfully!" }));
+
+
+            #endregion
+
+            var rejectionResult = await _courseService.RejectCourse(coursesToManageDto);
+
+            switch (rejectionResult)
+            {
+                case ManageCoursesResults.CourseNotFound:
+                    return NotFound("Course not found.");
+                case ManageCoursesResults.CannotReject:
+                    return BadRequest("Course is already approved or rejected.");
+                case ManageCoursesResults.Success:
+                    return Ok("Course rejected and deleted successfully.");
+                case ManageCoursesResults.Error:
+                    return StatusCode(500, "Unexpected error occurred.");
+                default:
+                    return StatusCode(500, "Unexpected result.");
+            }
+
+        }
+
+        [HttpGet]
+        [Route("/pending")]
+        public async Task<IActionResult> GetPendingCourses()
+        {
+            var pendingCourses = await _courseService.GetPendingCoursesAsync();
+
+            if (pendingCourses == null || !pendingCourses.Any())
+            {
+                return Ok(new JsonResult(new { title = "Pending Courses", message = "There are no pending courses." }));
+
+            }
+            return Ok(pendingCourses);
+        }
+
+        [HttpGet]
+        [Route("/enrolled-students")]
+        public async Task<IActionResult> GetEnrolledStudents(int courseid)
+        {
+            
+            var course = await _courseService.GetCourseAsync(courseid);
+            if (course == null)
+            {
+                return BadRequest(new JsonResult(new { title = "Course Not Found", message = "There is no course with this id" }));
+            }
+
+            var enrolledStudents = await _courseService.GetEnrolledStudentsAsync(courseid);
+
+            if (enrolledStudents == null || !enrolledStudents.Any())
+            {
+                return NotFound(new JsonResult(new { title = "No Students", message = "There is no students enrolled in this course" }));
+
+            }
+            return Ok(enrolledStudents);
+        }
+
+        [HttpGet]
+        [Route("/all-enrolled-students")]
+        public async Task<IActionResult> GetAllStudents()
+        {
+
+            var students = await _courseService.GetAllStudentsAsync();
+
+            if (students == null || !students.Any())
+            {
+                return NotFound(new JsonResult(new { title = "No students", message = "There is no students Available" }));
+
+            }
+            return Ok(students);
+        }
+
+        [HttpGet("/empty-courses")]
+        public async Task<ActionResult<IEnumerable<courseToReturnDto>>> GetEmptyCourses()
+        {
+            var emptyCourses = await _courseService.GetEmptyCoursesAsync();
+            return Ok(emptyCourses);
+        }
+
+        [HttpGet]
+        [Route("/all-reviews")]
+        public async Task<IActionResult> GetCoursesReviews()
+        {
+            #region MyRegion
+            //if (!ModelState.IsValid)
+            //{
+            //    return BadRequest(ModelState);
+            //}
+            //int courseId = courseid;
+
+
+            //var course = await _context.Courses
+            // .Include(c => c.CoursesReviews) 
+            // .ThenInclude(r => r.User)     
+            // .FirstOrDefaultAsync(c => c.Id == courseId);
+
+            //if (course == null)
+            //{
+            //    return NotFound("Course not found.");
+            //}
+
+            //var courseReviews = await _context.courseReviews
+            //    .Where(cr => cr.CourseId == courseId)
+            //     .ToListAsync();
+
+            //var reviews = courseReviews.Select(cr => new ReviewsToReturnDto
+            //{
+            //    Rating = cr.Rating,
+            //    Review = cr.Review,
+            //    userName = cr.User.Name,
+            //    courseName = cr.Course.Name
+            //}).ToList(); 
+            #endregion
+
+            var reviews = await _courseService.GetAllCoursesReviewsAsync();
+
+            if (reviews == null || !reviews.Any())
+            {
+                return NotFound(new JsonResult(new { title = "No Reviews", message = "There is no reviews Available" }));
+
+            }
+            return Ok(reviews);
+        }
+
+
+        [HttpGet]
+        [Route("/all-courses")]
+        public async Task<IActionResult> GetAllCourses()
+        {
+            var courses = await _courseService.GetCoursesAsync();
+
+            if (courses == null)
+            {
+                return NotFound(new JsonResult(new { title = "No Courses", message = "There is no Courses to show" }));
+
+            }
+
+            return Ok(courses);
+        }
+
+       
     }
+
 }
+
+
+

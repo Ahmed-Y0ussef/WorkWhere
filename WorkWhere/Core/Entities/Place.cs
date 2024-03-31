@@ -8,6 +8,9 @@ namespace Core.Entities
 {
     public class Place:BaseEntity
     {
+
+        public string Name { get; set; }
+        public string? Description { get; set; } = null;
         public Status? Status {  get; set; }
         public int NumOfRooms { get; set; }
         public double OpenTime {  get; set; }
@@ -19,13 +22,13 @@ namespace Core.Entities
         public int? AdminId {  get; set; }
         public int HostID { get; set; }
 
+
         //nav Prop
         public ICollection<PlaceUtilities> PlaceUtilities { get; set; }
         public User Admin { get; set; }
         public User Host { get; set; }
         public ICollection<Room> Rooms { get; set; }
         public ICollection<PlaceReview> PlaceReviews { get; set; }
-
         public ICollection<PlacePhotos> PlacePhotos { get; set; }
        
     }

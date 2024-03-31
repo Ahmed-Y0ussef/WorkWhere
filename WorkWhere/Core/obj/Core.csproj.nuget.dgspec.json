@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\Core\\Core.csproj": {}
+    "C:\\Users\\nmalk\\Desktop\\Nadoda\\WorkWhere\\WorkWhere\\Core\\Core.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\Core\\Core.csproj": {
+    "C:\\Users\\nmalk\\Desktop\\Nadoda\\WorkWhere\\WorkWhere\\Core\\Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\Core\\Core.csproj",
+        "projectUniqueName": "C:\\Users\\nmalk\\Desktop\\Nadoda\\WorkWhere\\WorkWhere\\Core\\Core.csproj",
         "projectName": "Core",
-        "projectPath": "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\Core\\Core.csproj",
+        "projectPath": "C:\\Users\\nmalk\\Desktop\\Nadoda\\WorkWhere\\WorkWhere\\Core\\Core.csproj",
         "packagesPath": "C:\\Users\\nmalk\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\Core\\obj\\",
+        "outputPath": "C:\\Users\\nmalk\\Desktop\\Nadoda\\WorkWhere\\WorkWhere\\Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

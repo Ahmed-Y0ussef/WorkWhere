@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\WorkWhere\\WorkWhere.csproj": {}
+    "C:\\Users\\nmalk\\Desktop\\Nadoda\\WorkWhere\\WorkWhere\\WorkWhere\\WorkWhere.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\Application\\Application.csproj": {
+    "C:\\Users\\nmalk\\Desktop\\Nadoda\\WorkWhere\\WorkWhere\\Application\\Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\Application\\Application.csproj",
+        "projectUniqueName": "C:\\Users\\nmalk\\Desktop\\Nadoda\\WorkWhere\\WorkWhere\\Application\\Application.csproj",
         "projectName": "Application",
-        "projectPath": "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\Application\\Application.csproj",
+        "projectPath": "C:\\Users\\nmalk\\Desktop\\Nadoda\\WorkWhere\\WorkWhere\\Application\\Application.csproj",
         "packagesPath": "C:\\Users\\nmalk\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\Application\\obj\\",
+        "outputPath": "C:\\Users\\nmalk\\Desktop\\Nadoda\\WorkWhere\\WorkWhere\\Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -32,8 +32,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\Infrastructure\\Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\Infrastructure\\Infrastructure.csproj"
+              "C:\\Users\\nmalk\\Desktop\\Nadoda\\WorkWhere\\WorkWhere\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\nmalk\\Desktop\\Nadoda\\WorkWhere\\WorkWhere\\Infrastructure\\Infrastructure.csproj"
               }
             }
           }
@@ -52,6 +52,24 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "Microsoft.AspNetCore.Http": {
+              "target": "Package",
+              "version": "[2.2.2, )"
+            },
+            "Microsoft.AspNetCore.Http.Features": {
+              "target": "Package",
+              "version": "[5.0.17, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -72,14 +90,14 @@
         }
       }
     },
-    "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\Core\\Core.csproj": {
+    "C:\\Users\\nmalk\\Desktop\\Nadoda\\WorkWhere\\WorkWhere\\Core\\Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\Core\\Core.csproj",
+        "projectUniqueName": "C:\\Users\\nmalk\\Desktop\\Nadoda\\WorkWhere\\WorkWhere\\Core\\Core.csproj",
         "projectName": "Core",
-        "projectPath": "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\Core\\Core.csproj",
+        "projectPath": "C:\\Users\\nmalk\\Desktop\\Nadoda\\WorkWhere\\WorkWhere\\Core\\Core.csproj",
         "packagesPath": "C:\\Users\\nmalk\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\Core\\obj\\",
+        "outputPath": "C:\\Users\\nmalk\\Desktop\\Nadoda\\WorkWhere\\WorkWhere\\Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -144,14 +162,14 @@
         }
       }
     },
-    "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\Infrastructure\\Infrastructure.csproj": {
+    "C:\\Users\\nmalk\\Desktop\\Nadoda\\WorkWhere\\WorkWhere\\Infrastructure\\Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\Infrastructure\\Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\nmalk\\Desktop\\Nadoda\\WorkWhere\\WorkWhere\\Infrastructure\\Infrastructure.csproj",
         "projectName": "Infrastructure",
-        "projectPath": "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\Infrastructure\\Infrastructure.csproj",
+        "projectPath": "C:\\Users\\nmalk\\Desktop\\Nadoda\\WorkWhere\\WorkWhere\\Infrastructure\\Infrastructure.csproj",
         "packagesPath": "C:\\Users\\nmalk\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\Infrastructure\\obj\\",
+        "outputPath": "C:\\Users\\nmalk\\Desktop\\Nadoda\\WorkWhere\\WorkWhere\\Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -172,8 +190,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\Core\\Core.csproj": {
-                "projectPath": "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\Core\\Core.csproj"
+              "C:\\Users\\nmalk\\Desktop\\Nadoda\\WorkWhere\\WorkWhere\\Core\\Core.csproj": {
+                "projectPath": "C:\\Users\\nmalk\\Desktop\\Nadoda\\WorkWhere\\WorkWhere\\Core\\Core.csproj"
               }
             }
           }
@@ -224,14 +242,14 @@
         }
       }
     },
-    "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\WorkWhere\\WorkWhere.csproj": {
+    "C:\\Users\\nmalk\\Desktop\\Nadoda\\WorkWhere\\WorkWhere\\WorkWhere\\WorkWhere.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\WorkWhere\\WorkWhere.csproj",
+        "projectUniqueName": "C:\\Users\\nmalk\\Desktop\\Nadoda\\WorkWhere\\WorkWhere\\WorkWhere\\WorkWhere.csproj",
         "projectName": "WorkWhere",
-        "projectPath": "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\WorkWhere\\WorkWhere.csproj",
+        "projectPath": "C:\\Users\\nmalk\\Desktop\\Nadoda\\WorkWhere\\WorkWhere\\WorkWhere\\WorkWhere.csproj",
         "packagesPath": "C:\\Users\\nmalk\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\WorkWhere\\obj\\",
+        "outputPath": "C:\\Users\\nmalk\\Desktop\\Nadoda\\WorkWhere\\WorkWhere\\WorkWhere\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -252,8 +270,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\Application\\Application.csproj": {
-                "projectPath": "C:\\Users\\nmalk\\source\\repos\\WorkWhere\\WorkWhere\\Application\\Application.csproj"
+              "C:\\Users\\nmalk\\Desktop\\Nadoda\\WorkWhere\\WorkWhere\\Application\\Application.csproj": {
+                "projectPath": "C:\\Users\\nmalk\\Desktop\\Nadoda\\WorkWhere\\WorkWhere\\Application\\Application.csproj"
               }
             }
           }
@@ -286,6 +304,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.4.0, )"
+            },
+            "System.Net.Http": {
+              "target": "Package",
+              "version": "[4.3.4, )"
             }
           },
           "imports": [

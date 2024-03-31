@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Application.DTO.CourseTableSlot;
+using Core.Entities;
+using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -9,17 +12,14 @@ namespace Application.DTO.Course
 {
     public class courseToCreateDto
     {
-        //[Required(ErrorMessage = "Name is required")]
         public string Name { get; set; }
-
-        //[Required(ErrorMessage = "Picture URL is required")]
-        public string PictureUrl { get; set; }
-
-        //[Required(ErrorMessage = "Number of Students Joined is required")]
-        
+        public IFormFile Photo { get; set; }
+        public string Description { get; set; }
         public decimal Price { get; set; }
-        public int Capacity { get; set; }       
+        public int Capacity { get; set; }
         public string Location { get; set; }
         public int TeacherId { get; set; }
-    }
+
+        public   TableSlotToCreate TableSlot {  get; set; }
+      }  
 }

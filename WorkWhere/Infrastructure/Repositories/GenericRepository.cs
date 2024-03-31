@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,32 +20,61 @@ namespace Infrastructure.Repositories
             this.dbcontext = dbcontext;
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync()
-        {
-            return await dbcontext.Set<T>().ToListAsync();
-        }
+        public async Task<IEnumerable<T>> GetAllAsync(params Expression<Func<T, object>>[] includes)
+         => await GetIncludes(includes).ToListAsync();
 
-        public async Task<T?> GetAsync(int id)
-        {
-            return await dbcontext.Set<T>().FindAsync(id);
-        }
+
+        public async Task<T?> GetAsync(int id, params Expression<Func<T, object>>[] includes)
+         => await GetIncludes(includes).FirstOrDefaultAsync(u => u.Id == id);
+
+        public async Task<IEnumerable<T>> GetAllAsyncWithQueryBuilder(IQueryBuilder<T> queryBuilder)
+        => await BuildQuery(queryBuilder).ToListAsync();
+        public async Task<T> GetByIdWithQueryBuilder(int id, IQueryBuilder<T> queryBuilder)
+        => await BuildQuery(queryBuilder).FirstOrDefaultAsync(u => u.Id == id);
+
 
         public async Task CreateAsync(T entity)
-        {
-            await dbcontext.Set<T>().AddAsync(entity);
-            //await dbcontext.SaveChangesAsync(); // You may want to save changes after adding the entity
-        }
+            => await dbcontext.Set<T>().AddAsync(entity);
 
         public async Task UpdateAsync(T entity)
-        {
-            dbcontext.Set<T>().Update(entity);
-           //await dbcontext.SaveChangesAsync();
-        }
+        => dbcontext.Update(entity);
 
         public async Task DeleteAsync(T entity)
+        => dbcontext.Remove(entity);
+
+
+        private IQueryable<T> GetIncludes(params Expression<Func<T, object>>[] includes)
         {
-            dbcontext.Set<T>().Remove(entity);
-            //await dbcontext.SaveChangesAsync();
+            IQueryable<T> query = dbcontext.Set<T>();
+            if (includes != null)
+                foreach (var item in includes)
+                    query = query.Include(item);
+
+            return query;
         }
+
+
+        private IQueryable<T> BuildQuery(IQueryBuilder<T> queryBuilder) //build query
+        {
+            IQueryable<T> query = dbcontext.Set<T>();
+
+            if (queryBuilder.Criteria != null)
+                query = query.Where(queryBuilder.Criteria);
+
+            if (queryBuilder.Includes != null)
+                foreach (var item in queryBuilder.Includes)
+                    query = query.Include(item);
+
+            if (queryBuilder.Skip != 0)
+                query = query.Skip(queryBuilder.Skip);
+
+            if (queryBuilder.Take != 0)
+                query = query.Take(queryBuilder.Take);
+
+            return query;
+        }
+
+
+
     }
 }

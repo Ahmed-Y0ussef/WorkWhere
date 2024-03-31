@@ -519,3 +519,4 @@ C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\WorkWhere\obj\Debug\net8.0\ref
 C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\WorkWhere\obj\Debug\net8.0\WorkWhere.pdb
 C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\WorkWhere\obj\Debug\net8.0\WorkWhere.genruntimeconfig.cache
 C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\WorkWhere\obj\Debug\net8.0\ref\WorkWhere.dll
+C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\WorkWhere\obj\Debug\net8.0\WorkWhere.MvcApplicationPartsAssemblyInfo.cs

@@ -14,18 +14,19 @@ namespace Core.Configurations
     {
         public void Configure(EntityTypeBuilder<StudentCourse> builder)
         {
-            builder.HasOne(sc => sc.User)
+            builder.HasOne(sc => sc.Student)
                            .WithMany(u => u.StudentCourses)
-                           .HasForeignKey(sc => sc.StdId)
-                           .OnDelete(DeleteBehavior.Cascade);
+                           .HasForeignKey(sc => sc.StudentId)
+                           .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(sc => sc.Course)
                .WithMany(u => u.StudentsCourses)
-               .HasForeignKey(sc => sc.CrsId)
-               .OnDelete(DeleteBehavior.Restrict);
+               .HasForeignKey(sc => sc.CourseId)
+               .OnDelete(DeleteBehavior.Cascade);
 
 
-            builder.HasKey(sc => new { sc.StdId, sc.CrsId });
+            builder.HasKey(sc => new { sc.StudentId, sc.CourseId });
+
         }
     }
 }
