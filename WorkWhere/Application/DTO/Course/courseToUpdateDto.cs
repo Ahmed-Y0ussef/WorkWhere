@@ -18,8 +18,10 @@ namespace Application.DTO.Course
         public int? Capacity { get; set; }
         public string? Description { get; set; }
         public IFormFile? Photo { get; set; }
+
+        public string? PhotoUrl { get; set; }
         public string? Location { get; set; }
-        public TableSlotToUpdateDto? TableSlot { get; set; }
+        public CourseScheduleToUpdateDto? CourseSchedule { get; set; }
         
 
 

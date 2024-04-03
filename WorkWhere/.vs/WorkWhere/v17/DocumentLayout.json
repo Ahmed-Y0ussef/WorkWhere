@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\nmalk\\Desktop\\Nadoda\\WorkWhere\\WorkWhere\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{96ACD32B-EED8-4E41-8057-157219F4A5EA}|WorkWhere\\WorkWhere.csproj|c:\\users\\nmalk\\desktop\\nadoda\\workwhere\\workwhere\\workwhere\\controllers\\coursemodule\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{96ACD32B-EED8-4E41-8057-157219F4A5EA}|WorkWhere\\WorkWhere.csproj|solutionrelative:workwhere\\controllers\\coursemodule\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{96ACD32B-EED8-4E41-8057-157219F4A5EA}|WorkWhere\\WorkWhere.csproj|c:\\users\\nmalk\\desktop\\nadoda\\workwhere\\workwhere\\workwhere\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{96ACD32B-EED8-4E41-8057-157219F4A5EA}|WorkWhere\\WorkWhere.csproj|solutionrelative:workwhere\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -31,14 +31,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "CourseController.cs",
-              "DocumentMoniker": "C:\\Users\\nmalk\\Desktop\\Nadoda\\WorkWhere\\WorkWhere\\WorkWhere\\Controllers\\CourseModule\\CourseController.cs",
-              "RelativeDocumentMoniker": "WorkWhere\\Controllers\\CourseModule\\CourseController.cs",
-              "ToolTip": "C:\\Users\\nmalk\\Desktop\\Nadoda\\WorkWhere\\WorkWhere\\WorkWhere\\Controllers\\CourseModule\\CourseController.cs",
-              "RelativeToolTip": "WorkWhere\\Controllers\\CourseModule\\CourseController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAiAAAA",
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\nmalk\\Desktop\\Nadoda\\WorkWhere\\WorkWhere\\WorkWhere\\Program.cs",
+              "RelativeDocumentMoniker": "WorkWhere\\Program.cs",
+              "ToolTip": "C:\\Users\\nmalk\\Desktop\\Nadoda\\WorkWhere\\WorkWhere\\WorkWhere\\Program.cs",
+              "RelativeToolTip": "WorkWhere\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACIAAABEAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-30T23:14:54.184Z",
+              "WhenOpened": "2024-04-03T12:16:21.169Z",
               "EditorCaption": ""
             }
           ]

@@ -15,22 +15,15 @@ namespace Core.Configurations
         public void Configure(EntityTypeBuilder<Course> builder)
         {
 
-        //    builder.HasOne(c => c.CoursesTableSlot)
-        //.WithOne(s => s.Course)
-        //.HasForeignKey<CoursesTableSlot>(s => s.CourseId) // Foreign key on Schedule
-        //.IsRequired(true);
-
-
-
             builder.HasOne(c => c.Teacher)
-               .WithMany(u => u.TaughtedCourses)
+               .WithMany(u => u.TaughtCourses)
                .HasForeignKey(c => c.TeacherId)
               .OnDelete(DeleteBehavior.Cascade);
 
-            builder.HasOne(c => c.Admin)
-            .WithMany(u => u.AcceptedCourses)
-            .HasForeignKey(c => c.AdminId)
-            .OnDelete(DeleteBehavior.Restrict);
+            //builder.HasOne(c => c.Admin)
+            //.WithMany(u => u.AcceptedCourses)
+            //.HasForeignKey(c => c.AdminId)
+            //.OnDelete(DeleteBehavior.Restrict);
 
             builder.Property(c => c.Status)
             .HasDefaultValue(Status.Pending);

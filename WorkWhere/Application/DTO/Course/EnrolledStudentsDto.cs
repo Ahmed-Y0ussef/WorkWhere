@@ -9,11 +9,7 @@ namespace Application.DTO.Course
     public class EnrolledStudentsDto
     {
         public int CourseId { get; set; }
-
-        public string CourseName { get; set; }
-        public int StudentId { get; set; }
-        public string StudentName {  get; set; }
-
+         public IEnumerable<StudentDto> Students { get; set; }
 
     }
 }

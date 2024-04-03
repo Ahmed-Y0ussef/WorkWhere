@@ -64,17 +64,20 @@ namespace Infrastructure.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("Location")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("Num_Of_Students_Joined")
+                    b.Property<int>("NumOfStudentsEnrolled")
                         .HasColumnType("int");
 
                     b.Property<byte[]>("Photo")
@@ -102,7 +105,7 @@ namespace Infrastructure.Migrations
                     b.ToTable("Courses");
                 });
 
-            modelBuilder.Entity("Core.Entities.CourseReview", b =>
+            modelBuilder.Entity("Core.Entities.CourseReviews", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -132,7 +135,7 @@ namespace Infrastructure.Migrations
                     b.ToTable("courseReviews");
                 });
 
-            modelBuilder.Entity("Core.Entities.CourseTableSlot", b =>
+            modelBuilder.Entity("Core.Entities.CourseSchedule", b =>
                 {
                     b.Property<int>("Id")
                         .HasColumnType("int");
@@ -158,6 +161,24 @@ namespace Infrastructure.Migrations
                         .IsUnique();
 
                     b.ToTable("courseTableSlots");
+                });
+
+            modelBuilder.Entity("Core.Entities.EnrolledStudents", b =>
+                {
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.HasKey("StudentId", "CourseId");
+
+                    b.HasIndex("CourseId");
+
+                    b.ToTable("studentCourses");
                 });
 
             modelBuilder.Entity("Core.Entities.GuestRoom", b =>
@@ -441,24 +462,6 @@ namespace Infrastructure.Migrations
                     b.ToTable("RoomUtilities");
                 });
 
-            modelBuilder.Entity("Core.Entities.StudentCourse", b =>
-                {
-                    b.Property<int>("StudentId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CourseId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
-                    b.HasKey("StudentId", "CourseId");
-
-                    b.HasIndex("CourseId");
-
-                    b.ToTable("studentCourses");
-                });
-
             modelBuilder.Entity("Core.Entities.User", b =>
                 {
                     b.Property<int>("Id")
@@ -538,12 +541,11 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Core.Entities.Course", b =>
                 {
                     b.HasOne("Core.Entities.User", "Admin")
-                        .WithMany("AcceptedCourses")
-                        .HasForeignKey("AdminId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .WithMany()
+                        .HasForeignKey("AdminId");
 
                     b.HasOne("Core.Entities.User", "Teacher")
-                        .WithMany("TaughtedCourses")
+                        .WithMany("TaughtCourses")
                         .HasForeignKey("TeacherId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -553,7 +555,7 @@ namespace Infrastructure.Migrations
                     b.Navigation("Teacher");
                 });
 
-            modelBuilder.Entity("Core.Entities.CourseReview", b =>
+            modelBuilder.Entity("Core.Entities.CourseReviews", b =>
                 {
                     b.HasOne("Core.Entities.Course", "Course")
                         .WithMany("CoursesReviews")
@@ -562,7 +564,7 @@ namespace Infrastructure.Migrations
                         .IsRequired();
 
                     b.HasOne("Core.Entities.User", "User")
-                        .WithMany("courseReviews")
+                        .WithMany("CourseReviews")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -572,13 +574,32 @@ namespace Infrastructure.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Core.Entities.CourseTableSlot", b =>
+            modelBuilder.Entity("Core.Entities.CourseSchedule", b =>
                 {
                     b.HasOne("Core.Entities.Course", null)
-                        .WithOne("CoursesTableSlot")
-                        .HasForeignKey("Core.Entities.CourseTableSlot", "CourseId")
+                        .WithOne("CourseSchedule")
+                        .HasForeignKey("Core.Entities.CourseSchedule", "CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Core.Entities.EnrolledStudents", b =>
+                {
+                    b.HasOne("Core.Entities.Course", "Course")
+                        .WithMany("EnrolledStudents")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Core.Entities.User", "Student")
+                        .WithMany("EnrolledStudents")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+
+                    b.Navigation("Student");
                 });
 
             modelBuilder.Entity("Core.Entities.GuestRoom", b =>
@@ -729,25 +750,6 @@ namespace Infrastructure.Migrations
                     b.Navigation("Room");
                 });
 
-            modelBuilder.Entity("Core.Entities.StudentCourse", b =>
-                {
-                    b.HasOne("Core.Entities.Course", "Course")
-                        .WithMany("StudentsCourses")
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Core.Entities.User", "Student")
-                        .WithMany("StudentCourses")
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Course");
-
-                    b.Navigation("Student");
-                });
-
             modelBuilder.Entity("Core.Entities.User", b =>
                 {
                     b.HasOne("Core.Entities.User", "Admin")
@@ -774,12 +776,12 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Core.Entities.Course", b =>
                 {
-                    b.Navigation("CoursesReviews");
-
-                    b.Navigation("CoursesTableSlot")
+                    b.Navigation("CourseSchedule")
                         .IsRequired();
 
-                    b.Navigation("StudentsCourses");
+                    b.Navigation("CoursesReviews");
+
+                    b.Navigation("EnrolledStudents");
                 });
 
             modelBuilder.Entity("Core.Entities.Place", b =>
@@ -808,9 +810,11 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Core.Entities.User", b =>
                 {
-                    b.Navigation("AcceptedCourses");
-
                     b.Navigation("Conacts");
+
+                    b.Navigation("CourseReviews");
+
+                    b.Navigation("EnrolledStudents");
 
                     b.Navigation("GuestRooms");
 
@@ -818,11 +822,7 @@ namespace Infrastructure.Migrations
 
                     b.Navigation("PlacesOwned");
 
-                    b.Navigation("StudentCourses");
-
-                    b.Navigation("TaughtedCourses");
-
-                    b.Navigation("courseReviews");
+                    b.Navigation("TaughtCourses");
 
                     b.Navigation("placeReviews");
 

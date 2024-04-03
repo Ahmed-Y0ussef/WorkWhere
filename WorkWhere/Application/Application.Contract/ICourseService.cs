@@ -51,6 +51,15 @@ namespace Core.Application.Contract
 
         public  Task<ManageCoursesResults> RejectCourse(coursesToManageDto coursesToManageDto);
 
+        //*******************************************************************
+
+        public Task<IEnumerable<CoursesEnrolledInDto>> GetEnrolledCoursesAsync(int studentId);
+
+        public Task<IEnumerable<courseToReturnDto>> GetTaughtCoursesAsync(int userId);
+
+
+
+
 
 
     }

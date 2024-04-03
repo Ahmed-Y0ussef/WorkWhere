@@ -31,20 +31,24 @@ namespace Core.Entities
         public ICollection<Place> PlacesOwned { get; set; }
         public ICollection<Place> PlacesAccepted { get; set; }
 
-        //with StudentCourse
-        public ICollection<StudentCourse> StudentCourses { get; set; } = new HashSet<StudentCourse>();
+        //with EnrolledStudents
+        public ICollection<EnrolledStudents> EnrolledStudents { get; set; } = new HashSet<EnrolledStudents>();
         
         //with Course
-        public ICollection<Course> TaughtedCourses { get; set; } = new HashSet<Course>();
-        public ICollection<Course> AcceptedCourses { get; set; } = new HashSet<Course>();
+        public ICollection<Course> TaughtCourses { get; set; } = new HashSet<Course>();
+
+
+       // public ICollection<Course> AcceptedCourses { get; set; } = new HashSet<Course>();
+
         // with User
         public User Admin {  get; set; }
         // with Roles
         public ICollection<Role> Roles { get; set; } = new HashSet<Role>();
+
         // with Guestroom
         public ICollection<GuestRoom> GuestRooms { get; set;} = new HashSet<GuestRoom>();
         public ICollection<Contact> Conacts { get; set; }
-        public ICollection<CourseReview> courseReviews { get; set; }
+        public ICollection<CourseReviews> CourseReviews { get; set; }
         public ICollection<PlaceReview> placeReviews { get; set; }  
         public ICollection<RoomReview> roomReviews { get; set; }
     }

@@ -44,9 +44,6 @@ namespace WorkWhere.Controllers.CourseModule
             return Ok(new JsonResult(new { title = "Course Added", message = "Course created successfully!" }));
         }
 
-
-        //REFACTOOORRRRR
-
         [HttpPut/*("{id}")*/]
         public async Task<IActionResult> UpdateCourse(courseToUpdateDto courseDto)
         {
@@ -86,10 +83,16 @@ namespace WorkWhere.Controllers.CourseModule
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCourse(int id)
         {
+
+            var course = await _courseService.GetCourseAsync(id);
+
+            if (course == null)
+            {
+                 return NotFound(new JsonResult(new { title = "NotFound", message = "Course Not Found!" }));
+            }
             await _courseService.DeleteCourseAsync(id);
 
-            // return Ok(new JsonResult(new { title = "Course Deleted", message = "Course deleted successfully!" }));
-            var updatedCourses = await _courseService.GetCoursesAsync(); // Get updated list
+            var updatedCourses = await _courseService.GetCoursesAsync(); 
 
             return Ok(updatedCourses);
         }
@@ -109,6 +112,51 @@ namespace WorkWhere.Controllers.CourseModule
 
 
         //***********************************  Reviews  ************************************
+
+        [HttpGet]
+        [Route("/course-reviews")]
+        public async Task<IActionResult> GetCourseReviews(int courseid)
+        {
+            #region MyRegion
+            //if (!ModelState.IsValid)
+            //{
+            //    return BadRequest(ModelState);
+            //}
+            //int courseId = courseid;
+
+
+            //var course = await _context.Courses
+            // .Include(c => c.CoursesReviews) 
+            // .ThenInclude(r => r.User)     
+            // .FirstOrDefaultAsync(c => c.Id == courseId);
+
+            //if (course == null)
+            //{
+            //    return NotFound("Course not found.");
+            //}
+
+            //var courseReviews = await _context.courseReviews
+            //    .Where(cr => cr.CourseId == courseId)
+            //     .ToListAsync();
+
+            //var reviews = courseReviews.Select(cr => new ReviewsToReturnDto
+            //{
+            //    Rating = cr.Rating,
+            //    Review = cr.Review,
+            //    userName = cr.User.Name,
+            //    courseName = cr.Course.Name
+            //}).ToList(); 
+            #endregion
+
+            var reviews = await _courseService.GetCourseReviewsAsync(courseid);
+
+            if (reviews == null || !reviews.Any())
+            {
+                return NotFound(new JsonResult(new { title = "No Reviews", message = "There is no reviews for this course" }));
+
+            }
+            return Ok(reviews);
+        }
 
         [HttpPost]
         [Route("/review")]
@@ -185,52 +233,6 @@ namespace WorkWhere.Controllers.CourseModule
             return Ok(new JsonResult(new { title = "Review Deleted", message = "Review deleted successfully!" }));
         }
 
-        [HttpGet]
-        [Route("/course-reviews")]
-        public async Task<IActionResult> GetCourseReviews(int courseid)
-        {
-            #region MyRegion
-            //if (!ModelState.IsValid)
-            //{
-            //    return BadRequest(ModelState);
-            //}
-            //int courseId = courseid;
-
-
-            //var course = await _context.Courses
-            // .Include(c => c.CoursesReviews) 
-            // .ThenInclude(r => r.User)     
-            // .FirstOrDefaultAsync(c => c.Id == courseId);
-
-            //if (course == null)
-            //{
-            //    return NotFound("Course not found.");
-            //}
-
-            //var courseReviews = await _context.courseReviews
-            //    .Where(cr => cr.CourseId == courseId)
-            //     .ToListAsync();
-
-            //var reviews = courseReviews.Select(cr => new ReviewsToReturnDto
-            //{
-            //    Rating = cr.Rating,
-            //    Review = cr.Review,
-            //    userName = cr.User.Name,
-            //    courseName = cr.Course.Name
-            //}).ToList(); 
-            #endregion
-
-            var reviews = await _courseService.GetCourseReviewsAsync(courseid);
-
-            if (reviews == null || !reviews.Any())
-            {
-                return NotFound(new JsonResult(new { title = "No Reviews", message = "There is no reviews for this course" }));
-
-            }
-            return Ok(reviews);
-        }
-
-      
 
         //******************************** JOINING  & CANCELLING ************************
         [HttpPost]
@@ -490,11 +492,18 @@ namespace WorkWhere.Controllers.CourseModule
             return Ok(students);
         }
 
-        [HttpGet("/empty-courses")]
-        public async Task<ActionResult<IEnumerable<courseToReturnDto>>> GetEmptyCourses()
+        [HttpGet]
+        [Route("/empty-courses")]
+        public async Task<IActionResult> GetEmptyCourses()
         {
-            var emptyCourses = await _courseService.GetEmptyCoursesAsync();
-            return Ok(emptyCourses);
+            var courses = await _courseService.GetEmptyCoursesAsync();
+
+            if (courses == null || !courses.Any())
+            {
+                return Ok(new JsonResult(new { title = "No Courses", message = "There is no empty courses" }));
+
+            }
+            return Ok(courses);
         }
 
         [HttpGet]
@@ -558,7 +567,40 @@ namespace WorkWhere.Controllers.CourseModule
             return Ok(courses);
         }
 
-       
+
+        //************************************************************************
+
+        [HttpGet]
+        [Route("/enrolled-courses")]
+        public async Task<IActionResult> GetEnrolledCourses(int studentId)
+        {
+            var enrolledCoursesDto = await _courseService.GetEnrolledCoursesAsync(studentId);
+
+            if (enrolledCoursesDto == null)
+            {
+
+                return Ok(new JsonResult(new { title = "No Courses", message = "You didn't enroll any courses" }));
+
+            }
+
+            // Do something with the enrolledCoursesDto, e.g., pass it to the view
+            return Ok(enrolledCoursesDto);
+        }
+
+        [HttpGet]
+        [Route("/taught-courses")]
+        public async Task<IActionResult> GetTaughtedCourses(int teacherId)
+        {
+            var TaughtCourses = await _courseService.GetTaughtCoursesAsync(teacherId);
+
+            if (TaughtCourses == null || !TaughtCourses.Any())
+            {
+                return Ok(new JsonResult(new { title = "No Courses", message = "You didn't add any courses" }));
+            }
+            return Ok(TaughtCourses);
+        }
+
+
     }
 
 }

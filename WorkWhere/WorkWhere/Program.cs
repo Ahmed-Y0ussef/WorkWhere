@@ -2,12 +2,10 @@ using Application.Services;
 using Core.Application.Contract;
 using Core.Entities;
 using Core.Infrastructure.Contract;
-//using Core.Infrastructure.Contract.Course;
 using Infrastructure.Dbcontext;
 using Infrastructure.Repositories;
-//using Infrastructure.Repositories.CourseReviewRepository;
+using CloudinaryDotNet.Core;
 
-//using Infrastructure.Repositories.Course;
 using Microsoft.EntityFrameworkCore;
 
 namespace WorkWhere
@@ -29,6 +27,8 @@ namespace WorkWhere
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("con1"));
             });
+
+          //  builder.Services.AddTransient<CloudinaryService>();
 
             //Add the registration for GenericRepository<Course>
 

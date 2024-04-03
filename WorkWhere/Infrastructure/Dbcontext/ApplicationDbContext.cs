@@ -15,9 +15,9 @@ namespace Infrastructure.Dbcontext
         public DbSet<Course> Courses { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Place> Places { get; set; }
-        public DbSet<CourseReview> courseReviews { get; set; }
-        public DbSet<CourseTableSlot> courseTableSlots { get; set; }
-        public DbSet<StudentCourse> studentCourses { get; set; }
+        public DbSet<CourseReviews> courseReviews { get; set; }
+        public DbSet<CourseSchedule> courseTableSlots { get; set; }
+        public DbSet<EnrolledStudents> studentCourses { get; set; }
 
        
 

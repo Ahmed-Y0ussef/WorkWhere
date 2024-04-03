@@ -21,6 +21,7 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Application.Helpers.ResponseResults;
+using Application.DTO.CourseSchedule;
 
 
 namespace Application.Services
@@ -34,11 +35,11 @@ namespace Application.Services
         {
             _unitOfWork = unitOfWork;
         }
-       
+
         public async Task<courseToReturnDto> GetCourseAsync(int id)
         {
             var course = await _unitOfWork.GetRepository<Course>()
-                                        .GetAsync(id, c => c.Teacher, c => c.CoursesTableSlot);
+                                        .GetAsync(id, c => c.Teacher, c=>c.Admin,c => c.CourseSchedule);
 
 
             if (course == null)
@@ -51,95 +52,37 @@ namespace Application.Services
             return new courseToReturnDto
             {
                 Id= course.Id,
+                AdminId=course.Admin.Id,
                 Name = course.Name,
                 Price = course.Price,
                 Location = course.Location,
-                Num_Of_Students_Joined = course.Num_Of_Students_Joined,
+                Num_Of_Students_Joined = course.NumOfStudentsEnrolled,
                 Photo = course.Photo,
                 Description = course.Description,
                 Capacity = course.Capacity,
                 status = course.Status.ToString(),
                 TeacherName = course.Teacher.Name,
-                //CourseReviews = course.CoursesReviews.Select(review => new ReviewsToReturnDto
-                //{
-                //    Rating = review.Rating,
-                //    Review = review.Review,
-                //    courseName = course.Name,
-                //    userName = review.User?.Name
-                //}).ToList(),
-
-                //EnrolledStudents = course.StudentsCourses.Select(sc => new EnrolledStudentsDto
-                //{
-                //    StudentId = sc.StudentId,
-                //    StudentName = sc.Student?.Name
-                //}).ToList(),
-
-                TableSlot = new TableSlotToReturn
-                {
-
-                    startHour = course.CoursesTableSlot?.StartHour,
-                    endHour = course.CoursesTableSlot?.EndHour,
-                    Dates = course.CoursesTableSlot?.Dates,
+                CourseSchedule = new CourseScheduleToReturnDto
+                { 
+                    startHour = course.CourseSchedule?.StartHour,
+                    endHour = course.CourseSchedule?.EndHour,
+                    Dates = course.CourseSchedule?.Dates,
                 } 
             };
         }
 
         public async Task<IEnumerable<courseToReturnDto>> GetAcceptedCoursesAsync()
         {
-            #region MyRegion
-            //var courseRepository = _unitOfWork.GetRepository<Course>();
-            //var courses = await courseRepository.GetAllAsync(c => c.Teacher, c => c.CoursesTableSlots, c => c.CoursesReviews, c => c.StudentsCourses);
-
-            //var coursesToReturn = courses.Where(c => c.Status == Status.Accepted)
-            //  .Select(c => new courseToReturnDto
-            //  {
-            //      Name = c.Name,
-            //      Price = c.Price,
-            //      Location = c.Location,
-            //      Num_Of_Students_Joined = c.Num_Of_Students_Joined,
-            //      Photo = c.Photo,
-            //      Description = c.Description,
-            //      Capacity = c.Capacity,
-            //      status = c.Status.ToString(),
-            //      TeacherName = c.Teacher.Name,
-            //      CourseReviews = c.CoursesReviews.Select(review => new ReviewsToReturnDto
-            //      {
-            //          Rating = review.Rating,
-            //          Review = review.Review,
-            //          courseName = c.Name,
-            //          userName = review.User?.Name
-            //      }).ToList(),
-
-            //      EnrolledStudents = c.StudentsCourses.Select(sc => new EnrolledStudentsDto
-            //      {
-            //          StudentId = sc.StdId,
-            //          StudentName = sc.User?.Name
-            //      }).ToList()
-            //    ,
-            //      TableSlot = new TableSlotDto
-            //      {
-            //          StartDate = c.CoursesTableSlots.First().StartDate,
-            //          EndDate = c.CoursesTableSlots.First().EndDate,
-            //          StartHour = c.CoursesTableSlots.First().StartHour,
-            //          EndHour = c.CoursesTableSlots.First().EndHour,
-            //          DaysOff = c.CoursesTableSlots.First().DaysOff.ToList()
-
-            //      }
-
-            //  })
-            //  .ToList();
-
-            //return coursesToReturn; 
-            #endregion
             
             IQueryBuilder<Course> courseQuery = new()
             {
                 Criteria = (course => course.Status == Status.Accepted)
 ,
                 Includes = [c => c.Teacher,
-                            c => c.StudentsCourses, 
+                            c=>c.Admin,
+                            c => c.EnrolledStudents, 
                             c => c.CoursesReviews , 
-                            c=>c.CoursesTableSlot]
+                            c=>c.CourseSchedule]
 
             };
             var courses = await _unitOfWork.GetRepository<Course>()
@@ -148,41 +91,27 @@ namespace Application.Services
             var coursesToReturn = courses.Select(c => new courseToReturnDto
             {
                 Id = c.Id,
+                AdminId = c.Admin.Id,
                 Name = c.Name,
                 Price = c.Price,
                 Location = c.Location,
-                Num_Of_Students_Joined = c.Num_Of_Students_Joined,
+                Num_Of_Students_Joined = c.NumOfStudentsEnrolled,
                 Photo = c.Photo,
                 Description = c.Description,
                 Capacity = c.Capacity,
                 status = c.Status.ToString(),
                 TeacherName = c.Teacher.Name,
-                //CourseReviews = c.CoursesReviews.Select(review => new ReviewsToReturnDto
-                //{
-                //    Rating = review.Rating,
-                //    Review = review.Review,
-                //    courseName = c.Name,
-                //    userName = review.User?.Name
-                //}).ToList(),
-
-                //EnrolledStudents = c.StudentsCourses.Select(sc => new EnrolledStudentsDto
-                //{
-                //    StudentId = sc.StudentId,
-                //    StudentName = sc.Student?.Name
-                //}).ToList(),
-
-                TableSlot = new TableSlotToReturn
-                {
-                    startHour = c.CoursesTableSlot.StartHour,
-                    endHour = c.CoursesTableSlot.EndHour,
-                    Dates = c.CoursesTableSlot.Dates,
+                CourseSchedule = new CourseScheduleToReturnDto
+                { 
+                    startHour = c.CourseSchedule.StartHour,
+                    endHour = c.CourseSchedule.EndHour,
+                    Dates = c.CourseSchedule.Dates,
                 }
             })
             .ToList();
 
             return coursesToReturn;
         }
-        
 
         public async Task CreateCourseAsync(courseToCreateDto courseDto)
         {
@@ -195,9 +124,11 @@ namespace Application.Services
 
                     return;
                 }
+            }
 
                 var course = new Course
                 {
+
                     Name = courseDto.Name,
                     Photo = photoBytes,
                     Price = courseDto.Price,
@@ -205,36 +136,38 @@ namespace Application.Services
                     Description = courseDto.Description,
                     Location = courseDto.Location,
                     TeacherId = courseDto.TeacherId //token
+                    
                 };
 
                 course.Status = Status.Pending;
                 await _unitOfWork.GetRepository<Course>().CreateAsync(course);
                 await _unitOfWork.CommitAsync();
 
-                var tableSlot = courseDto.TableSlot;
+                var CourseSchedule = courseDto.CourseSchedule;
 
 
-                var courseTableSlots = new CourseTableSlot
+                var CourseSchedules = new CourseSchedule
                 {
-                    Dates = tableSlot.Dates.ToArray(),
-                    StartHour = tableSlot.startHour,
-                    EndHour = tableSlot.endHour,
+                    Dates = CourseSchedule.Dates.ToArray(),
+                    StartHour = CourseSchedule.startHour,
+                    EndHour = CourseSchedule.endHour,
                     CourseId = course.Id
 
                 };
 
-                await _unitOfWork.GetRepository<CourseTableSlot>().CreateAsync(courseTableSlots);
+                await _unitOfWork.GetRepository<CourseSchedule>().CreateAsync(CourseSchedules);
                 await _unitOfWork.CommitAsync();
 
-            }
+            
         }
 
+        //REFACTOOORRRRR
         //# bool?
         public async Task UpdateCourseAsync( courseToUpdateDto courseDto)
         {
             
             var course = await _unitOfWork.GetRepository<Course>()
-                                        .GetAsync(courseDto.courseId, c => c.Teacher, c => c.CoursesTableSlot);
+                                        .GetAsync(courseDto.courseId, c => c.Teacher, c => c.CourseSchedule);
 
             if (course == null)
             {
@@ -273,36 +206,35 @@ namespace Application.Services
                 course.Name = courseDto.Name;
             }
 
-            if (courseDto.TableSlot != null)
+            if (courseDto.CourseSchedule != null)
             {
-                var tableSlot = course.CoursesTableSlot;
+                var CourseSchedule = course.CourseSchedule;
 
-                courseDto.TableSlot.SetUpdateDatesFlag();
+                courseDto.CourseSchedule.SetUpdateDatesFlag();
 
-                if (tableSlot != null)
+                if (CourseSchedule != null)
                 {
-                    if (courseDto.TableSlot?.startHour != null)
+                    if (courseDto.CourseSchedule?.startHour != null)
                     {
-                        tableSlot.StartHour = courseDto.TableSlot.startHour;
+                        CourseSchedule.StartHour = courseDto.CourseSchedule.startHour;
                     }
 
-                    if (courseDto.TableSlot?.endHour != null)
+                    if (courseDto.CourseSchedule?.endHour != null)
                     {
-                        tableSlot.EndHour = courseDto.TableSlot.endHour;
+                        CourseSchedule.EndHour = courseDto.CourseSchedule.endHour;
                     }
 
-                    if (courseDto.TableSlot.UpdateDates)
+                    if (courseDto.CourseSchedule.UpdateDates)
                     {
-                        tableSlot.Dates = courseDto.TableSlot.Dates;  // Update dates if flag is true
+                        CourseSchedule.Dates = courseDto.CourseSchedule.Dates;  // Update dates if flag is true
                     }
 
-                    await _unitOfWork.GetRepository<CourseTableSlot>().UpdateAsync(tableSlot);
+                    await _unitOfWork.GetRepository<CourseSchedule>().UpdateAsync(CourseSchedule);
                 }
             }
 
             await _unitOfWork.CommitAsync();
         }
-
 
         public async Task DeleteCourseAsync(int id)
         {
@@ -317,20 +249,20 @@ namespace Application.Services
             await _unitOfWork.CommitAsync();
         }
 
-        //****************************************************************************
+        //********************************    Reviews     **********************************
         public async Task AddReviewAsync( ReviewsToCreateDto reviewDto)
         {
             var courseRepository = _unitOfWork.GetRepository<Course>();
            var course = await courseRepository.GetAsync(reviewDto.CourseId);
 
-            var newReview = new CourseReview
+            var newReview = new CourseReviews
             {
                 UserId = reviewDto.UserId, // token
                 CourseId = reviewDto.CourseId,
                 Rating = reviewDto.Rating,
                 Review = reviewDto.Review
             };
-            await _unitOfWork.GetRepository<CourseReview>().CreateAsync(newReview);
+            await _unitOfWork.GetRepository<CourseReviews>().CreateAsync(newReview);
 
             await _unitOfWork.CommitAsync();
         }
@@ -338,18 +270,7 @@ namespace Application.Services
         public async Task<IEnumerable<ReviewsToReturnDto>> GetCourseReviewsAsync(int courseId)
         {
 
-            //var queryBuilder = new IQueryBuilder<CourseReview>();
-            //queryBuilder.Includes = new List<Expression<Func<CourseReview, object>>>()
-            //{
-            //    cr => cr.Course,
-            //    cr => cr.User
-            //};
-
-            //var reviews = await _unitOfWork.GetRepository<CourseReview>()
-            //                              .GetAllAsyncWithQueryBuilder(queryBuilder);
-
-
-            IQueryBuilder<CourseReview> courseQuery = new()
+            IQueryBuilder<CourseReviews> courseQuery = new()
             {
                 Criteria = (course => course.Course.Id == courseId)
 ,
@@ -357,7 +278,7 @@ namespace Application.Services
                             cr => cr.User ]
 
             };
-            var reviews = await _unitOfWork.GetRepository<CourseReview>()
+            var reviews = await _unitOfWork.GetRepository<CourseReviews>()
                                           .GetAllAsyncWithQueryBuilder(courseQuery);
 
             return reviews.Select(cr => new ReviewsToReturnDto
@@ -378,7 +299,7 @@ namespace Application.Services
 
 
 
-            var reviewRepository = _unitOfWork.GetRepository<CourseReview>();
+            var reviewRepository = _unitOfWork.GetRepository<CourseReviews>();
 
             var review = await reviewRepository.GetAsync(reviewToDeleteDto.ReviewId);
 
@@ -387,14 +308,14 @@ namespace Application.Services
 
         }
 
-        //****************************************************************************
+        //**********************************    Student     *******************************
 
         public async Task<JoinCourseResult> JoinCourseAsync(coursesToJoinDto coursesToJoinDto)
         {
             var courseRepository = _unitOfWork.GetRepository<Course>();
-            var studentCourseRepository = _unitOfWork.GetRepository<StudentCourse>();
+            var studentCourseRepository = _unitOfWork.GetRepository<EnrolledStudents>();
 
-            var studentCourseQueryBuilder = new IQueryBuilder<StudentCourse>()
+            var studentCourseQueryBuilder = new IQueryBuilder<EnrolledStudents>()
             {
                 Criteria = sc => sc.CourseId == coursesToJoinDto.CourseId && sc.StudentId == coursesToJoinDto .StudentId
             };
@@ -413,12 +334,12 @@ namespace Application.Services
                 return JoinCourseResult.CourseNotFound;
             }
 
-            if (course.Num_Of_Students_Joined >= course.Capacity)
+            if (course.NumOfStudentsEnrolled >= course.Capacity)
             {
                 return JoinCourseResult.CourseFull;
             }
 
-            var studentCourse = new StudentCourse
+            var studentCourse = new EnrolledStudents
             {
                 CourseId = coursesToJoinDto.CourseId,
                 StudentId = coursesToJoinDto.StudentId
@@ -428,7 +349,7 @@ namespace Application.Services
            await  studentCourseRepository.CreateAsync(studentCourse);
             
             course = await courseRepository.GetAsync(coursesToJoinDto.CourseId);
-            course.Num_Of_Students_Joined++;
+            course.NumOfStudentsEnrolled++;
             await courseRepository.UpdateAsync(course);
             await _unitOfWork.CommitAsync();
             return JoinCourseResult.Success;
@@ -442,9 +363,9 @@ namespace Application.Services
                 return CancelCourseResults.CourseOrStudentId;
             }
             var courseRepository = _unitOfWork.GetRepository<Course>();
-            var studentCourseRepository = _unitOfWork.GetRepository<StudentCourse>();
+            var studentCourseRepository = _unitOfWork.GetRepository<EnrolledStudents>();
 
-            var studentCourseQueryBuilder = new IQueryBuilder<StudentCourse>()
+            var studentCourseQueryBuilder = new IQueryBuilder<EnrolledStudents>()
             {
                 Criteria = sc => sc.CourseId == coursesToJoinDto.CourseId && sc.StudentId == coursesToJoinDto.StudentId
             };
@@ -460,7 +381,7 @@ namespace Application.Services
             await studentCourseRepository.DeleteAsync(studentCourseToDelete);
 
             course = await courseRepository.GetAsync(coursesToJoinDto.CourseId);
-            course.Num_Of_Students_Joined--;
+            course.NumOfStudentsEnrolled--;
             await courseRepository.UpdateAsync(course);
 
             await _unitOfWork.CommitAsync();
@@ -468,7 +389,7 @@ namespace Application.Services
 
         }
 
-        //****************************************************************************
+        //***********************************    Admin     **************************************
 
         public async Task<IEnumerable<courseToReturnDto>> GetCoursesAsync()
         {
@@ -477,8 +398,9 @@ namespace Application.Services
 
 
                 Includes = [c => c.Teacher,
-                            c => c.CoursesTableSlot ,
-                            c => c.StudentsCourses,
+                            c=>c.Admin,
+                            c => c.CourseSchedule ,
+                            c => c.EnrolledStudents,
                             c => c.CoursesReviews ,]
                            
 
@@ -491,34 +413,21 @@ namespace Application.Services
             return courses.Select(course => new courseToReturnDto
             {
                 Id= course.Id,
+                AdminId = course.Admin?.Id ?? default(int),
                 Name = course.Name,
                 Price = course.Price,
                 Location = course.Location,
-                Num_Of_Students_Joined = course.Num_Of_Students_Joined,
+                Num_Of_Students_Joined = course.NumOfStudentsEnrolled,
                 Photo = course.Photo,
                 Description = course.Description,
                 Capacity = course.Capacity,
                 status = course.Status.ToString(),
                 TeacherName = course.Teacher.Name,
-                //CourseReviews = course.CoursesReviews.Select(review => new ReviewsToReturnDto
-                //{
-                //    Rating = review.Rating,
-                //    Review = review.Review,
-                //    courseName = course.Name,
-                //    userName = review.User?.Name
-                //}).ToList(),
-
-                //EnrolledStudents = course.StudentsCourses.Select(sc => new EnrolledStudentsDto
-                //{
-                //    StudentId = sc.StudentId,
-                //    StudentName = sc.Student?.Name
-                //}).ToList(),
-                
-                TableSlot = new TableSlotToReturn
+                CourseSchedule = new CourseScheduleToReturnDto
                 {
-                    startHour = course.CoursesTableSlot.StartHour,
-                    endHour = course.CoursesTableSlot.EndHour,
-                    Dates = course.CoursesTableSlot.Dates,
+                    startHour = course.CourseSchedule.StartHour,
+                    endHour = course.CourseSchedule.EndHour,
+                    Dates = course.CourseSchedule.Dates,
                 }
 
             });
@@ -527,7 +436,7 @@ namespace Application.Services
         public async Task<IEnumerable<EnrolledStudentsDto>> GetEnrolledStudentsAsync(int courseId)
         {
 
-             IQueryBuilder<StudentCourse> queryBuilder = new()
+             IQueryBuilder<EnrolledStudents> queryBuilder = new()
              {
                 Criteria = (course => course.Course.Id == courseId)
 ,
@@ -535,51 +444,63 @@ namespace Application.Services
                             cr => cr.Student ]
 
             };
-            var reviews = await _unitOfWork.GetRepository<StudentCourse>()
+            var students = await _unitOfWork.GetRepository<EnrolledStudents>()
                                           .GetAllAsyncWithQueryBuilder(queryBuilder);
 
-            return reviews.Select(cr => new EnrolledStudentsDto
-            {
-               CourseId = cr.Course.Id,
-               CourseName = cr.Course.Name,
-                StudentId = cr.Student.Id,
-                StudentName = cr.Student.Name
-            });
+
+            return students.GroupBy(cr => cr.Course.Id)
+                 .Select(group => new EnrolledStudentsDto 
+                 {
+                     CourseId = group.Key,
+                     Students = group.Select(cr => new StudentDto 
+                     {
+                         CourseName = cr.Course.Name,
+                         StudentId = cr.Student.Id,
+                         StudentName = cr.Student.Name
+                     }).ToList()
+                 });
+
+
         }
 
 
         public async Task<IEnumerable<EnrolledStudentsDto>> GetAllStudentsAsync()
         {
 
-            var queryBuilder = new IQueryBuilder<StudentCourse>();
-            queryBuilder.Includes = new List<Expression<Func<StudentCourse, object>>>()
+            var queryBuilder = new IQueryBuilder<EnrolledStudents>();
+            queryBuilder.Includes = new List<Expression<Func<EnrolledStudents, object>>>()
             {
                 cr => cr.Course,
                 cr => cr.Student
             };
 
-            var students = await _unitOfWork.GetRepository<StudentCourse>()
+            var students = await _unitOfWork.GetRepository<EnrolledStudents>()
                                           .GetAllAsyncWithQueryBuilder(queryBuilder);
 
-            return students.Select(cr => new EnrolledStudentsDto
-            {
-                CourseId = cr.Course.Id,
-                CourseName = cr.Course.Name,
-                StudentId = cr.Student.Id,
-                StudentName = cr.Student.Name
-            });
+            return students.GroupBy(cr => cr.Course.Id)
+                 .Select(group => new EnrolledStudentsDto 
+                 {
+                     CourseId = group.Key,
+                     Students = group.Select(cr => new StudentDto 
+                     {
+                         CourseName = cr.Course.Name,
+                         StudentId = cr.Student.Id,
+                         StudentName = cr.Student.Name
+                     }).ToList()
+                 });
         }
 
         public async Task<IEnumerable<courseToReturnDto>> GetEmptyCoursesAsync()
         {
             IQueryBuilder<Course> courseQuery = new()
             {
-                Criteria = course => course.Num_Of_Students_Joined == 0,
+                Criteria = course => course.NumOfStudentsEnrolled == 0,
 
                 Includes = [c => c.Teacher,
-                 c => c.CoursesTableSlot ,
-                 c => c.StudentsCourses,
-                 c => c.CoursesReviews ,]
+                          c=>c.Admin,
+                         c => c.CourseSchedule ,
+                         c => c.EnrolledStudents,
+                         c => c.CoursesReviews ,]
 
 
             };
@@ -590,34 +511,31 @@ namespace Application.Services
             return courses.Select(course => new courseToReturnDto
             {
                 Id = course.Id,
+                AdminId = course.Admin?.Id ?? default(int),
                 Name = course.Name,
                 Price = course.Price,
                 Location = course.Location,
-                Num_Of_Students_Joined = course.Num_Of_Students_Joined,
+                Num_Of_Students_Joined = course.NumOfStudentsEnrolled,
                 Photo = course.Photo,
                 Description = course.Description,
                 Capacity = course.Capacity,
                 status = course.Status.ToString(),
                 TeacherName = course.Teacher.Name,
-                
-                TableSlot = new TableSlotToReturn
+
+                CourseSchedule = new CourseScheduleToReturnDto
                 {
-                    startHour = course.CoursesTableSlot.StartHour,
-                    endHour = course.CoursesTableSlot.EndHour,
-                    Dates = course.CoursesTableSlot.Dates,
+                    startHour = course.CourseSchedule.StartHour,
+                    endHour = course.CourseSchedule.EndHour,
+                    Dates = course.CourseSchedule.Dates,
                 }
 
             });
-
-
-
-
         }
 
         public async Task<IEnumerable<PendingCoursesDto>> GetPendingCoursesAsync()
         {
             var courseRepository = _unitOfWork.GetRepository<Course>();
-            var courses = await courseRepository.GetAllAsync(c => c.Teacher, c => c.CoursesTableSlot);
+            var courses = await courseRepository.GetAllAsync(c => c.Teacher, c => c.CourseSchedule);
 
             var coursesToReturn = courses.Where(c => c.Status == Status.Pending)
               .Select(c => new PendingCoursesDto
@@ -633,11 +551,11 @@ namespace Application.Services
                   TeacherName = c.Teacher.Name
                  
                 ,
-                  TableSlot = new TableSlotToReturn
+                  CourseSchedule = new CourseScheduleToReturnDto
                   {
-                      startHour = c.CoursesTableSlot.StartHour,
-                      endHour = c.CoursesTableSlot.EndHour,
-                      Dates = c.CoursesTableSlot.Dates,
+                      startHour = c.CourseSchedule.StartHour,
+                      endHour = c.CourseSchedule.EndHour,
+                      Dates = c.CourseSchedule.Dates,
                   }
 
               })
@@ -650,14 +568,14 @@ namespace Application.Services
         public async Task<IEnumerable<ReviewsToReturnDto>> GetAllCoursesReviewsAsync()
         {
 
-            var queryBuilder = new IQueryBuilder<CourseReview>();
-            queryBuilder.Includes = new List<Expression<Func<CourseReview, object>>>()
+            var queryBuilder = new IQueryBuilder<CourseReviews>();
+            queryBuilder.Includes = new List<Expression<Func<CourseReviews, object>>>()
             {
                 cr => cr.Course,
                 cr => cr.User
             };
 
-            var reviews = await _unitOfWork.GetRepository<CourseReview>()
+            var reviews = await _unitOfWork.GetRepository<CourseReviews>()
                                           .GetAllAsyncWithQueryBuilder(queryBuilder);
 
             return reviews.Select(cr => new ReviewsToReturnDto
@@ -687,7 +605,7 @@ namespace Application.Services
             course.Status = Status.Accepted;
 
 
-            course.AdminId = coursesToManageDto.AdminId;  // token
+           course.AdminId= coursesToManageDto.AdminId ;  // token
 
             await _unitOfWork.CommitAsync();
 
@@ -719,6 +637,97 @@ namespace Application.Services
             
 
         }
+
+
+        //***********************************    User     *****************************************
+       
+        // courses enrolled in
+        public async Task<IEnumerable<CoursesEnrolledInDto>> GetEnrolledCoursesAsync(int studentId)
+        {
+            IQueryBuilder<EnrolledStudents> queryBuilder = new()
+            {
+                Criteria = (enrollment => enrollment.Student.Id == studentId),
+                Includes = [cr => cr.Course, cr => cr.Student , c=>c.Course.CourseSchedule ,c=>c.Course.Admin, c=>c.Student.EnrolledStudents]  // Include CourseSchedule for efficient data retrieval
+            };
+
+            var enrollments = await _unitOfWork.GetRepository<EnrolledStudents>()
+                                              .GetAllAsyncWithQueryBuilder(queryBuilder);
+
+            return enrollments.GroupBy(cr => cr.Student.Id)
+                    .Select(group => new CoursesEnrolledInDto
+                    {
+                        StudentId = group.Key,
+                        EnrolledCourses = group.Select(cr => new courseToReturnDto
+                        {
+                            Id = cr.Course.Id,
+                           // AdminId = cr.Course.Admin?.Id ?? default(int),
+                            Name = cr.Course.Name,
+                            Price = cr.Course.Price,
+                            Location = cr.Course.Location,
+                            Description = cr.Course.Description,
+                            Num_Of_Students_Joined = cr.Course.NumOfStudentsEnrolled,
+                            Photo = cr.Course.Photo,
+                            Capacity = cr.Course.Capacity,
+                            status = cr.Course.Status.ToString(),
+                            TeacherName = cr.Course.Teacher.Name,
+                            CourseSchedule = new CourseScheduleToReturnDto
+                            {
+                                startHour = cr.Course.CourseSchedule.StartHour,
+                                endHour = cr.Course.CourseSchedule.EndHour,
+                                Dates = cr.Course.CourseSchedule.Dates
+                            }
+
+                        }).ToList()
+                    });
+        }
+
+        // get courses i added
+
+        public async Task<IEnumerable<courseToReturnDto>> GetTaughtCoursesAsync(int userId)
+        {
+            IQueryBuilder<Course> courseQuery = new()
+            {
+                Criteria = (course => course.TeacherId == userId)
+,
+                Includes = [c => c.Teacher,
+                            c=>c.Admin,
+                            c => c.EnrolledStudents,
+                            c => c.CoursesReviews ,
+                            c=>c.CourseSchedule]
+
+            };
+            var courses = await _unitOfWork.GetRepository<Course>()
+                                          .GetAllAsyncWithQueryBuilder(courseQuery);
+
+            var coursesToReturn = courses.Select(c => new courseToReturnDto
+            {
+                Id = c.Id,
+                AdminId = c.Admin?.Id ?? default(int),
+                Name = c.Name,
+                Price = c.Price,
+                Location = c.Location,
+                Num_Of_Students_Joined = c.NumOfStudentsEnrolled,
+                Photo = c.Photo,
+                Description = c.Description,
+                Capacity = c.Capacity,
+                status = c.Status.ToString(),
+                TeacherName = c.Teacher.Name,
+                CourseSchedule = new CourseScheduleToReturnDto
+                {
+                    startHour = c.CourseSchedule.StartHour,
+                    endHour = c.CourseSchedule.EndHour,
+                    Dates = c.CourseSchedule.Dates,
+                }
+            })
+            .ToList();
+
+            return coursesToReturn;
+
+        }
+
+
+
+
 
 
 

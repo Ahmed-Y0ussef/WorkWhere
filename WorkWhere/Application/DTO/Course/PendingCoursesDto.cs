@@ -1,4 +1,5 @@
-﻿using Application.DTO.CourseTableSlot;
+﻿using Application.DTO.CourseSchedule;
+using Application.DTO.CourseTableSlot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,6 @@ namespace Application.DTO.Course
         public string status { get; set; }
         public string TeacherName { get; set; }
 
-        public TableSlotToReturn TableSlot { get; set; }
+        public CourseScheduleToReturnDto CourseSchedule { get; set; }
     }
 }
