@@ -14,13 +14,15 @@ namespace Core.Configurations
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-           builder.HasOne(c => c.Admin)
-                           .WithMany()
-                           .HasForeignKey(u => u.AdminID)
-                           .OnDelete(DeleteBehavior.ClientSetNull);
+           //builder.HasOne(c => c.Admin)
+           //                .WithMany()
+           //                .HasForeignKey(u => u.AdminID)
+           //                .OnDelete(DeleteBehavior.ClientSetNull);
 
-            builder.Property(c => c.Status)
-               .HasConversion<string>();
+           // builder.Property(c => c.Status)
+           //    .HasConversion<string>();
+
+            
         }
     }
 }

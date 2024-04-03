@@ -20,9 +20,9 @@ namespace Core.Entities
         public bool IsInPlace {  get; set; }
         public int? Num_Of_Students_Joined { get; set; }
         public string Location {  get; set; }
-        public int? AdminId { get; set; }
+        public string? AdminId { get; set; }
         
-        public int TeacherId{ get; set; }
+        public string TeacherId{ get; set; }
 
 
         //Nav PROP

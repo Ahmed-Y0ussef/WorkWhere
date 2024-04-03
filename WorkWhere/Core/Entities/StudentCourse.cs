@@ -8,7 +8,7 @@ namespace Core.Entities
 {
     public class StudentCourse
     {
-        public int StdId { get; set; }
+        public string StdId { get; set; }
         public int CrsId { get; set; }
         public User  User { get; set; }
         public Course Course { get; set; }

@@ -8,7 +8,7 @@ namespace Core.Entities
 {
     public class GuestRoom
     {
-        public int GuestId { get; set; }
+        public string GuestId { get; set; }
         public int RoomId { get; set; }
 
         public Room Room { get; set; }

@@ -1,27 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+
 
 namespace Core.Entities
 {
-    public class User:BaseEntity
+    public class User : IdentityUser
     {
-        //public int Id { get; set; }
-        public string Name { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        [NotMapped]
-        public string ConfirmPassword { get; set; }
-        public string? Title {  get; set; }
-        public byte[]? PersonalImg { get; set; }
-        public long? NId { get; set; }
-        public byte[]? NImg { get; set; }
-        public string? PhoneNumber { get; set; }
-        public int? AdminID { get; set; }
-        public Status? Status { get; set; }
+
+        [Required, StringLength(15, MinimumLength = 3, ErrorMessage = "First name must be at least {2}, and maximum {1} character")]
+        public string FirstName { get; set; }
+        [Required, StringLength(15, MinimumLength = 3, ErrorMessage = "Last name must be at least {2}, and maximum {1} character")]
+        public string LastName { get; set; }
+        public bool IsAdmin { get; set; } = false;
+
+
+        [Required]
+        public byte[] PersonalImg { get; set; }
+
+        [Required]
+        public byte[] NImg { get; set; }
+        [Required, StringLength(14, MinimumLength = 14)]
+        [RegularExpression(@"^[0-9]*$", ErrorMessage = "Only numbers are allowed.")]
+        public string NId { get; set; }
+
+        [Required, StringLength(11, MinimumLength = 11)]
+        [RegularExpression(@"^[0-9]*$", ErrorMessage = "Only numbers are allowed.")]
+        public string PhoneNumber { get; set; }
+
+        //public string? AdminID { get; set; }
+        //public Status? Status { get; set; }
 
 
 
@@ -38,9 +51,8 @@ namespace Core.Entities
         public ICollection<Course> TaughtedCourses { get; set; } = new HashSet<Course>();
         public ICollection<Course> AcceptedCourses { get; set; } = new HashSet<Course>();
         // with User
-        public User Admin {  get; set; }
-        // with Roles
-        public ICollection<Role> Roles { get; set; } = new HashSet<Role>();
+        //public User Admin {  get; set; }
+
         // with Guestroom
         public ICollection<GuestRoom> GuestRooms { get; set;} = new HashSet<GuestRoom>();
         public ICollection<Contact> Conacts { get; set; }

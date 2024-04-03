@@ -17,8 +17,8 @@ namespace Core.Entities
         public string StreetName { get; set; }
         public string ZonName { get; set; }
         public int BuildingNumber {  get; set; }
-        public int? AdminId {  get; set; }
-        public int HostID { get; set; }
+        public string? AdminId {  get; set; }
+        public string HostID { get; set; }
 
         //nav Prop
         public ICollection<PlaceUtilities> PlaceUtilities { get; set; }
