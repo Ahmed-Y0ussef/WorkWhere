@@ -1,18 +1,14 @@
-﻿using Core.Entities;
-using Core;
+﻿using Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Application.DTO._ٌRoomDtos;
 
 namespace Application.DTO.PlaceDtos
 {
-    public class PlaceDTO
+    public class PlaceDto
     {
-        public int Id { get; set; }
         public string? Description { get; set; }
         public string Name { get; set; }
         public int NumOfRooms { get; set; }
@@ -23,10 +19,5 @@ namespace Application.DTO.PlaceDtos
         public string ZonName { get; set; }
         public int BuildingNumber { get; set; }
         public List<string> PlaceUtilities { get; set; }
-       
-        public List<RoomCreateDto> Rooms { get; set; }
-        public List<string> PlaceReviews { get; set; }
-
-        public List<string> PlacePhotos { get; set; }
     }
 }

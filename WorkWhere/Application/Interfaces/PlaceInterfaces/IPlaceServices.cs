@@ -14,11 +14,13 @@ namespace Application.Interfaces.PlaceInterfaces
 {
     public interface IPlaceServices
     {
-        public Task<IEnumerable<PlaceDTO>> GetAllPlacesAsync(PlaceParams placeParams);
+        public Task<IEnumerable<PlacesToReturnDto>> GetAllPlacesAsync(Params placeParams);
         public Task AddPlace(PlaceUpdateCreateDto place);
         public Task<Place> UpdatePlace(PlaceUpdateCreateDto updaePlace , int id);
         public Task<Place> DeletePlace(int id);
-        public Task<PlaceDTO> GetPlaceById(int id);
+        public Task<PlaceToReturnDTO> GetPlaceById(int id);
+
+        public Task<Place> AcceptPlace( int id);
 
     }
 }

@@ -21,7 +21,7 @@ namespace WorkWhere.Controllers.PlaceModule
 
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<PlaceDTO>>> GetAllPlaces([FromQuery]PlaceParams placeParams)
+        public async Task<ActionResult<IEnumerable<PlacesToReturnDto>>> GetAllPlaces([FromQuery]Params placeParams)
         {
             var places = await PlaceServices.GetAllPlacesAsync(placeParams);
             if (places != null) 
@@ -32,7 +32,7 @@ namespace WorkWhere.Controllers.PlaceModule
 
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<PlaceDTO>> GetPlaceById(int id)
+        public async Task<ActionResult<PlaceToReturnDTO>> GetPlaceById(int id)
         {
             var place = await PlaceServices.GetPlaceById(id);
             if (place != null)
@@ -45,12 +45,12 @@ namespace WorkWhere.Controllers.PlaceModule
         {
             if(place == null)
                 return BadRequest();
-            await PlaceServices.AddPlace(place);
+             await PlaceServices.AddPlace(place);
             return Ok();
         }
 
         [HttpPut("{id}")]
-        public   async Task<ActionResult> UpdatePlace(PlaceUpdateCreateDto updatedPlace , int id)
+        public   async Task<ActionResult> UpdatePlace([FromBody]PlaceUpdateCreateDto updatedPlace , int id)
         {
 
             if (updatedPlace == null)
@@ -66,6 +66,14 @@ namespace WorkWhere.Controllers.PlaceModule
         {
             Place place = await PlaceServices.DeletePlace(id);
             if (place == null)
+                return NotFound();
+            return Ok();
+        }
+        [HttpPut("/admin/place{id}")]
+        public async Task<ActionResult >AcceptPlace(int id)
+        {
+           Place place = await PlaceServices.AcceptPlace(id);
+            if(place == null)
                 return NotFound();
             return Ok();
         }

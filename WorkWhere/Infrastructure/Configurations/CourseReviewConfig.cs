@@ -25,7 +25,6 @@ namespace Core.Configurations
                 .OnDelete(DeleteBehavior.Restrict);
 
 
-           builder.HasKey(c => new { c.CourseId, c.Id });
         }
     }
 }

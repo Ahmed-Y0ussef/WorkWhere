@@ -2,8 +2,11 @@
 using Application.Helpers;
 using Application.Interfaces.PlaceInterfaces;
 using AutoMapper;
+using Core;
 using Core.Entities;
 using Core.Interfaces;
+using Infrastructure.Repositories;
+using System.Linq.Expressions;
 
 namespace Application.Services.PlaceServices
 {
@@ -19,11 +22,11 @@ namespace Application.Services.PlaceServices
         }
         public async Task<Place> DeletePlace(int id)
         {
-            Place place =await UnitOfWork.GetRepo<Place>().GetById(id);
+            Place place = await UnitOfWork.GetRepo<Place>().GetById(id);
             if (place != null)
             {
                 UnitOfWork.GetRepo<Place>().Delete(place);
-               await UnitOfWork.Complete();
+                await UnitOfWork.Complete();
             }
 
             return place;
@@ -40,17 +43,18 @@ namespace Application.Services.PlaceServices
         public async Task<Place> UpdatePlace(PlaceUpdateCreateDto UpdatedPlace, int id)
         {
             // continue updating
-            IQueryBuilder<Place> placeQuery = new()
+            QueryBuilder<Place> placeQuery = new()
             {
-                Includes = [
-                p => p.PlacePhotos,
-                 p => p.Rooms,
-                 p => p.PlaceReviews,
-                 p => p.PlaceUtilities
-                ]
+                Includes =
+                {
+                    p=>p.PlacePhotos,
+                    p=>p.Rooms,
+                    p=>p.PlaceUtilities,
+                   // p=>p.PlaceReviews
+                }
             };
-
-            Place place = await UnitOfWork.GetRepo<Place>().GetByIdWithQueryBuilder(id, placeQuery);
+            var placeRepo = UnitOfWork.GetRepo<Place>();
+            Place place = await placeRepo.GetByIdWithQueryBuilder(id, placeQuery);
 
             if (place != null)
             {
@@ -68,14 +72,24 @@ namespace Application.Services.PlaceServices
                 place.BuildingNumber = updatedPlaceMapped.BuildingNumber == 0 ? place.BuildingNumber : updatedPlaceMapped.BuildingNumber;
                 place.ZonName = updatedPlaceMapped.ZonName == null ? place.ZonName : updatedPlaceMapped.ZonName;
                 place.PlaceUtilities = updatedPlaceMapped.PlaceUtilities == null ? place.PlaceUtilities : updatedPlaceMapped.PlaceUtilities;
-                //place.Rooms = updatedPlaceMapped.Rooms == null ? place.Rooms : updatedPlaceMapped.Rooms;
+                place.Status = updatedPlaceMapped.Status ==null ? place.Status : updatedPlaceMapped.Status;
+                place.PlacePhotos = updatedPlaceMapped.PlacePhotos == null ? place.PlacePhotos : updatedPlaceMapped.PlacePhotos;
+                //if (updatedPlaceMapped.Rooms.Any())
+                //    foreach (var room in place.Rooms)
+                //    {
+                //        room.RoomUtilities = updatedPlaceMapped.Rooms.Select(r => r.RoomUtilities) == null ? room.RoomUtilities : updatedPlaceMapped.Rooms.Select(r => r.RoomUtilities).FirstOrDefault();
+                //        room.Description = updatedPlaceMapped.Rooms.Select(r => r.Description) == null ? room.Description : updatedPlaceMapped.Rooms.Select(r => r.Description).FirstOrDefault();
+                //        room.Name = updatedPlaceMapped.Rooms.Select(r => r.Name) == null ? room.Name : updatedPlaceMapped.Rooms.Select(r => r.Name).FirstOrDefault();
+                //        room.Capacity = updatedPlaceMapped.Rooms.Select(r => r.Capacity) == null ? room.Capacity : updatedPlaceMapped.Rooms.Select(r => r.Capacity).FirstOrDefault();
+                //        room.RoomPhotos = updatedPlaceMapped.Rooms.Select(r => r.RoomPhotos) == null ? room.RoomPhotos : updatedPlaceMapped.Rooms.Select(r => r.RoomPhotos).FirstOrDefault();
 
-                //var updatedUtilities = updatedPlaceMapped.PlaceUtilities.ToList();
+                //    }
 
 
 
-                UnitOfWork.GetRepo<Place>().Update(place);
-              await  UnitOfWork.Complete();
+
+                placeRepo.Update(place);
+                await UnitOfWork.Complete();
                 UnitOfWork.Dispose();
             }
 
@@ -84,53 +98,69 @@ namespace Application.Services.PlaceServices
         }
 
 
-        public async Task<IEnumerable<PlaceDTO>> GetAllPlacesAsync(PlaceParams placeParams)
+        public async Task<IEnumerable<PlacesToReturnDto>> GetAllPlacesAsync(Params placeParams)
         {
 
 
-            IQueryBuilder<Place> placeQuery = new()
+            QueryBuilder<Place> placeQuery = new()
             {
                 Criteria = (place =>
+                 (placeParams.Status == 0 || place.Status == placeParams.Status)&&
                  (placeParams.UtilityIds == null || placeParams.UtilityIds.All(UId => place.PlaceUtilities.Any(u => u.Id == UId))) &&
                  (placeParams.MinPrice == 0 || place.Rooms.Any(r => r.PricePerHour >= placeParams.MinPrice)) &&
-                 (placeParams.MaxPrice == 0 || place.Rooms.Any(r => r.PricePerHour <= placeParams.MaxPrice))
+                 (placeParams.MaxPrice == 0 || place.Rooms.Any(r => r.PricePerHour <= placeParams.MaxPrice))&&
+                 (placeParams.Search==null || place.Name == placeParams.Search)
                  )
                 ,
-                Includes = [
-                 p => p.PlacePhotos,
-                 p => p.Rooms,
-                // p => p.PlaceReviews,
-                 p => p.PlaceUtilities
-                 ],
+                Includes =
+                {
+                    p=>p.PlacePhotos,
+                    p=>p.Rooms,
+                    p=>p.PlaceUtilities,
+                  //  p=>p.PlaceReviews
+                },
                 Skip = (placeParams.PageIndex - 1) * placeParams.PageSize,
                 Take = placeParams.PageSize
             };
 
-            return Mapper.Map<IEnumerable<Place>, IEnumerable<PlaceDTO>>(
+            return Mapper.Map<IEnumerable<Place>, IEnumerable<PlacesToReturnDto>>(
                 await UnitOfWork.GetRepo<Place>().GetAllAsyncWithQueryBuilder(placeQuery)
                 );
         }
 
 
-        public async Task<PlaceDTO> GetPlaceById(int id)
+        public async Task<PlaceToReturnDTO> GetPlaceById(int id)
         {
 
 
-            IQueryBuilder<Place> placeQuery = new()
+            QueryBuilder<Place> placeQuery = new QueryBuilder<Place>
             {
-                Includes = [
-                 p => p.PlacePhotos,
-                 p => p.Rooms,
-                 p => p.PlaceReviews,
-                 p => p.PlaceUtilities
-                 ]
+                Includes =
+                {
+                    p=>p.PlacePhotos,
+                    p=>p.Rooms,
+                    p=>p.PlaceUtilities,
+                    p=>p.PlaceReviews
+                },
             };
-            return Mapper.Map<Place, PlaceDTO>(await UnitOfWork.GetRepo<Place>()
+            
+            return Mapper.Map<Place, PlaceToReturnDTO>(await UnitOfWork.GetRepo<Place>()
                .GetByIdWithQueryBuilder(id, placeQuery));
 
 
+
+
+        }
+        public async Task<Place> AcceptPlace(int id)
+        {
+            Place place = await UnitOfWork.GetRepo<Place>().GetByIdWithQueryBuilder(id, new QueryBuilder<Place> { });
+            if (place != null)
+                place.Status = Status.Accepted;
+            return place;
         }
 
 
     }
+
+
 }

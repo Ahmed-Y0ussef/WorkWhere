@@ -10,19 +10,24 @@ using System.Threading.Tasks;
 
 namespace Core.Configurations
 {
-    internal class GuestRoomConfig : IEntityTypeConfiguration<GuestRoom>
+    internal class RoomBookingConfig : IEntityTypeConfiguration<RoomBooking>
     {
-        public void Configure(EntityTypeBuilder<GuestRoom> builder)
+        public void Configure(EntityTypeBuilder<RoomBooking> builder)
         {
             builder.HasOne(gr => gr.Guest)
                            .WithMany(u => u.GuestRooms)
+                           .HasForeignKey(gr => gr.GuestId)
                            .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasOne(gr => gr.Room)
-                .WithMany(r => r.GuestRooms)
-                .OnDelete(DeleteBehavior.Cascade);
+                .WithMany(r => r.Bookings)
+                .HasForeignKey(r => r.RoomId)
+                .OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasKey(gr => new { gr.GuestId, gr.RoomId });
+           builder.HasOne(b=>b.place)
+                .WithMany()
+                .HasForeignKey(b=>b.PlaceId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

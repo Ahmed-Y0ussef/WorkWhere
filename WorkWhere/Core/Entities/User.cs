@@ -42,7 +42,7 @@ namespace Core.Entities
         // with Roles
         public ICollection<Role> Roles { get; set; } = new HashSet<Role>();
         // with Guestroom
-        public ICollection<GuestRoom> GuestRooms { get; set;} = new HashSet<GuestRoom>();
+        public ICollection<RoomBooking> GuestRooms { get; set;} = new HashSet<RoomBooking>();
         public ICollection<Contact> Conacts { get; set; }
         public ICollection<CourseReview> courseReviews { get; set; }
         public ICollection<PlaceReview> placeReviews { get; set; }  

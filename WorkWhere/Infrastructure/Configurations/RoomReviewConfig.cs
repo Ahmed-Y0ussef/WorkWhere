@@ -24,7 +24,7 @@ namespace Core.Configurations
                 .HasForeignKey(r => r.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasKey(r => new { r.RoomId, r.Id });
+           // builder.HasKey(r => new { r.RoomId, r.Id });
         }
     }
 }

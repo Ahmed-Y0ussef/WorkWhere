@@ -18,6 +18,6 @@ namespace Infrastructure.Dbcontext
             base.OnModelCreating(modelBuilder);
 
         }
-       // public DbSet<Place> Place { get; set; }
+        public DbSet<Place> Place { get; set; }
     }
 }

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240326182745_t1")]
-    partial class t1
+    [Migration("20240403055348_t0")]
+    partial class t0
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -105,10 +105,13 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Core.Entities.CourseReview", b =>
                 {
-                    b.Property<int>("CourseId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("Id")
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CourseId")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -120,7 +123,9 @@ namespace Infrastructure.Migrations
                     b.Property<int?>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("CourseId", "Id");
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
 
                     b.HasIndex("UserId");
 
@@ -144,21 +149,6 @@ namespace Infrastructure.Migrations
                     b.HasKey("CourseId", "Date");
 
                     b.ToTable("CourseTableSlot");
-                });
-
-            modelBuilder.Entity("Core.Entities.GuestRoom", b =>
-                {
-                    b.Property<int>("GuestId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RoomId")
-                        .HasColumnType("int");
-
-                    b.HasKey("GuestId", "RoomId");
-
-                    b.HasIndex("RoomId");
-
-                    b.ToTable("GuestRoom");
                 });
 
             modelBuilder.Entity("Core.Entities.Place", b =>
@@ -348,6 +338,40 @@ namespace Infrastructure.Migrations
                     b.ToTable("Room");
                 });
 
+            modelBuilder.Entity("Core.Entities.RoomBooking", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("BookingDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("GuestId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RoomId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TimeSlotId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GuestId");
+
+                    b.HasIndex("RoomId");
+
+                    b.HasIndex("TimeSlotId");
+
+                    b.ToTable("RoomBooking");
+                });
+
             modelBuilder.Entity("Core.Entities.RoomPhotos", b =>
                 {
                     b.Property<int>("Id")
@@ -372,11 +396,11 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Core.Entities.RoomReview", b =>
                 {
-                    b.Property<int>("RoomId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -384,10 +408,15 @@ namespace Infrastructure.Migrations
                     b.Property<int?>("Rating")
                         .HasColumnType("int");
 
+                    b.Property<int>("RoomId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("RoomId", "Id");
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoomId");
 
                     b.HasIndex("UserId");
 
@@ -396,19 +425,24 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Core.Entities.RoomTimeSlot", b =>
                 {
-                    b.Property<int>("RoomId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<long>("TimeStrart")
-                        .HasColumnType("bigint");
+                    b.Property<int>("RoomId")
+                        .HasColumnType("int");
 
                     b.Property<long>("TimeEnd")
                         .HasColumnType("bigint");
 
-                    b.HasKey("RoomId", "Date", "TimeStrart");
+                    b.Property<long>("TimeStrart")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoomId");
 
                     b.ToTable("RoomTimeSlot");
                 });
@@ -573,25 +607,6 @@ namespace Infrastructure.Migrations
                     b.Navigation("Course");
                 });
 
-            modelBuilder.Entity("Core.Entities.GuestRoom", b =>
-                {
-                    b.HasOne("Core.Entities.User", "Guest")
-                        .WithMany("GuestRooms")
-                        .HasForeignKey("GuestId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Core.Entities.Room", "Room")
-                        .WithMany("GuestRooms")
-                        .HasForeignKey("RoomId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Guest");
-
-                    b.Navigation("Room");
-                });
-
             modelBuilder.Entity("Core.Entities.Place", b =>
                 {
                     b.HasOne("Core.Entities.User", "Admin")
@@ -666,6 +681,33 @@ namespace Infrastructure.Migrations
                     b.Navigation("Admin");
 
                     b.Navigation("Place");
+                });
+
+            modelBuilder.Entity("Core.Entities.RoomBooking", b =>
+                {
+                    b.HasOne("Core.Entities.User", "Guest")
+                        .WithMany("GuestRooms")
+                        .HasForeignKey("GuestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Core.Entities.Room", "Room")
+                        .WithMany("Bookings")
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Core.Entities.RoomTimeSlot", "TimeSlot")
+                        .WithMany("Bookings")
+                        .HasForeignKey("TimeSlotId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Guest");
+
+                    b.Navigation("Room");
+
+                    b.Navigation("TimeSlot");
                 });
 
             modelBuilder.Entity("Core.Entities.RoomPhotos", b =>
@@ -784,7 +826,7 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Core.Entities.Room", b =>
                 {
-                    b.Navigation("GuestRooms");
+                    b.Navigation("Bookings");
 
                     b.Navigation("RoomPhotos");
 
@@ -793,6 +835,11 @@ namespace Infrastructure.Migrations
                     b.Navigation("RoomTimeSlots");
 
                     b.Navigation("RoomUtilities");
+                });
+
+            modelBuilder.Entity("Core.Entities.RoomTimeSlot", b =>
+                {
+                    b.Navigation("Bookings");
                 });
 
             modelBuilder.Entity("Core.Entities.User", b =>

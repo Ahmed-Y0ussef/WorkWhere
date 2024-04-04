@@ -102,10 +102,13 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Core.Entities.CourseReview", b =>
                 {
-                    b.Property<int>("CourseId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("Id")
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CourseId")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -117,7 +120,9 @@ namespace Infrastructure.Migrations
                     b.Property<int?>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("CourseId", "Id");
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
 
                     b.HasIndex("UserId");
 
@@ -141,21 +146,6 @@ namespace Infrastructure.Migrations
                     b.HasKey("CourseId", "Date");
 
                     b.ToTable("CourseTableSlot");
-                });
-
-            modelBuilder.Entity("Core.Entities.GuestRoom", b =>
-                {
-                    b.Property<int>("GuestId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RoomId")
-                        .HasColumnType("int");
-
-                    b.HasKey("GuestId", "RoomId");
-
-                    b.HasIndex("RoomId");
-
-                    b.ToTable("GuestRoom");
                 });
 
             modelBuilder.Entity("Core.Entities.Place", b =>
@@ -196,7 +186,9 @@ namespace Infrastructure.Migrations
                         .HasColumnType("float");
 
                     b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)")
+                        .HasDefaultValue("Pending");
 
                     b.Property<string>("StreetName")
                         .IsRequired()
@@ -334,7 +326,9 @@ namespace Infrastructure.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)")
+                        .HasDefaultValue("Pending");
 
                     b.HasKey("Id");
 
@@ -343,6 +337,43 @@ namespace Infrastructure.Migrations
                     b.HasIndex("PlaceId");
 
                     b.ToTable("Room");
+                });
+
+            modelBuilder.Entity("Core.Entities.RoomBooking", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("BookingDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("EndTime")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GuestId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PlaceId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RoomId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StartTime")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GuestId");
+
+                    b.HasIndex("PlaceId");
+
+                    b.HasIndex("RoomId");
+
+                    b.ToTable("RoomBooking");
                 });
 
             modelBuilder.Entity("Core.Entities.RoomPhotos", b =>
@@ -369,11 +400,11 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Core.Entities.RoomReview", b =>
                 {
-                    b.Property<int>("RoomId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -381,33 +412,19 @@ namespace Infrastructure.Migrations
                     b.Property<int?>("Rating")
                         .HasColumnType("int");
 
+                    b.Property<int>("RoomId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("RoomId", "Id");
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoomId");
 
                     b.HasIndex("UserId");
 
                     b.ToTable("RoomReview");
-                });
-
-            modelBuilder.Entity("Core.Entities.RoomTimeSlot", b =>
-                {
-                    b.Property<int>("RoomId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long>("TimeStrart")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("TimeEnd")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("RoomId", "Date", "TimeStrart");
-
-                    b.ToTable("RoomTimeSlot");
                 });
 
             modelBuilder.Entity("Core.Entities.RoomUtilities", b =>
@@ -570,25 +587,6 @@ namespace Infrastructure.Migrations
                     b.Navigation("Course");
                 });
 
-            modelBuilder.Entity("Core.Entities.GuestRoom", b =>
-                {
-                    b.HasOne("Core.Entities.User", "Guest")
-                        .WithMany("GuestRooms")
-                        .HasForeignKey("GuestId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Core.Entities.Room", "Room")
-                        .WithMany("GuestRooms")
-                        .HasForeignKey("RoomId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Guest");
-
-                    b.Navigation("Room");
-                });
-
             modelBuilder.Entity("Core.Entities.Place", b =>
                 {
                     b.HasOne("Core.Entities.User", "Admin")
@@ -665,6 +663,33 @@ namespace Infrastructure.Migrations
                     b.Navigation("Place");
                 });
 
+            modelBuilder.Entity("Core.Entities.RoomBooking", b =>
+                {
+                    b.HasOne("Core.Entities.User", "Guest")
+                        .WithMany("GuestRooms")
+                        .HasForeignKey("GuestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Core.Entities.Place", "place")
+                        .WithMany()
+                        .HasForeignKey("PlaceId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Core.Entities.Room", "Room")
+                        .WithMany("Bookings")
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Guest");
+
+                    b.Navigation("Room");
+
+                    b.Navigation("place");
+                });
+
             modelBuilder.Entity("Core.Entities.RoomPhotos", b =>
                 {
                     b.HasOne("Core.Entities.Room", "Room")
@@ -692,17 +717,6 @@ namespace Infrastructure.Migrations
                     b.Navigation("Room");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Core.Entities.RoomTimeSlot", b =>
-                {
-                    b.HasOne("Core.Entities.Room", "Room")
-                        .WithMany("RoomTimeSlots")
-                        .HasForeignKey("RoomId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Room");
                 });
 
             modelBuilder.Entity("Core.Entities.RoomUtilities", b =>
@@ -781,13 +795,11 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Core.Entities.Room", b =>
                 {
-                    b.Navigation("GuestRooms");
+                    b.Navigation("Bookings");
 
                     b.Navigation("RoomPhotos");
 
                     b.Navigation("RoomReviews");
-
-                    b.Navigation("RoomTimeSlots");
 
                     b.Navigation("RoomUtilities");
                 });

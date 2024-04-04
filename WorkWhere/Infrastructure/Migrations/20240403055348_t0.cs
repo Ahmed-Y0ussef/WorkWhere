@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class t1 : Migration
+    public partial class t0 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -172,15 +172,16 @@ namespace Infrastructure.Migrations
                 name: "CourseReview",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false),
-                    CourseId = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<int>(type: "int", nullable: true),
+                    CourseId = table.Column<int>(type: "int", nullable: false),
                     Rating = table.Column<int>(type: "int", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CourseReview", x => new { x.CourseId, x.Id });
+                    table.PrimaryKey("PK_CourseReview", x => x.Id);
                     table.ForeignKey(
                         name: "FK_CourseReview_Course_CourseId",
                         column: x => x.CourseId,
@@ -340,30 +341,6 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "GuestRoom",
-                columns: table => new
-                {
-                    GuestId = table.Column<int>(type: "int", nullable: false),
-                    RoomId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_GuestRoom", x => new { x.GuestId, x.RoomId });
-                    table.ForeignKey(
-                        name: "FK_GuestRoom_Room_RoomId",
-                        column: x => x.RoomId,
-                        principalTable: "Room",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_GuestRoom_Users_GuestId",
-                        column: x => x.GuestId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "RoomPhotos",
                 columns: table => new
                 {
@@ -387,15 +364,16 @@ namespace Infrastructure.Migrations
                 name: "RoomReview",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false),
-                    RoomId = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<int>(type: "int", nullable: true),
+                    RoomId = table.Column<int>(type: "int", nullable: false),
                     Rating = table.Column<int>(type: "int", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RoomReview", x => new { x.RoomId, x.Id });
+                    table.PrimaryKey("PK_RoomReview", x => x.Id);
                     table.ForeignKey(
                         name: "FK_RoomReview_Room_RoomId",
                         column: x => x.RoomId,
@@ -414,14 +392,15 @@ namespace Infrastructure.Migrations
                 name: "RoomTimeSlot",
                 columns: table => new
                 {
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     TimeStrart = table.Column<long>(type: "bigint", nullable: false),
-                    RoomId = table.Column<int>(type: "int", nullable: false),
-                    TimeEnd = table.Column<long>(type: "bigint", nullable: false)
+                    TimeEnd = table.Column<long>(type: "bigint", nullable: false),
+                    RoomId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RoomTimeSlot", x => new { x.RoomId, x.Date, x.TimeStrart });
+                    table.PrimaryKey("PK_RoomTimeSlot", x => x.Id);
                     table.ForeignKey(
                         name: "FK_RoomTimeSlot_Room_RoomId",
                         column: x => x.RoomId,
@@ -450,6 +429,41 @@ namespace Infrastructure.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "RoomBooking",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    GuestId = table.Column<int>(type: "int", nullable: false),
+                    RoomId = table.Column<int>(type: "int", nullable: false),
+                    BookingDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    TimeSlotId = table.Column<int>(type: "int", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RoomBooking", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_RoomBooking_RoomTimeSlot_TimeSlotId",
+                        column: x => x.TimeSlotId,
+                        principalTable: "RoomTimeSlot",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_RoomBooking_Room_RoomId",
+                        column: x => x.RoomId,
+                        principalTable: "Room",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_RoomBooking_Users_GuestId",
+                        column: x => x.GuestId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Contact_UserId",
                 table: "Contact",
@@ -466,14 +480,14 @@ namespace Infrastructure.Migrations
                 column: "TeacherId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_CourseReview_CourseId",
+                table: "CourseReview",
+                column: "CourseId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_CourseReview_UserId",
                 table: "CourseReview",
                 column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_GuestRoom_RoomId",
-                table: "GuestRoom",
-                column: "RoomId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Place_AdminId",
@@ -521,14 +535,39 @@ namespace Infrastructure.Migrations
                 column: "PlaceId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_RoomBooking_GuestId",
+                table: "RoomBooking",
+                column: "GuestId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RoomBooking_RoomId",
+                table: "RoomBooking",
+                column: "RoomId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RoomBooking_TimeSlotId",
+                table: "RoomBooking",
+                column: "TimeSlotId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_RoomPhotos_RoomId",
                 table: "RoomPhotos",
+                column: "RoomId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RoomReview_RoomId",
+                table: "RoomReview",
                 column: "RoomId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RoomReview_UserId",
                 table: "RoomReview",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RoomTimeSlot_RoomId",
+                table: "RoomTimeSlot",
+                column: "RoomId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RoomUtilities_RoomId",
@@ -559,9 +598,6 @@ namespace Infrastructure.Migrations
                 name: "CourseTableSlot");
 
             migrationBuilder.DropTable(
-                name: "GuestRoom");
-
-            migrationBuilder.DropTable(
                 name: "PlacePhotos");
 
             migrationBuilder.DropTable(
@@ -574,13 +610,13 @@ namespace Infrastructure.Migrations
                 name: "RoleUser");
 
             migrationBuilder.DropTable(
+                name: "RoomBooking");
+
+            migrationBuilder.DropTable(
                 name: "RoomPhotos");
 
             migrationBuilder.DropTable(
                 name: "RoomReview");
-
-            migrationBuilder.DropTable(
-                name: "RoomTimeSlot");
 
             migrationBuilder.DropTable(
                 name: "RoomUtilities");
@@ -592,10 +628,13 @@ namespace Infrastructure.Migrations
                 name: "Role");
 
             migrationBuilder.DropTable(
-                name: "Room");
+                name: "RoomTimeSlot");
 
             migrationBuilder.DropTable(
                 name: "Course");
+
+            migrationBuilder.DropTable(
+                name: "Room");
 
             migrationBuilder.DropTable(
                 name: "Place");

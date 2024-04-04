@@ -1,7 +1,9 @@
 
 using Application.Helpers;
 using Application.Interfaces.PlaceInterfaces;
+using Application.Interfaces.RoomInterfaces;
 using Application.Services.PlaceServices;
+using Application.Services.RoomServices;
 using Core.Interfaces;
 using Infrastructure.Dbcontext;
 using Infrastructure.Repositories;
@@ -31,17 +33,15 @@ namespace WorkWhere
             });
 
             builder.Services.AddScoped<IPlaceServices, PlaceService>();
+            builder.Services.AddScoped<IRoomService, RoomService>();
+            builder.Services.AddScoped<IPlaceReviewService,PlaceReviewService>();
+            builder.Services.AddScoped<IRoomReviewService,RoomReviewService>();
             builder.Services.AddScoped(typeof(IGenericRepo<>), typeof(GenericRepo<>));
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
             builder.Services.AddAutoMapper(typeof(Mapper));
+            
 
-            /////////////
-            //builder.Services.AddCors(options => options.AddPolicy(name: "place",
-            //    policy =>
-            //    {
-            //        policy.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader();
-            //    }
-            //    ));
+
 
             var app = builder.Build();
 
@@ -53,8 +53,6 @@ namespace WorkWhere
                 app.UseDeveloperExceptionPage();
 
             }
-            ////////////
-          // app.UseCors("place");
             app.UseHttpsRedirection();
 
             app.UseAuthorization();

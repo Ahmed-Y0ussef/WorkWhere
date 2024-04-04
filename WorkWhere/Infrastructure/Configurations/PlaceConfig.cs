@@ -25,7 +25,9 @@ namespace Core.Configurations
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.Property(c => c.Status)
-               .HasConversion<string>();
+               .HasConversion<string>()
+               .HasDefaultValue(Status.Pending);
+
         }
     }
 }

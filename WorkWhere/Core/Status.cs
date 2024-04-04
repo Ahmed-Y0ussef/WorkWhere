@@ -8,7 +8,7 @@ namespace Core
 {
     public enum Status
     {
-        Accepted=1 ,
+        Accepted=1,
         Refused,
         Pending
     }

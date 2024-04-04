@@ -9,16 +9,11 @@ namespace Application.Helpers
 {
     public static class Photo
     {
-        public static byte[] ConverToIArrayOfByes(this IFormFile formFile)
-        {
-            if (formFile == null)
-                return null;
-            using (var ms  = new MemoryStream())
-            {
-                formFile.CopyTo(ms);
-                return ms.ToArray();
-            }
-        }
+        public static byte[] ConverToIArrayOfByes(this string photo)
+            => photo == null ? null : Convert.FromBase64String(photo.Split(',')[1]);
+       
+        public static string ConvertToPhoto(this byte[] data)
+            => $"data:image/jpg;base64,{Convert.ToBase64String(data)}";
 
     }
 }
