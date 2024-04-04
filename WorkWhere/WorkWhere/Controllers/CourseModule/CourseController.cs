@@ -34,7 +34,7 @@ namespace WorkWhere.Controllers.CourseModule
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateCourse(courseToCreateDto courseDto)
+        public async Task<IActionResult> CreateCourse(/*[FromBody] */courseToCreateDto courseDto)
         {
             if (!ModelState.IsValid)
             {

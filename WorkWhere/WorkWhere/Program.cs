@@ -32,14 +32,14 @@ namespace WorkWhere
 
             //Add the registration for GenericRepository<Course>
 
-            builder.Services.AddScoped<GenericRepository<Course>>();
-            builder.Services.AddScoped<GenericRepository<User>>();
+            builder.Services.AddScoped<GenericRepo<Course>>();
+            builder.Services.AddScoped<GenericRepo<User>>();
 
             builder.Services.AddScoped<IUnitofwork, Unitofwork>();
             builder.Services.AddScoped<ICourseService, CourseService>();
 
 
-
+            builder.Services.AddCors();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

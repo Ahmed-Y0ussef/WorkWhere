@@ -9,7 +9,7 @@ namespace Core.Infrastructure.Contract
 {
     public interface IUnitofwork : IAsyncDisposable
     {
-        IGenericRepository<T> GetRepository<T>() where T : BaseEntity;
-        Task<int> CommitAsync();
+        IGenericRepo<T> GetRepo<T>() where T : BaseEntity;
+        Task<int> Complete();
     }
 }

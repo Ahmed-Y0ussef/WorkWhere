@@ -259,13 +259,6 @@ C:\Users\nmalk\source\repos\WorkWhere\WorkWhere\WorkWhere\obj\Debug\net8.0\refin
 C:\Users\nmalk\source\repos\WorkWhere\WorkWhere\WorkWhere\obj\Debug\net8.0\WorkWhere.pdb
 C:\Users\nmalk\source\repos\WorkWhere\WorkWhere\WorkWhere\obj\Debug\net8.0\WorkWhere.genruntimeconfig.cache
 C:\Users\nmalk\source\repos\WorkWhere\WorkWhere\WorkWhere\obj\Debug\net8.0\ref\WorkWhere.dll
-C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\WorkWhere\obj\Debug\net8.0\WorkWhere.csproj.AssemblyReference.cache
-C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\WorkWhere\obj\Debug\net8.0\WorkWhere.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\WorkWhere\obj\Debug\net8.0\WorkWhere.AssemblyInfoInputs.cache
-C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\WorkWhere\obj\Debug\net8.0\WorkWhere.AssemblyInfo.cs
-C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\WorkWhere\obj\Debug\net8.0\WorkWhere.csproj.CoreCompileInputs.cache
-C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\WorkWhere\obj\Debug\net8.0\WorkWhere.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\WorkWhere\obj\Debug\net8.0\WorkWhere.sourcelink.json
 C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\WorkWhere\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\WorkWhere\bin\Debug\net8.0\appsettings.json
 C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\WorkWhere\bin\Debug\net8.0\WorkWhere.exe
@@ -277,6 +270,7 @@ C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\WorkWhere\bin\Debug\net8.0\Aut
 C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\WorkWhere\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\WorkWhere\bin\Debug\net8.0\Azure.Core.dll
 C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\WorkWhere\bin\Debug\net8.0\Azure.Identity.dll
+C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\WorkWhere\bin\Debug\net8.0\CloudinaryDotNet.dll
 C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\WorkWhere\bin\Debug\net8.0\Humanizer.dll
 C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\WorkWhere\bin\Debug\net8.0\Microsoft.AspNetCore.Razor.Language.dll
 C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\WorkWhere\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
@@ -505,6 +499,14 @@ C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\WorkWhere\bin\Debug\net8.0\Inf
 C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\WorkWhere\bin\Debug\net8.0\Application.pdb
 C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\WorkWhere\bin\Debug\net8.0\Core.pdb
 C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\WorkWhere\bin\Debug\net8.0\Infrastructure.pdb
+C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\WorkWhere\obj\Debug\net8.0\WorkWhere.csproj.AssemblyReference.cache
+C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\WorkWhere\obj\Debug\net8.0\WorkWhere.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\WorkWhere\obj\Debug\net8.0\WorkWhere.AssemblyInfoInputs.cache
+C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\WorkWhere\obj\Debug\net8.0\WorkWhere.AssemblyInfo.cs
+C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\WorkWhere\obj\Debug\net8.0\WorkWhere.csproj.CoreCompileInputs.cache
+C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\WorkWhere\obj\Debug\net8.0\WorkWhere.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\WorkWhere\obj\Debug\net8.0\WorkWhere.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\WorkWhere\obj\Debug\net8.0\WorkWhere.sourcelink.json
 C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\WorkWhere\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\WorkWhere\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\WorkWhere\obj\Debug\net8.0\staticwebassets\msbuild.WorkWhere.Microsoft.AspNetCore.StaticWebAssets.props
@@ -519,4 +521,3 @@ C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\WorkWhere\obj\Debug\net8.0\ref
 C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\WorkWhere\obj\Debug\net8.0\WorkWhere.pdb
 C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\WorkWhere\obj\Debug\net8.0\WorkWhere.genruntimeconfig.cache
 C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\WorkWhere\obj\Debug\net8.0\ref\WorkWhere.dll
-C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\WorkWhere\obj\Debug\net8.0\WorkWhere.MvcApplicationPartsAssemblyInfo.cs

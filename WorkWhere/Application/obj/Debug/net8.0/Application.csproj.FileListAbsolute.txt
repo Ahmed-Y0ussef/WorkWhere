@@ -16,12 +16,6 @@ C:\Users\nmalk\source\repos\WorkWhere\WorkWhere\Application\obj\Debug\net8.0\App
 C:\Users\nmalk\source\repos\WorkWhere\WorkWhere\Application\obj\Debug\net8.0\refint\Application.dll
 C:\Users\nmalk\source\repos\WorkWhere\WorkWhere\Application\obj\Debug\net8.0\Application.pdb
 C:\Users\nmalk\source\repos\WorkWhere\WorkWhere\Application\obj\Debug\net8.0\ref\Application.dll
-C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\Application\obj\Debug\net8.0\Application.csproj.AssemblyReference.cache
-C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\Application\obj\Debug\net8.0\Application.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\Application\obj\Debug\net8.0\Application.AssemblyInfoInputs.cache
-C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\Application\obj\Debug\net8.0\Application.AssemblyInfo.cs
-C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\Application\obj\Debug\net8.0\Application.csproj.CoreCompileInputs.cache
-C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\Application\obj\Debug\net8.0\Application.sourcelink.json
 C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\Application\bin\Debug\net8.0\Application.deps.json
 C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\Application\bin\Debug\net8.0\Application.dll
 C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\Application\bin\Debug\net8.0\Application.pdb
@@ -29,6 +23,12 @@ C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\Application\bin\Debug\net8.0\C
 C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\Application\bin\Debug\net8.0\Infrastructure.dll
 C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\Application\bin\Debug\net8.0\Infrastructure.pdb
 C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\Application\bin\Debug\net8.0\Core.pdb
+C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\Application\obj\Debug\net8.0\Application.csproj.AssemblyReference.cache
+C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\Application\obj\Debug\net8.0\Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\Application\obj\Debug\net8.0\Application.AssemblyInfoInputs.cache
+C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\Application\obj\Debug\net8.0\Application.AssemblyInfo.cs
+C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\Application\obj\Debug\net8.0\Application.csproj.CoreCompileInputs.cache
+C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\Application\obj\Debug\net8.0\Application.sourcelink.json
 C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\Application\obj\Debug\net8.0\Applicat.44B5EDA2.Up2Date
 C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\Application\obj\Debug\net8.0\Application.dll
 C:\Users\nmalk\Desktop\Nadoda\WorkWhere\WorkWhere\Application\obj\Debug\net8.0\refint\Application.dll

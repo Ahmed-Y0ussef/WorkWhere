@@ -22,8 +22,9 @@ namespace Application.DTO.Course
         public string Location { get; set; }
         public string Description { get; set; }
         public int? Num_Of_Students_Joined { get; set; }
-          public byte[] Photo { get; set; }
-        //public string PhotoUrl { get; set; }
+        public byte[] Photo { get; set; }
+       // public string Nadoda { get; set; }
+
 
         public int Capacity { get; set; }
        

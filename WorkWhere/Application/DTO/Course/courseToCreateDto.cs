@@ -13,13 +13,22 @@ namespace Application.DTO.Course
     public class courseToCreateDto
     {
         public string Name { get; set; }
-        public IFormFile Photo { get; set; }
-       // public string PhotoUrl { get; set; }
+
+       // public IFormFile Photo { get; set; }
+         public string Photo { get; set; }
+
+        public int? Num_Of_Students_Joined { get; set; }
+
         public decimal Price { get; set; }
+        public string Description { get; set; }
+
         public int Capacity { get; set; }
         public string Location { get; set; }
         public int TeacherId { get; set; }
 
-        public   CourseScheduleToCreateDto CourseSchedule {  get; set; }
-      }  
+        //public   CourseScheduleToCreateDto CourseSchedule {  get; set; }
+        public string[] Date { get; set; }
+        public string StartTime { get; set; }
+        public string EndTime { get; set; }
+    }  
 }

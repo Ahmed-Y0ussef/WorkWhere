@@ -1,25 +1,10 @@
 ﻿using Application.DTO.Course;
-using System.Linq;
-using Application.Helpers;
-using Application.DTO.CourseTableSlot;
 using Core;
 using Core.Application.Contract;
 using Core.Entities;
 using Core.Infrastructure.Contract;
-using Infrastructure.Dbcontext;
-using Infrastructure.Repositories;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Application.DTO.CourseReviews;
 using System.Linq.Expressions;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
 using Application.Helpers.ResponseResults;
 using Application.DTO.CourseSchedule;
 
@@ -38,8 +23,8 @@ namespace Application.Services
 
         public async Task<courseToReturnDto> GetCourseAsync(int id)
         {
-            var course = await _unitOfWork.GetRepository<Course>()
-                                        .GetAsync(id, c => c.Teacher, c=>c.Admin,c => c.CourseSchedule);
+            var course = await _unitOfWork.GetRepo<Course>()
+                                        .GetById(id, c => c.Teacher, c=>c.Admin,c => c.CourseSchedule);
 
 
             if (course == null)
@@ -47,17 +32,18 @@ namespace Application.Services
                 
                 return null; 
             }
-
+             
 
             return new courseToReturnDto
             {
                 Id= course.Id,
-                AdminId=course.Admin.Id,
+                AdminId = course.Admin?.Id ?? default(int),
                 Name = course.Name,
                 Price = course.Price,
                 Location = course.Location,
                 Num_Of_Students_Joined = course.NumOfStudentsEnrolled,
-                Photo = course.Photo,
+               // Nadoda = $"data:image/jpg;base64,{Convert.ToBase64String(course.Photo)}",
+               Photo=course.Photo,
                 Description = course.Description,
                 Capacity = course.Capacity,
                 status = course.Status.ToString(),
@@ -85,7 +71,7 @@ namespace Application.Services
                             c=>c.CourseSchedule]
 
             };
-            var courses = await _unitOfWork.GetRepository<Course>()
+            var courses = await _unitOfWork.GetRepo<Course>()
                                           .GetAllAsyncWithQueryBuilder(courseQuery);
 
             var coursesToReturn = courses.Select(c => new courseToReturnDto
@@ -115,48 +101,44 @@ namespace Application.Services
 
         public async Task CreateCourseAsync(courseToCreateDto courseDto)
         {
-            byte[] photoBytes = null;
-            if (courseDto.Photo != null)
-            {
-                photoBytes = await courseDto.Photo.ConvertToArrayOfBytes();
-                if (photoBytes == null)
-                {
-
-                    return;
-                }
-            }
-
+            
                 var course = new Course
                 {
 
                     Name = courseDto.Name,
-                    Photo = photoBytes,
                     Price = courseDto.Price,
+                   // Photo = Convert.FromBase64String(courseDto.Photo),
+                    NumOfStudentsEnrolled = courseDto?.Num_Of_Students_Joined ?? default(int),
                     Capacity = courseDto.Capacity,
                     Description = courseDto.Description,
                     Location = courseDto.Location,
                     TeacherId = courseDto.TeacherId //token
                     
                 };
-
-                course.Status = Status.Pending;
-                await _unitOfWork.GetRepository<Course>().CreateAsync(course);
-                await _unitOfWork.CommitAsync();
-
-                var CourseSchedule = courseDto.CourseSchedule;
+           // 1
+            string coursePhoto = courseDto.Photo.Split(',')[1];
+            course.Photo = Convert.FromBase64String(coursePhoto);
 
 
-                var CourseSchedules = new CourseSchedule
-                {
-                    Dates = CourseSchedule.Dates.ToArray(),
-                    StartHour = CourseSchedule.startHour,
-                    EndHour = CourseSchedule.endHour,
-                    CourseId = course.Id
+            course.Status = Status.Pending;
+                await _unitOfWork.GetRepo<Course>().Add(course);
+                await _unitOfWork.Complete();
 
-                };
 
-                await _unitOfWork.GetRepository<CourseSchedule>().CreateAsync(CourseSchedules);
-                await _unitOfWork.CommitAsync();
+
+            var CourseSchedules = new CourseSchedule
+
+            {
+                Dates = courseDto.Date,
+                StartHour = courseDto.StartTime,
+                EndHour = courseDto.EndTime,
+                CourseId = course.Id
+
+
+            };
+
+            await _unitOfWork.GetRepo<CourseSchedule>().Add(CourseSchedules);
+                await _unitOfWork.Complete();
 
             
         }
@@ -166,8 +148,8 @@ namespace Application.Services
         public async Task UpdateCourseAsync( courseToUpdateDto courseDto)
         {
             
-            var course = await _unitOfWork.GetRepository<Course>()
-                                        .GetAsync(courseDto.courseId, c => c.Teacher, c => c.CourseSchedule);
+            var course = await _unitOfWork.GetRepo<Course>()
+                                        .GetById(courseDto.courseId, c => c.Teacher, c => c.CourseSchedule);
 
             if (course == null)
             {
@@ -184,14 +166,9 @@ namespace Application.Services
             }
             if (courseDto.Photo != null)
             {
-                using (var stream = courseDto.Photo.OpenReadStream())
-                {
-                    using (var memoryStream = new MemoryStream())
-                    {
-                        await stream.CopyToAsync(memoryStream);
-                        course.Photo = memoryStream.ToArray();
-                    }
-                }
+                string coursePhoto = courseDto.Photo.Split(',')[1];
+
+                course.Photo = Convert.FromBase64String(coursePhoto);
             }
             if (!string.IsNullOrEmpty(courseDto.Description))
             {
@@ -206,54 +183,67 @@ namespace Application.Services
                 course.Name = courseDto.Name;
             }
 
-            if (courseDto.CourseSchedule != null)
+            #region MyRegion
+            //if (courseDto.CourseSchedule != null)
+            //{
+            //    var CourseSchedule = course.CourseSchedule;
+
+            //    courseDto.CourseSchedule.SetUpdateDatesFlag();
+
+            //    if (CourseSchedule != null)
+            //    {
+            //        if (courseDto.CourseSchedule?.startHour != null)
+            //        {
+            //            CourseSchedule.StartHour = courseDto.CourseSchedule.startHour;
+            //        }
+
+            //        if (courseDto.CourseSchedule?.endHour != null)
+            //        {
+            //            CourseSchedule.EndHour = courseDto.CourseSchedule.endHour;
+            //        }
+
+            //        if (courseDto.CourseSchedule.UpdateDates)
+            //        {
+            //            CourseSchedule.Dates = courseDto.CourseSchedule.Dates;  // Update dates if flag is true
+            //        }
+
+            //        await _unitOfWork.GetRepository<CourseSchedule>().UpdateAsync(CourseSchedule);
+            //    }
+            //} 
+            #endregion
+
+            if (courseDto.Dates != null || courseDto.startHour != null || courseDto.endHour != null)
             {
-                var CourseSchedule = course.CourseSchedule;
-
-                courseDto.CourseSchedule.SetUpdateDatesFlag();
-
-                if (CourseSchedule != null)
+                if (course.CourseSchedule != null) // Check if CourseSchedule is not null first
                 {
-                    if (courseDto.CourseSchedule?.startHour != null)
-                    {
-                        CourseSchedule.StartHour = courseDto.CourseSchedule.startHour;
-                    }
-
-                    if (courseDto.CourseSchedule?.endHour != null)
-                    {
-                        CourseSchedule.EndHour = courseDto.CourseSchedule.endHour;
-                    }
-
-                    if (courseDto.CourseSchedule.UpdateDates)
-                    {
-                        CourseSchedule.Dates = courseDto.CourseSchedule.Dates;  // Update dates if flag is true
-                    }
-
-                    await _unitOfWork.GetRepository<CourseSchedule>().UpdateAsync(CourseSchedule);
+                    course.CourseSchedule.Dates = courseDto.Dates;
+                    course.CourseSchedule.StartHour = courseDto.startHour;
+                    course.CourseSchedule.EndHour = courseDto.endHour;
                 }
             }
 
-            await _unitOfWork.CommitAsync();
+
+            await _unitOfWork.Complete();
         }
 
         public async Task DeleteCourseAsync(int id)
         {
-            var course = await _unitOfWork.GetRepository<Course>().GetAsync(id);
+            var course = await _unitOfWork.GetRepo<Course>().GetById(id);
 
             if (course == null)
             {
                 throw new ArgumentException("Course not found");
             }
 
-            await _unitOfWork.GetRepository<Course>().DeleteAsync(course);
-            await _unitOfWork.CommitAsync();
+            await _unitOfWork.GetRepo<Course>().Delete(course);
+            await _unitOfWork.Complete();
         }
 
         //********************************    Reviews     **********************************
         public async Task AddReviewAsync( ReviewsToCreateDto reviewDto)
         {
-            var courseRepository = _unitOfWork.GetRepository<Course>();
-           var course = await courseRepository.GetAsync(reviewDto.CourseId);
+            var courseRepository = _unitOfWork.GetRepo<Course>();
+           var course = await courseRepository.GetById(reviewDto.CourseId);
 
             var newReview = new CourseReviews
             {
@@ -262,9 +252,9 @@ namespace Application.Services
                 Rating = reviewDto.Rating,
                 Review = reviewDto.Review
             };
-            await _unitOfWork.GetRepository<CourseReviews>().CreateAsync(newReview);
+            await _unitOfWork.GetRepo<CourseReviews>().Add(newReview);
 
-            await _unitOfWork.CommitAsync();
+            await _unitOfWork.Complete();
         }
 
         public async Task<IEnumerable<ReviewsToReturnDto>> GetCourseReviewsAsync(int courseId)
@@ -278,7 +268,7 @@ namespace Application.Services
                             cr => cr.User ]
 
             };
-            var reviews = await _unitOfWork.GetRepository<CourseReviews>()
+            var reviews = await _unitOfWork.GetRepo<CourseReviews>()
                                           .GetAllAsyncWithQueryBuilder(courseQuery);
 
             return reviews.Select(cr => new ReviewsToReturnDto
@@ -294,17 +284,17 @@ namespace Application.Services
 
         public async Task DeleteReviewAsync(ReviewToDeleteDto reviewToDeleteDto)
         {
-            var courseRepository = _unitOfWork.GetRepository<Course>();
-            var course = await courseRepository.GetAsync(reviewToDeleteDto.CourseId);
+            var courseRepository = _unitOfWork.GetRepo<Course>();
+            var course = await courseRepository.GetById(reviewToDeleteDto.CourseId);
 
 
 
-            var reviewRepository = _unitOfWork.GetRepository<CourseReviews>();
+            var reviewRepository = _unitOfWork.GetRepo<CourseReviews>();
 
-            var review = await reviewRepository.GetAsync(reviewToDeleteDto.ReviewId);
+            var review = await reviewRepository.GetById(reviewToDeleteDto.ReviewId);
 
-            await reviewRepository.DeleteAsync(review);
-            await _unitOfWork.CommitAsync();
+            await reviewRepository.Delete(review);
+            await _unitOfWork.Complete();
 
         }
 
@@ -312,8 +302,8 @@ namespace Application.Services
 
         public async Task<JoinCourseResult> JoinCourseAsync(coursesToJoinDto coursesToJoinDto)
         {
-            var courseRepository = _unitOfWork.GetRepository<Course>();
-            var studentCourseRepository = _unitOfWork.GetRepository<EnrolledStudents>();
+            var courseRepository = _unitOfWork.GetRepo<Course>();
+            var studentCourseRepository = _unitOfWork.GetRepo<EnrolledStudents>();
 
             var studentCourseQueryBuilder = new IQueryBuilder<EnrolledStudents>()
             {
@@ -327,7 +317,7 @@ namespace Application.Services
                 return JoinCourseResult.AlreadyEnrolled;
             }
 
-            var course = await courseRepository.GetAsync(coursesToJoinDto.CourseId);
+            var course = await courseRepository.GetById(coursesToJoinDto.CourseId);
 
             if (course == null)
             {
@@ -346,12 +336,12 @@ namespace Application.Services
             };
 
            
-           await  studentCourseRepository.CreateAsync(studentCourse);
+           await  studentCourseRepository.Add(studentCourse);
             
-            course = await courseRepository.GetAsync(coursesToJoinDto.CourseId);
+            course = await courseRepository.GetById(coursesToJoinDto.CourseId);
             course.NumOfStudentsEnrolled++;
-            await courseRepository.UpdateAsync(course);
-            await _unitOfWork.CommitAsync();
+            await courseRepository.Update(course);
+            await _unitOfWork.Complete();
             return JoinCourseResult.Success;
         }
 
@@ -362,14 +352,14 @@ namespace Application.Services
             {
                 return CancelCourseResults.CourseOrStudentId;
             }
-            var courseRepository = _unitOfWork.GetRepository<Course>();
-            var studentCourseRepository = _unitOfWork.GetRepository<EnrolledStudents>();
+            var courseRepository = _unitOfWork.GetRepo<Course>();
+            var studentCourseRepository = _unitOfWork.GetRepo<EnrolledStudents>();
 
             var studentCourseQueryBuilder = new IQueryBuilder<EnrolledStudents>()
             {
                 Criteria = sc => sc.CourseId == coursesToJoinDto.CourseId && sc.StudentId == coursesToJoinDto.StudentId
             };
-            var course = await courseRepository.GetAsync(coursesToJoinDto.CourseId);
+            var course = await courseRepository.GetById(coursesToJoinDto.CourseId);
 
             var enrolledStudentCourses = await studentCourseRepository.GetAllAsyncWithQueryBuilder(studentCourseQueryBuilder);
             var studentCourseToDelete = enrolledStudentCourses.FirstOrDefault();
@@ -378,13 +368,13 @@ namespace Application.Services
             {
                 return CancelCourseResults.NotEnrolled;
             }
-            await studentCourseRepository.DeleteAsync(studentCourseToDelete);
+            await studentCourseRepository.Delete(studentCourseToDelete);
 
-            course = await courseRepository.GetAsync(coursesToJoinDto.CourseId);
+            course = await courseRepository.GetById(coursesToJoinDto.CourseId);
             course.NumOfStudentsEnrolled--;
-            await courseRepository.UpdateAsync(course);
+            await courseRepository.Update(course);
 
-            await _unitOfWork.CommitAsync();
+            await _unitOfWork.Complete();
             return CancelCourseResults.Success;
 
         }
@@ -405,7 +395,7 @@ namespace Application.Services
                            
 
             };
-            var courses = await _unitOfWork.GetRepository<Course>()
+            var courses = await _unitOfWork.GetRepo<Course>()
                                           .GetAllAsyncWithQueryBuilder(courseQuery);
 
 
@@ -444,7 +434,7 @@ namespace Application.Services
                             cr => cr.Student ]
 
             };
-            var students = await _unitOfWork.GetRepository<EnrolledStudents>()
+            var students = await _unitOfWork.GetRepo<EnrolledStudents>()
                                           .GetAllAsyncWithQueryBuilder(queryBuilder);
 
 
@@ -474,7 +464,7 @@ namespace Application.Services
                 cr => cr.Student
             };
 
-            var students = await _unitOfWork.GetRepository<EnrolledStudents>()
+            var students = await _unitOfWork.GetRepo<EnrolledStudents>()
                                           .GetAllAsyncWithQueryBuilder(queryBuilder);
 
             return students.GroupBy(cr => cr.Course.Id)
@@ -504,7 +494,7 @@ namespace Application.Services
 
 
             };
-            var courses = await _unitOfWork.GetRepository<Course>()
+            var courses = await _unitOfWork.GetRepo<Course>()
                                           .GetAllAsyncWithQueryBuilder(courseQuery);
 
 
@@ -534,7 +524,7 @@ namespace Application.Services
 
         public async Task<IEnumerable<PendingCoursesDto>> GetPendingCoursesAsync()
         {
-            var courseRepository = _unitOfWork.GetRepository<Course>();
+            var courseRepository = _unitOfWork.GetRepo<Course>();
             var courses = await courseRepository.GetAllAsync(c => c.Teacher, c => c.CourseSchedule);
 
             var coursesToReturn = courses.Where(c => c.Status == Status.Pending)
@@ -575,7 +565,7 @@ namespace Application.Services
                 cr => cr.User
             };
 
-            var reviews = await _unitOfWork.GetRepository<CourseReviews>()
+            var reviews = await _unitOfWork.GetRepo<CourseReviews>()
                                           .GetAllAsyncWithQueryBuilder(queryBuilder);
 
             return reviews.Select(cr => new ReviewsToReturnDto
@@ -591,7 +581,7 @@ namespace Application.Services
 
        public async Task<ManageCoursesResults> ApproveCourse(coursesToManageDto coursesToManageDto)
         {
-            var course = await _unitOfWork.GetRepository<Course>().GetAsync(coursesToManageDto.CourseId);
+            var course = await _unitOfWork.GetRepo<Course>().GetById(coursesToManageDto.CourseId);
             if (course == null)
             {
                 return ManageCoursesResults.CourseNotFound;
@@ -607,7 +597,7 @@ namespace Application.Services
 
            course.AdminId= coursesToManageDto.AdminId ;  // token
 
-            await _unitOfWork.CommitAsync();
+            await _unitOfWork.Complete();
 
             return ManageCoursesResults.Success;
         }
@@ -615,7 +605,7 @@ namespace Application.Services
 
         public  async Task<ManageCoursesResults> RejectCourse(coursesToManageDto coursesToManageDto)
         {
-            var course = await _unitOfWork.GetRepository<Course>().GetAsync(coursesToManageDto.CourseId);
+            var course = await _unitOfWork.GetRepo<Course>().GetById(coursesToManageDto.CourseId);
 
             if (course == null)
             {
@@ -629,10 +619,10 @@ namespace Application.Services
 
             course.Status = Status.Refused;
 
-            await _unitOfWork.GetRepository<Course>().DeleteAsync(course); // Use UnitOfWork's repository access
+            await _unitOfWork.GetRepo<Course>().Delete(course); // Use UnitOfWork's repository access
 
            
-                await _unitOfWork.CommitAsync();
+                await _unitOfWork.Complete();
                 return ManageCoursesResults.Success;
             
 
@@ -650,7 +640,7 @@ namespace Application.Services
                 Includes = [cr => cr.Course, cr => cr.Student , c=>c.Course.CourseSchedule ,c=>c.Course.Admin, c=>c.Student.EnrolledStudents]  // Include CourseSchedule for efficient data retrieval
             };
 
-            var enrollments = await _unitOfWork.GetRepository<EnrolledStudents>()
+            var enrollments = await _unitOfWork.GetRepo<EnrolledStudents>()
                                               .GetAllAsyncWithQueryBuilder(queryBuilder);
 
             return enrollments.GroupBy(cr => cr.Student.Id)
@@ -660,7 +650,7 @@ namespace Application.Services
                         EnrolledCourses = group.Select(cr => new courseToReturnDto
                         {
                             Id = cr.Course.Id,
-                           // AdminId = cr.Course.Admin?.Id ?? default(int),
+                            AdminId = cr.Course.Admin?.Id ?? default(int),
                             Name = cr.Course.Name,
                             Price = cr.Course.Price,
                             Location = cr.Course.Location,
@@ -696,7 +686,7 @@ namespace Application.Services
                             c=>c.CourseSchedule]
 
             };
-            var courses = await _unitOfWork.GetRepository<Course>()
+            var courses = await _unitOfWork.GetRepo<Course>()
                                           .GetAllAsyncWithQueryBuilder(courseQuery);
 
             var coursesToReturn = courses.Select(c => new courseToReturnDto
